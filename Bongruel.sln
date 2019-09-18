@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bongruel", "Bongruel\Bongruel.csproj", "{BBDF940F-D64D-41C8-98F5-0E00BB860CA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GruelModel", "GruelModel\GruelModel.csproj", "{04AA7B7F-48F0-4336-9BC9-2E80F591B510}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBDF940F-D64D-41C8-98F5-0E00BB860CA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBDF940F-D64D-41C8-98F5-0E00BB860CA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBDF940F-D64D-41C8-98F5-0E00BB860CA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBDF940F-D64D-41C8-98F5-0E00BB860CA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04AA7B7F-48F0-4336-9BC9-2E80F591B510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04AA7B7F-48F0-4336-9BC9-2E80F591B510}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04AA7B7F-48F0-4336-9BC9-2E80F591B510}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04AA7B7F-48F0-4336-9BC9-2E80F591B510}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14644CC3-983F-4B87-8370-93AB95EE971F}
+	EndGlobalSection
+EndGlobal
