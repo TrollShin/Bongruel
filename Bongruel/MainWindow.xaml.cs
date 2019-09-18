@@ -24,5 +24,10 @@ namespace Bongruel
         {
             InitializeComponent();
         }
+
+        private void BtnSend_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

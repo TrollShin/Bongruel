@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="본죽">
     <Grid>
-        
+        <StackPanel Height="50" VerticalAlignment="Bottom" Orientation="Horizontal">
+            <TextBox x:Name="tbInput" AcceptsReturn="True" Width="200"></TextBox>
+            <Button x:Name="btnSend" Content="보내기" Click="BtnSend_Click"></Button>
+        </StackPanel>
     </Grid>
 </Window>
