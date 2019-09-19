@@ -27,7 +27,7 @@ namespace Bongruel
 
         private void BtnSend_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }
