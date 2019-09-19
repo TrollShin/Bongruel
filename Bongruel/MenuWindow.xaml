@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Bongruel.UserControl1"
+﻿<UserControl x:Class="Bongruel.MenuWindow"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -19,24 +19,44 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.ColumnSpan="2" Grid.Row="0" Background="#6E0000">
-            
+
         </Grid>
+        <!--카테고리-->
         <Grid Grid.Column="1" Grid.Row="1">
-            <Border BorderBrush="Black" BorderThickness="2"/>
+            <Border BorderBrush="LightGray" BorderThickness="2">
+                
+            </Border>
         </Grid>
+        <!--메뉴선택-->
         <Grid Grid.Column="1" Grid.Row="2">
-            <ListView x:Name="lvFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView x:Name="lvFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                      BorderBrush="LightGray" BorderThickness="2">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Width="200" Height="200">
-                            
+                            <Button MouseDown="Button_MouseDown"/>
+                            <Image Source="{Binding ImagePath}"/>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
+        <!--메뉴선택 후 선택한 메뉴 이미지 출력-->
         <Grid Grid.Column="1" Grid.Row="3">
-            <Image Source="C:\Users\user\Documents\Dev\GitBongruel\GruelModel\Assets\동지팥죽_pic.jpg" Stretch="UniformToFill"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Border BorderBrush="LightGray" BorderThickness="2">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                       FontSize="28" FontWeight="Bold">
+                메뉴
+            </TextBlock>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="2">
+            <ListView x:Name="selectedFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2">
+                
+            </ListView>
         </Grid>
     </Grid>
 </UserControl>

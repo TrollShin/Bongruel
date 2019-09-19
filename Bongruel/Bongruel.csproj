@@ -102,5 +102,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GruelModel\GruelModel.csproj">
+      <Project>{04aa7b7f-48f0-4336-9bc9-2e80f591b510}</Project>
+      <Name>GruelModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -16,13 +16,25 @@ using System.Windows.Shapes;
 namespace Bongruel
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for MenuWindow.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class MenuWindow : UserControl
     {
-        public UserControl1()
+        public MenuWindow()
         {
             InitializeComponent();
+            this.Loaded += MenuWindow_Loaded;
+        }
+
+        private void MenuWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+           App.foodData.Load();
+           lvFood.ItemsSource = App.foodData.listFood;
+        }
+
+        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

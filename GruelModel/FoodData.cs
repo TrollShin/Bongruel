@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GruelModel
 {
-    class FoodData
+    public class FoodData
     {
         private bool isLoaded = false;
 
