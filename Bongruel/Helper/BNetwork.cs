@@ -33,9 +33,23 @@ namespace Bongruel.Helper
             socket.Connect(endpoint);
         }
 
-        public void Send()
+        public void Send(string message)
         {
+            if(socket == null)
+            {
+                 Create();   
+            }               
             
+            byte[] messageBuffer = Encoding.UTF8.GetBytes(message);
+            socket.Send(messageBuffer, 0, messageBuffer.Length, 0);
+
+            byte buffer = new byte[255];
+            int recieve = socket.Receive(buffer, 0, buffer.Length, 0);
+
+            Array.Resize(ref buffer, recieve);
+
+            socket.Close();
+
         }
 
     }

@@ -27,7 +27,7 @@ namespace Bongruel
 
         private void BtnSend_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         //임시 컨트롤 전환 (다른 방법을 찾아야함) 
