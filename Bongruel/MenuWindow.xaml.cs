@@ -26,6 +26,8 @@ namespace Bongruel
             this.Loaded += MenuWindow_Loaded;
         }
 
+
+
         private void MenuWindow_Loaded(object sender, RoutedEventArgs e)
         {
            App.foodData.Load();
@@ -34,7 +36,7 @@ namespace Bongruel
 
         private void Button_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            
         }
     }
 }

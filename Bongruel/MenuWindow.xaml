@@ -24,7 +24,7 @@
         <!--카테고리-->
         <Grid Grid.Column="1" Grid.Row="1">
             <Border BorderBrush="LightGray" BorderThickness="2">
-                
+
             </Border>
         </Grid>
         <!--메뉴선택-->
@@ -33,30 +33,46 @@
                       BorderBrush="LightGray" BorderThickness="2">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Width="200" Height="200">
-                            <Button MouseDown="Button_MouseDown"/>
-                            <Image Source="{Binding ImagePath}"/>
+                        <Grid Width="150" Height="150" >
+                            <Border BorderBrush="Black" BorderThickness="2">
+                                <Image Source="{Binding ImagePath}"/>
+                            </Border>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Width="650" Margin="10"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
             </ListView>
         </Grid>
         <!--메뉴선택 후 선택한 메뉴 이미지 출력-->
         <Grid Grid.Column="1" Grid.Row="3">
+            <Border BorderBrush="LightGray" BorderThickness="2">
+
+            </Border>
         </Grid>
 
         <Grid Grid.Row="1">
             <Border BorderBrush="LightGray" BorderThickness="2">
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                        FontSize="28" FontWeight="Bold">
                 메뉴
-            </TextBlock>
+                </TextBlock>
             </Border>
         </Grid>
         <Grid Grid.Row="2">
             <ListView x:Name="selectedFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2">
-                
+
             </ListView>
         </Grid>
+        <Grid Grid.Row="3">
+            <Border BorderBrush="LightGray" BorderThickness="2">
+
+            </Border>
+        </Grid>
+            
     </Grid>
 </UserControl>

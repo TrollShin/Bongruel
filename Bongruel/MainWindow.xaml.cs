@@ -29,5 +29,12 @@ namespace Bongruel
         {
             
         }
+
+        //임시 컨트롤 전환 (다른 방법을 찾아야함) 
+        private void GoMenuWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            goMenuWindowBtn.Visibility = Visibility.Hidden;
+            this.contentControl.Content = new MenuWindow();
+        }
     }
 }
