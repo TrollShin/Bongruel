@@ -33,6 +33,7 @@ namespace Bongruel.Helper
             socket.Connect(endpoint);
         }
 
+        //실험 중인 코드
         public void Send(string message)
         {
             if(socket == null)
@@ -42,8 +43,8 @@ namespace Bongruel.Helper
             
             byte[] messageBuffer = Encoding.UTF8.GetBytes(message);
             socket.Send(messageBuffer, 0, messageBuffer.Length, 0);
-
-            byte buffer = new byte[255];
+                
+            byte[] buffer = new byte[255];
             int recieve = socket.Receive(buffer, 0, buffer.Length, 0);
 
             Array.Resize(ref buffer, recieve);
