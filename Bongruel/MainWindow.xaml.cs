@@ -37,7 +37,7 @@ namespace Bongruel
 
             catch(Exception)
             {
-                MessageBox.Show("서버에 연결을 실패했습니다.");
+                MessageBox.Show("없음 서버 응답 요청 시작 다시");
             }
        
         }
