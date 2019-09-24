@@ -27,10 +27,19 @@ namespace Bongruel
 
         private void BtnSend_Click(object sender, RoutedEventArgs e)
         {
-            Helper.BNetwork bNetwork = new Helper.BNetwork();
-            bNetwork.Create();
-            bNetwork.Connect("10.80.163.138", 8000);
-            bNetwork.Send(tbInput.Text);
+            try
+            {
+                Helper.BNetwork bNetwork = new Helper.BNetwork();
+                bNetwork.Create();
+                bNetwork.Connect("10.80.163.138", 8000);
+                bNetwork.Send(tbInput.Text);
+            }
+
+            catch(Exception)
+            {
+                MessageBox.Show("서버에 연결을 실패했습니다.");
+            }
+       
         }
 
         //임시 컨트롤 전환 (다른 방법을 찾아야함) 
