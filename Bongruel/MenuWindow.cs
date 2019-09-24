@@ -23,20 +23,16 @@ namespace Bongruel
         public MenuWindow()
         {
             InitializeComponent();
-            this.Loaded += MenuWindow_Loaded;
         }
-
-
 
         private void MenuWindow_Loaded(object sender, RoutedEventArgs e)
         {
            App.foodData.Load();
            lvFood.ItemsSource = App.foodData.listFood;
         }
-
-        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
+        private void GoBackBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.Visibility = Visibility.Collapsed;
         }
     }
 }

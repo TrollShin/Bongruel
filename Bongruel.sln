@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bongruel", "Bongruel\Bongru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GruelModel", "GruelModel\GruelModel.csproj", "{04AA7B7F-48F0-4336-9BC9-2E80F591B510}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfSwitch", "WpfSwitch\WpfSwitch.csproj", "{A84A7223-81BD-4BA4-AD65-F7B0A6E844D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{04AA7B7F-48F0-4336-9BC9-2E80F591B510}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04AA7B7F-48F0-4336-9BC9-2E80F591B510}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04AA7B7F-48F0-4336-9BC9-2E80F591B510}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A84A7223-81BD-4BA4-AD65-F7B0A6E844D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A84A7223-81BD-4BA4-AD65-F7B0A6E844D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A84A7223-81BD-4BA4-AD65-F7B0A6E844D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A84A7223-81BD-4BA4-AD65-F7B0A6E844D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
