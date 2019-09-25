@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Sockets;
 
 namespace Bongruel
 {
@@ -25,8 +26,7 @@ namespace Bongruel
             InitializeComponent();
         }
 
-        //BNetwork로 넘어감
-        /*private void BtnSend_Click(object sender, RoutedEventArgs e)
+        private void BtnSend_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -36,27 +36,16 @@ namespace Bongruel
                 bNetwork.Send(tbInput.Text);
             }
 
-            catch(Exception)
+            catch (Exception)
             {
-                MessageBox.Show("없음 서버 응답 요청 시작 다시");
+                MessageBox.Show("서버 응답이 없습니다");
             }
-        }*/
+        }
 
+        //임시 컨트롤 전환 (다른 방법을 찾아야함) 
         private void GoMenuWindowBtn_Click(object sender, RoutedEventArgs e)
         {
-            changeUserControl(new MenuWindow());
-        }
-
-        private void GoBNetwork_Click(object sender, RoutedEventArgs e)
-        {
-            changeUserControl(new BNetworkControl());
-        }
-
-        //임시
-        private void changeUserControl(UserControl userControl)
-        {
-            buttonGrid.Visibility = Visibility.Collapsed;
-            contentControl.Content = userControl;
+            this.contentControl.Content = new MenuWindow();
         }
     }
 }
