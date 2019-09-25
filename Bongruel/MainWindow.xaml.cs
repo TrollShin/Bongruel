@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Sockets;
 
 namespace Bongruel
 {
@@ -35,11 +36,10 @@ namespace Bongruel
                 bNetwork.Send(tbInput.Text);
             }
 
-            catch(Exception)
+            catch (Exception)
             {
-                MessageBox.Show("없음 서버 응답 요청 시작 다시");
+                MessageBox.Show("서버 응답이 없습니다");
             }
-       
         }
 
         //임시 컨트롤 전환 (다른 방법을 찾아야함) 

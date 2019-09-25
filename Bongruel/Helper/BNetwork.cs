@@ -40,7 +40,7 @@ namespace Bongruel.Helper
             {
                  Create();   
             }               
-            
+                       
             byte[] messageBuffer = Encoding.UTF8.GetBytes(message);
             socket.Send(messageBuffer, 0, messageBuffer.Length, 0);
                 
@@ -49,7 +49,6 @@ namespace Bongruel.Helper
 
             Array.Resize(ref buffer, recieve);
 
-            socket.Close();
 
         }
 
