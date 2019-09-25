@@ -55,10 +55,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BNetworkControl.xaml.cs">
+      <DependentUpon>BNetworkControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helper\BNetwork.cs" />
     <Compile Include="MenuWindow.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="BNetworkControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -11,18 +11,23 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        
-        <!--이현욱-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <!--
         <StackPanel Height="50" VerticalAlignment="Bottom" Orientation="Horizontal">
             <TextBox x:Name="tbInput" AcceptsReturn="True" Width="200"></TextBox>
             <Button x:Name="btnSend" Content="보내기" Click="BtnSend_Click"></Button>
         </StackPanel>
-
-        <!--신정우-->
+        -->
         <ContentControl x:Name="contentControl" Grid.ColumnSpan="2"/>
-        <Grid Grid.Column="1">
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" x:Name="buttonGrid">
             <!--임시 컨트롤 전환 버튼-->
-            <Button Width="100" Height="70" Content="MenuWindow로" x:Name="goMenuWindowBtn" Click="GoMenuWindowBtn_Click"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <Button Width="100" Height="70" Content="MenuWindow로" x:Name="goMenuWindowBtn" Click="GoMenuWindowBtn_Click"/>
+                <Button Width="100" Height="70" Content="BNetwork로" x:Name="goBNetwork" Click="GoBNetwork_Click" Margin="10,0,10,0"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>
