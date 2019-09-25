@@ -26,26 +26,24 @@ namespace Bongruel
             InitializeComponent();
         }
 
-        private void BtnSend_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Helper.BNetwork bNetwork = new Helper.BNetwork();
-                bNetwork.Create();
-                bNetwork.Connect("10.80.163.138", 8000);
-                bNetwork.Send(tbInput.Text);
-            }
 
-            catch (Exception)
-            {
-                MessageBox.Show("서버 응답이 없습니다");
-            }
-        }
 
         //임시 컨트롤 전환 (다른 방법을 찾아야함) 
         private void GoMenuWindowBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.contentControl.Content = new MenuWindow();
+            switchUserControl(new MenuWindow());
+        }
+
+        private void GoBNetwork_Click(object sender, RoutedEventArgs e)
+        {
+            switchUserControl(new BNetworkControl());
+        }
+
+        //임시
+        private void switchUserControl(UserControl userControl)
+        {
+            buttonGrid.Visibility = Visibility.Collapsed;
+            contentControl.Content = userControl;
         }
     }
 }

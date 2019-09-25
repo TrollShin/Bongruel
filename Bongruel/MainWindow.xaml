@@ -21,6 +21,7 @@
             <Button x:Name="btnSend" Content="보내기" Click="BtnSend_Click"></Button>
         </StackPanel>
         -->
+        
         <ContentControl x:Name="contentControl" Grid.ColumnSpan="2"/>
         <Grid Grid.Row="1" Grid.ColumnSpan="2" x:Name="buttonGrid">
             <!--임시 컨트롤 전환 버튼-->
