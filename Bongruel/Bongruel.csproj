@@ -56,7 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helper\BNetwork.cs" />
-    <Compile Include="MenuWindow.xaml.cs">
+    <Compile Include="MenuWindow.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -107,6 +107,9 @@
       <Project>{04aa7b7f-48f0-4336-9bc9-2e80f591b510}</Project>
       <Name>GruelModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\left-arrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

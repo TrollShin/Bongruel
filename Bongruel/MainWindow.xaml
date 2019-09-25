@@ -17,9 +17,9 @@
             <TextBox x:Name="tbInput" AcceptsReturn="True" Width="200"></TextBox>
             <Button x:Name="btnSend" Content="보내기" Click="BtnSend_Click"></Button>
         </StackPanel>
-        <ContentControl x:Name="contentControl" Grid.ColumnSpan="2"/>
 
         <!--신정우-->
+        <ContentControl x:Name="contentControl" Grid.ColumnSpan="2"/>
         <Grid Grid.Column="1">
             <!--임시 컨트롤 전환 버튼-->
             <Button Width="100" Height="70" Content="MenuWindow로" x:Name="goMenuWindowBtn" Click="GoMenuWindowBtn_Click"/>
