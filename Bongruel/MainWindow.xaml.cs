@@ -26,24 +26,14 @@ namespace Bongruel
             InitializeComponent();
         }
 
-
-
-        //임시 컨트롤 전환 (다른 방법을 찾아야함) 
         private void GoMenuWindowBtn_Click(object sender, RoutedEventArgs e)
         {
-            switchUserControl(new MenuWindow());
+            OrderWindow.Visibility = Visibility.Visible;
         }
 
         private void GoBNetwork_Click(object sender, RoutedEventArgs e)
         {
-            switchUserControl(new BNetworkControl());
-        }
-
-        //임시
-        private void switchUserControl(UserControl userControl)
-        {
-            buttonGrid.Visibility = Visibility.Collapsed;
-            contentControl.Content = userControl;
+            BNetwork.Visibility = Visibility.Visible;
         }
     }
 }
