@@ -26,9 +26,6 @@ namespace Bongruel
             InitializeComponent();
         }
 
-
-
-        //임시 컨트롤 전환 (다른 방법을 찾아야함) 
         private void GoMenuWindowBtn_Click(object sender, RoutedEventArgs e)
         {
             switchUserControl(new MenuWindow());
@@ -44,6 +41,11 @@ namespace Bongruel
         {
             buttonGrid.Visibility = Visibility.Collapsed;
             contentControl.Content = userControl;
+        }
+
+        private void ShowButtonGrid_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
