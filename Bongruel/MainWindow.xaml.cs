@@ -36,7 +36,10 @@ namespace Bongruel
 
         }
 
-        private void GoMenuWindowBtn_Click(object sender, RoutedEventArgs e) => OrderWindow.Visibility = Visibility.Visible;
+        private void GoMenuWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OrderWindow.Visibility = Visibility.Visible;
+        }
 
         private void GoBNetwork_Click(object sender, RoutedEventArgs e) => BNetwork.Visibility = Visibility.Visible;
     }
