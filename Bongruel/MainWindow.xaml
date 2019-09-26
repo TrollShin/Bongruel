@@ -19,18 +19,13 @@
             <Button x:Name="btnSend" Content="보내기" Click="BtnSend_Click"></Button>
         </StackPanel>
         -->
-        
-        <ContentControl x:Name="contentControl" Grid.ColumnSpan="2"/>
+        <local:MenuWindow Visibility="Collapsed" x:Name="OrderWindow"/>
+        <local:BNetworkControl Visibility="Collapsed" x:Name="BNetwork"/>
 
-        <Grid>
-            <Button VerticalAlignment="Bottom" HorizontalAlignment="Center"
-                    Width="100" Height="15"
-                    Background="Black"
-                    x:Name="showButtonGrid" Click="ShowButtonGrid_Click"/>
-        </Grid>
-        
+
+
         <!--임시 컨트롤 전환 버튼-->
-        <Grid x:Name="buttonGrid" Visibility="Visible" HorizontalAlignment="Stretch">
+        <Grid x:Name="buttonGrid" Visibility="Visible">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                 <Button Width="100" Height="70" Content="MenuWindow로" x:Name="goMenuWindowBtn" Click="GoMenuWindowBtn_Click"/>
                 <Button Width="100" Height="70" Content="BNetwork로" x:Name="goBNetwork" Click="GoBNetwork_Click" Margin="10,0,10,0"/>

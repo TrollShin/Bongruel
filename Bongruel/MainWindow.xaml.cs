@@ -28,24 +28,12 @@ namespace Bongruel
 
         private void GoMenuWindowBtn_Click(object sender, RoutedEventArgs e)
         {
-            switchUserControl(new MenuWindow());
+            OrderWindow.Visibility = Visibility.Visible;
         }
 
         private void GoBNetwork_Click(object sender, RoutedEventArgs e)
         {
-            switchUserControl(new BNetworkControl());
-        }
-
-        //임시
-        private void switchUserControl(UserControl userControl)
-        {
-            buttonGrid.Visibility = Visibility.Collapsed;
-            contentControl.Content = userControl;
-        }
-
-        private void ShowButtonGrid_Click(object sender, RoutedEventArgs e)
-        {
-
+            BNetwork.Visibility = Visibility.Visible;
         }
     }
 }
