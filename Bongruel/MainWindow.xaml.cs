@@ -25,15 +25,19 @@ namespace Bongruel
         {
             InitializeComponent();
         }
-
-        private void GoMenuWindowBtn_Click(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            OrderWindow.Visibility = Visibility.Visible;
+            App.seatData.Load();
+            lvTable.ItemsSource = App.seatData.listseat;
         }
 
-        private void GoBNetwork_Click(object sender, RoutedEventArgs e)
+        public void addTable()
         {
-            BNetwork.Visibility = Visibility.Visible;
+
         }
+
+        private void GoMenuWindowBtn_Click(object sender, RoutedEventArgs e) => OrderWindow.Visibility = Visibility.Visible;
+
+        private void GoBNetwork_Click(object sender, RoutedEventArgs e) => BNetwork.Visibility = Visibility.Visible;
     }
 }

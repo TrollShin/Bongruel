@@ -23,6 +23,7 @@ namespace Bongruel
         public MenuWindow()
         {
             InitializeComponent();
+            this.Loaded += MenuWindow_Loaded;
         }
 
         private void MenuWindow_Loaded(object sender, RoutedEventArgs e)

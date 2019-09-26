@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Bongruel.TableControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bongruel"
+             mc:Ignorable="d">
+    <Grid Width="200" Height="250">
+        <Border Width="200" Height="200" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1.5">
+            <TextBlock FontFamily="bold" FontSize="40" Foreground="Black"
+                       Width="200" Height="200" 
+                       TextAlignment="Left" Text="" x:Name="textOrderedMenu"/>
+        </Border>
+        <TextBlock FontFamily="bold" FontSize="50" Foreground="Black" 
+                   Margin="0,195,0,0" x:Name="tableId">
+                   DEFAULT
+        </TextBlock>
+    </Grid>
+</UserControl>

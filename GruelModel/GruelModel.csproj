@@ -45,6 +45,8 @@
     <Compile Include="FoodCategory.cs" />
     <Compile Include="FoodData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seat.cs" />
+    <Compile Include="SeatData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\left-arrow.png" />
