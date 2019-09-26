@@ -20,23 +20,27 @@ namespace Bongruel
     /// </summary>
     public partial class BNetworkControl : UserControl
     {
+       private Helper.BNetwork bNetwork = new Helper.BNetwork();
+
         public BNetworkControl()
         {
             InitializeComponent();
+            tbInput.Text = "@2114";
+            bNetwork.Create();
+            bNetwork.Connect("10.80.163.138", 8000);
         }
         private void BtnSend_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Helper.BNetwork bNetwork = new Helper.BNetwork();
-                bNetwork.Create();
-                bNetwork.Connect("10.80.163.138", 8000);
+
                 bNetwork.Send(tbInput.Text);
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("없음 서버 응답 요청 시작 다시");
+               
+                MessageBox.Show(ex.Message);
             }
 
         }
