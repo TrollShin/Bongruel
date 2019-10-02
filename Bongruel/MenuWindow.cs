@@ -39,16 +39,18 @@ namespace Bongruel
 
         private void Menu_Select(object sender, MouseButtonEventArgs e)
         {
-            ImageSource imageSource = (sender as Image).Source;
+            selectedMenuImgChange((sender as Image).Source);
 
-            foodImage.Source = imageSource;
-            /*if(food == null)
-            {
-                return;
-            }
-            ImageSourceConverter convertor = new ImageSourceConverter();
-            foodImage.Source = convertor.ConvertFromString(food.ImagePath) as ImageSource;
-*/
+
+        }
+
+        /// <summary>
+        /// 메뉴창 아래에있는 이미지를 입력받은 Img로 바꿔줌
+        /// </summary>
+        /// <param name="imgPath">Img Path</param>
+        private void selectedMenuImgChange(ImageSource imgPath)
+        {
+            foodImage.Source = imgPath;
         }
     }
 }
