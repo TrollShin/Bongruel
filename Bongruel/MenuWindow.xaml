@@ -9,7 +9,7 @@
              Loaded="MenuWindow_Loaded">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -60,7 +60,7 @@
         <!--메뉴선택 후 선택한 메뉴 이미지 출력-->
         <Grid Grid.Column="1" Grid.Row="3">
             <Border BorderBrush="LightGray" BorderThickness="2">
-                <Image x:Name="foodImage"/>
+                <Image x:Name="foodImage" Stretch="Fill" />
             </Border>
         </Grid>
 

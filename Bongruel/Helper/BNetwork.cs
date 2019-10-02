@@ -28,10 +28,10 @@ namespace Bongruel.Helper
         public void ConnectCallback(IAsyncResult ar)
         {
            //Socket client = (Socket) ar.AsyncState;
-            socket.EndConnect(ar);
-            buffer = new byte[socket.ReceiveBufferSize];
-            socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
-            Debug.WriteLine("ConnectCallback");
+            //socket.EndConnect(ar);
+            //buffer = new byte[socket.ReceiveBufferSize];
+            //socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
+            //Debug.WriteLine("ConnectCallback");
         }
 
         public void Connect(string ip, int port)
