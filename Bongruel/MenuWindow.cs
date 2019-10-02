@@ -35,5 +35,10 @@ namespace Bongruel
         {
             this.Visibility = Visibility.Collapsed;
         }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Visibility = Visibility.Collapsed;
+        }
     }
 }

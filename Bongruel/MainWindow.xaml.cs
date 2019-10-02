@@ -27,8 +27,6 @@ namespace Bongruel
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            App.seatData.Load();
-            lvTable.ItemsSource = App.seatData.listseat;
         }
 
         public void addTable()

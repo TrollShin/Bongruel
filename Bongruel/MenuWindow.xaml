@@ -42,15 +42,14 @@
             <ListView x:Name="lvFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                       BorderBrush="LightGray" BorderThickness="2">
                 <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Width="150" Height="150" Margin="5, 5, 5, 5">
-                            <Border BorderBrush="Black" BorderThickness="2">
-                                <Image Source="{Binding ImagePath}" Stretch="Fill"/>
-                            </Border>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                
+                        <DataTemplate>
+                            <Grid Width="150" Height="150" Margin="5, 5, 5, 5">
+                                <Border BorderBrush="Black" BorderThickness="2">
+                                    <Image Source="{Binding ImagePath}" Stretch="Fill" MouseDown="Grid_MouseDown"/>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"></WrapPanel>
