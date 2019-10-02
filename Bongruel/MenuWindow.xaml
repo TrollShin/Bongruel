@@ -16,7 +16,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="5*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.ColumnSpan="2" Grid.Row="0" Background="#6E0000">
@@ -44,9 +44,9 @@
                 <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid Width="150" Height="150" Margin="5, 5, 5, 5">
-                                <Border BorderBrush="Black" BorderThickness="2">
-                                    <Image Source="{Binding ImagePath}" Stretch="Fill" MouseDown="Grid_MouseDown"/>
-                                </Border>
+                                <Border BorderBrush="Black" BorderThickness="1">
+                                <Image Source="{Binding ImagePath}" Stretch="Fill" MouseLeftButtonDown="Menu_Select"/>
+                            </Border>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -60,7 +60,7 @@
         <!--메뉴선택 후 선택한 메뉴 이미지 출력-->
         <Grid Grid.Column="1" Grid.Row="3">
             <Border BorderBrush="LightGray" BorderThickness="2">
-
+                <Image x:Name="foodImage"/>
             </Border>
         </Grid>
 
@@ -74,7 +74,12 @@
         </Grid>
         <Grid Grid.Row="2">
             <ListView x:Name="selectedFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2">
-
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock FontFamily="bold" FontSize="20" Foreground="Black"
+                                   Text="100"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </Grid>
         <Grid Grid.Row="3">

@@ -48,14 +48,5 @@
     <Compile Include="Seat.cs" />
     <Compile Include="SeatData.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\left-arrow.png" />
-    <Content Include="Assets\동지팥죽_pic.jpg" />
-    <Content Include="Assets\든든한끼장조림_pic.jpg" />
-    <Content Include="Assets\삼계전복죽_pic.jpg" />
-    <Content Include="Assets\쇠고기미역죽_pic.jpg" />
-    <Content Include="Assets\신불닭죽_pic.jpg" />
-    <Content Include="Assets\트러플전복죽_pic.jpg" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GruelModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,9 +37,18 @@ namespace Bongruel
             this.Visibility = Visibility.Collapsed;
         }
 
-        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Menu_Select(object sender, MouseButtonEventArgs e)
         {
-            this.Visibility = Visibility.Collapsed;
+            ImageSource imageSource = (sender as Image).Source;
+
+            foodImage.Source = imageSource;
+            /*if(food == null)
+            {
+                return;
+            }
+            ImageSourceConverter convertor = new ImageSourceConverter();
+            foodImage.Source = convertor.ConvertFromString(food.ImagePath) as ImageSource;
+*/
         }
     }
 }
