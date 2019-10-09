@@ -42,6 +42,7 @@ namespace Bongruel
             string message = "";
             message = changeFoodListToString(seat.OrderList);
 
+            tableId.Text = seat.Id;
             textOrderedMenu.Text = message;
         }
 
@@ -51,6 +52,11 @@ namespace Bongruel
         private string changeFoodListToString(List<Food> foods)
         {
             string result = "";
+
+            if(foods == null)
+            {
+                return result;
+            }
 
             foreach (Food item in foods)
             {

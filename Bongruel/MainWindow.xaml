@@ -14,10 +14,28 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         -->
-
         <local:MenuWindow Visibility="Collapsed" x:Name="OrderWindow"/>
-        <local:BNetworkControl Visibility="Collapsed" x:Name="BNetwork"/>
+        <!--<local:BNetworkControl Visibility="Collapsed" x:Name="BNetwork"/>-->
+        <local:StatControl Visibility="Collapsed" x:Name="StatControl"/>
 
+        <ListView x:Name="listTable" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <!--<ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="2"> 
+                    <Grid Width="200" Height="250">
+                        
+                    </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>-->
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel>
+                        
+                    </WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
         <!--
         <Grid Background="#6E0000">
             <Image VerticalAlignment="Center" HorizontalAlignment="Left"
@@ -46,7 +64,8 @@
         <Grid Grid.Row="1">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                 <Button Width="100" Height="70" Content="MenuWindow로" x:Name="goMenuWindowBtn" Click="GoMenuWindowBtn_Click"/>
-                <Button Width="100" Height="70" Content="BNetwork로" x:Name="goBNetwork" Click="GoBNetwork_Click" Margin="10,0,10,0"/>
+                <Button Width="100" Height="70" Content="StatControl로" x:Name="goStatControlBtn" Click="StatControl_Click" Margin="10,0,10,0"/>
+
             </StackPanel>
         </Grid>
     </Grid>

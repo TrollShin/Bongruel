@@ -6,14 +6,14 @@
              xmlns:local="clr-namespace:Bongruel"
              mc:Ignorable="d">
     <Grid Width="200" Height="250">
-        <Border Width="200" Height="200" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1.5">
-            <TextBlock FontFamily="bold" FontSize="40" Foreground="Black"
-                       Width="200" Height="200" 
-                       TextAlignment="Left" Text="" x:Name="textOrderedMenu"/>
+        <Border VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1.5">
+            <TextBlock x:Name="textOrderedMenu" Width="200" Height="190"
+                   FontFamily="bold" FontSize="40" Foreground="Black"
+                   TextAlignment="Left" Text="ID"
+                   VerticalAlignment="Top"/>
         </Border>
-        <TextBlock FontFamily="bold" FontSize="50" Foreground="Black" 
-                   Margin="0,195,0,0" x:Name="tableId">
-                   DEFAULT
-        </TextBlock>
+        <TextBlock x:Name="tableId" FontFamily="bold" FontSize="50" Foreground="Black"  
+                   Text="DEFAULT"
+                   VerticalAlignment="Bottom"/>
     </Grid>
 </UserControl>

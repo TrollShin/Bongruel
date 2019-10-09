@@ -13,9 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Sockets;
+using GruelModel;
 
 namespace Bongruel
 {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -27,11 +29,20 @@ namespace Bongruel
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            App.seatData.Load();
+
+            addSeatList();
         }
 
-        public void addTable()
+        private void addSeatList()
         {
+            foreach(Seat seat in App.seatData.listseat) {
+                TableControl table = new TableControl();
 
+                table.SetItem(seat);
+                listTable.Items.Add(table);
+            }
+            listTable.Items.Refresh();
         }
 
         private void GoMenuWindowBtn_Click(object sender, RoutedEventArgs e)
@@ -39,6 +50,16 @@ namespace Bongruel
             OrderWindow.Visibility = Visibility.Visible;
         }
 
-        private void GoBNetwork_Click(object sender, RoutedEventArgs e) => BNetwork.Visibility = Visibility.Visible;
+        private void StatControl_Click(object sender, RoutedEventArgs e)
+        {
+            if(!StatControl.IsVisible)
+            {
+                StatControl.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                StatControl.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

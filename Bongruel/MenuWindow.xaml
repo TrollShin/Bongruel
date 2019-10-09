@@ -68,18 +68,18 @@
             <Border BorderBrush="LightGray" BorderThickness="2">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                        FontSize="28" FontWeight="Bold">
-                메뉴
+                주문
                 </TextBlock>
             </Border>
         </Grid>
         <Grid Grid.Row="2">
-            <ListView x:Name="selectedFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock FontFamily="bold" FontSize="20" Foreground="Black"
-                                   Text="100"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+            <ListView x:Name="selectedFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2" SelectionChanged="SelectedFood_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="300"/>
+                        <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}" Width="200"/>
+                    </GridView>
+                </ListView.View>
             </ListView>
         </Grid>
         <Grid Grid.Row="3">

@@ -21,6 +21,9 @@ namespace Bongruel
     /// </summary>
     public partial class MenuWindow : UserControl
     {
+        //임시
+        private List<Food> orderedMenuList = new List<Food>();
+
         public MenuWindow()
         {
             InitializeComponent();
@@ -31,6 +34,8 @@ namespace Bongruel
         {
            App.foodData.Load();
            lvFood.ItemsSource = App.foodData.listFood;
+
+            selectedFood.ItemsSource = orderedMenuList;
         }
         private void GoBackBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -39,9 +44,18 @@ namespace Bongruel
 
         private void Menu_Select(object sender, MouseButtonEventArgs e)
         {
-            selectedMenuImgChange((sender as Image).Source);
+            ImageSource foodImgSource = (sender as Image).Source;
 
+            selectedMenuImgChange(foodImgSource);
+            addOrderedMenu(foodImgSource);
+        }
 
+        private void addOrderedMenu(ImageSource imgSource)
+        {
+            Food food = App.foodData.listFood.Find(match => match.ImagePath == imgSource.ToString());
+
+            orderedMenuList.Add(food);
+            selectedFood.Items.Refresh();
         }
 
         /// <summary>
@@ -51,6 +65,11 @@ namespace Bongruel
         private void selectedMenuImgChange(ImageSource imgPath)
         {
             foodImage.Source = imgPath;
+        }
+
+        private void SelectedFood_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
