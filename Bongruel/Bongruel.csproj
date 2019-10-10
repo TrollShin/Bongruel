@@ -145,5 +145,9 @@
     <Resource Include="Assets\신불닭죽_pic.jpg" />
     <Resource Include="Assets\트러플전복죽_pic.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\minus-symbol.png" />
+    <Resource Include="Assets\plus-black-symbol.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

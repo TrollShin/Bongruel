@@ -61,7 +61,7 @@
         <!--메뉴선택 후 선택한 메뉴 이미지 출력-->
         <Grid Grid.Column="1" Grid.Row="3">
             <Border BorderBrush="LightGray" BorderThickness="2">
-                <Image x:Name="foodImage" Stretch="Fill" />
+                <Image x:Name="foodImage" Stretch="UniformToFill" VerticalAlignment="Center"/>
             </Border>
         </Grid>
 
@@ -74,7 +74,7 @@
             </Border>
         </Grid>
         <Grid Grid.Row="2">
-            <ListView x:Name="selectedFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2">
+            <ListView x:Name="selectedFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2" SelectionMode="Multiple">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="메뉴" DisplayMemberBinding="{Binding Name}" Width="350"/>
@@ -84,9 +84,31 @@
             </ListView>
         </Grid>
         <Grid Grid.Row="3">
-            <Border BorderBrush="LightGray" BorderThickness="2">
-
-            </Border>
+            <Border BorderBrush="LightGray" BorderThickness="2"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Width="80" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0">
+                    주문하기
+                </Button>
+                <Button Width="80" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0">
+                    결제하기
+                </Button>
+                <Button Width="80" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0">
+                    전체취소
+                </Button>
+                <Button Width="80" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0">
+                    전체선택
+                </Button>
+                <Button Width="40" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,10,0,0" 
+                        Background="Transparent" BorderBrush="Transparent" 
+                        Click="plus_btn_Click">
+                    <Image Source="Assets/plus-black-symbol.png"/>
+                </Button>
+                <Button Width="40" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" 
+                        Background="Transparent" BorderBrush="Transparent" 
+                        Click="minus_btn_Click">
+                    <Image Source="Assets/minus-symbol.png"/>
+                </Button>
+            </StackPanel>
         </Grid>
             
     </Grid>

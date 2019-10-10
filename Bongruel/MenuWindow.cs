@@ -54,7 +54,7 @@ namespace Bongruel
         }
 
         private void Menu_Select(object sender, MouseButtonEventArgs e)
-        {
+        { 
             Food food = lvFood.SelectedItem as Food;
 
             selectedMenuImgChange(food.ImagePath);
@@ -63,8 +63,27 @@ namespace Bongruel
 
         private void addOrderedMenu(Food food)
         {
-            orderedMenuList.Add(food);
+            if(!isAlreadySelect(food))
+            {
+                orderedMenuList.Add(food);
+            }
+
+            orderedMenuList[orderedMenuList.IndexOf(food)].Count += 1;
+
             selectedFood.Items.Refresh();
+        }
+
+        private bool isAlreadySelect(Food food)
+        {
+            foreach(Food item in orderedMenuList)
+            {
+                if(food == item)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -73,7 +92,8 @@ namespace Bongruel
         /// <param name="imgPath">Img Path</param>
         private void selectedMenuImgChange(string imgPath)
         {
-            foodImage.Source = convertStringToImgSource(imgPath);
+            ImageSourceConverter converter = new ImageSourceConverter();
+            foodImage.Source = new BitmapImage(new Uri(imgPath, UriKind.Relative));
         }
 
         private ImageSource convertStringToImgSource(string imgPath)
@@ -81,9 +101,36 @@ namespace Bongruel
             ImageSource result = null;
 
             ImageSourceConverter converter = new ImageSourceConverter();
-            result = converter.ConvertFromString(imgPath) as ImageSource;
+            result = (converter.ConvertFromString(imgPath)) as ImageSource;
 
             return result;
+        }
+
+        private void plus_btn_Click(object sender, RoutedEventArgs e)
+        {
+            /*if ((selectedFood.SelectedItems as List<Food>) == null)
+            {
+                return;
+            }
+
+            foreach (Food item in (selectedFood.SelectedItems as List<Food>))
+            {
+                item.Count += 1;
+            }*/
+
+            Food item = selectedFood.SelectedItem as Food;
+
+            if(item == null)
+            {
+                return;
+            }
+
+            item.Count += 1;
+        }
+
+        private void minus_btn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
