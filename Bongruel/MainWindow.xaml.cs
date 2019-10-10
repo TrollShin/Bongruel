@@ -26,7 +26,10 @@ namespace Bongruel
         public MainWindow()
         {
             InitializeComponent();
+
+            OrderWindow.OnGoBackMainWindow += OrderWindow_OnGoBackMainWindow;
         }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             App.seatData.Load();
@@ -60,6 +63,12 @@ namespace Bongruel
         private void disableMain()
         {
             mainGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void OrderWindow_OnGoBackMainWindow(object sender, OrderEventArgs e)
+        {
+            OrderWindow.Visibility = Visibility.Collapsed;
+            mainGrid.Visibility = Visibility.Visible;
         }
     }
 }

@@ -13,6 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+public class OrderEventArgs : EventArgs
+{
+
+}
 
 namespace Bongruel
 {
@@ -21,6 +25,9 @@ namespace Bongruel
     /// </summary>
     public partial class MenuWindow : UserControl
     {
+        public delegate void CompleteHandler(object sender, OrderEventArgs e);
+        public event CompleteHandler OnGoBackMainWindow;
+
         private List<Food> orderedMenuList;
 
         public MenuWindow()
@@ -40,7 +47,12 @@ namespace Bongruel
         }
         private void GoBackBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Collapsed;
+            OrderEventArgs args = new OrderEventArgs();
+
+            if(OnGoBackMainWindow != null)
+            {
+                OnGoBackMainWindow(this, args);
+            }
         }
 
         private void Menu_Select(object sender, MouseButtonEventArgs e)
@@ -48,18 +60,13 @@ namespace Bongruel
             Food food = lvFood.SelectedItem as Food;
 
             selectedMenuImgChange(food.ImagePath);
-            //ImageSource foodImgSource = (sender as Image).Source;
-
-            //selectedMenuImgChange(foodImgSource);
-            //addOrderedMenu(foodImgSource);
+            addOrderedMenu(food);
         }
 
-        private void addOrderedMenu()
+        private void addOrderedMenu(Food food)
         {
-            //Food food = App.foodData.listFood.Find(match => match.ImagePath == imgSource.ToString());
-
-            //orderedMenuList.Add(food);
-            //selectedFood.Items.Refresh();
+            orderedMenuList.Add(food);
+            selectedFood.Items.Refresh();
         }
 
         /// <summary>
@@ -68,14 +75,15 @@ namespace Bongruel
         /// <param name="imgPath">Img Path</param>
         private void selectedMenuImgChange(string imgPath)
         {
-            //foodImage.Source = imgPath;
+            foodImage.Source = convertStringToImgSource(imgPath);
         }
 
-        private string convertStringToImgSource(string imgPath)
+        private ImageSource convertStringToImgSource(string imgPath)
         {
-            string result = "";
+            ImageSource result = null;
 
-
+            ImageSourceConverter converter = new ImageSourceConverter();
+            result = converter.ConvertFromString(imgPath) as ImageSource;
 
             return result;
         }
