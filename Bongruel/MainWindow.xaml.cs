@@ -47,19 +47,19 @@ namespace Bongruel
 
         private void GoMenuWindowBtn_Click(object sender, RoutedEventArgs e)
         {
+            disableMain();
             OrderWindow.Visibility = Visibility.Visible;
         }
 
         private void StatControl_Click(object sender, RoutedEventArgs e)
         {
-            if(!StatControl.IsVisible)
-            {
-                StatControl.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                StatControl.Visibility = Visibility.Visible;
-            }
+            disableMain();
+            StatControl.Visibility = Visibility.Visible;
+        }
+
+        private void disableMain()
+        {
+            mainGrid.Visibility = Visibility.Collapsed;
         }
     }
 }

@@ -18,6 +18,7 @@
         <!--<local:BNetworkControl Visibility="Collapsed" x:Name="BNetwork"/>-->
         <local:StatControl Visibility="Collapsed" x:Name="StatControl"/>
 
+        <Grid x:Name="mainGrid">
         <ListView x:Name="listTable" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <!--<ListView.ItemTemplate>
                 <DataTemplate>
@@ -61,12 +62,12 @@
         -->
 
         <!--임시 컨트롤 전환 버튼-->
-        <Grid Grid.Row="1">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-                <Button Width="100" Height="70" Content="MenuWindow로" x:Name="goMenuWindowBtn" Click="GoMenuWindowBtn_Click"/>
-                <Button Width="100" Height="70" Content="StatControl로" x:Name="goStatControlBtn" Click="StatControl_Click" Margin="10,0,10,0"/>
-
-            </StackPanel>
+           <Grid Grid.Row="1">
+               <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                    <Button Width="100" Height="70" Content="MenuWindow로" x:Name="goMenuWindowBtn" Click="GoMenuWindowBtn_Click"/>
+                    <Button Width="100" Height="70" Content="StatControl로" x:Name="goStatControlBtn" Click="StatControl_Click" Margin="10,0,10,0"/>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

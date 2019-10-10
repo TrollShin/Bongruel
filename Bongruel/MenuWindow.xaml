@@ -73,11 +73,11 @@
             </Border>
         </Grid>
         <Grid Grid.Row="2">
-            <ListView x:Name="selectedFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2" SelectionChanged="SelectedFood_SelectionChanged">
+            <ListView x:Name="selectedFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="300"/>
-                        <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}" Width="200"/>
+                        <GridViewColumn Header="메뉴" DisplayMemberBinding="{Binding Name}" Width="350"/>
+                        <GridViewColumn Header="수량" DisplayMemberBinding="{Binding Count}" Width="150"/>
                     </GridView>
                 </ListView.View>
             </ListView>

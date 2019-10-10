@@ -21,8 +21,7 @@ namespace Bongruel
     /// </summary>
     public partial class MenuWindow : UserControl
     {
-        //임시
-        private List<Food> orderedMenuList = new List<Food>();
+        private List<Food> orderedMenuList;
 
         public MenuWindow()
         {
@@ -32,8 +31,10 @@ namespace Bongruel
 
         private void MenuWindow_Loaded(object sender, RoutedEventArgs e)
         {
-           App.foodData.Load();
-           lvFood.ItemsSource = App.foodData.listFood;
+            orderedMenuList = new List<Food>();
+
+            App.foodData.Load();
+            lvFood.ItemsSource = App.foodData.listFood;
 
             selectedFood.ItemsSource = orderedMenuList;
         }
@@ -44,32 +45,39 @@ namespace Bongruel
 
         private void Menu_Select(object sender, MouseButtonEventArgs e)
         {
-            ImageSource foodImgSource = (sender as Image).Source;
+            Food food = lvFood.SelectedItem as Food;
 
-            selectedMenuImgChange(foodImgSource);
-            addOrderedMenu(foodImgSource);
+            selectedMenuImgChange(food.ImagePath);
+            //ImageSource foodImgSource = (sender as Image).Source;
+
+            //selectedMenuImgChange(foodImgSource);
+            //addOrderedMenu(foodImgSource);
         }
 
-        private void addOrderedMenu(ImageSource imgSource)
+        private void addOrderedMenu()
         {
-            Food food = App.foodData.listFood.Find(match => match.ImagePath == imgSource.ToString());
+            //Food food = App.foodData.listFood.Find(match => match.ImagePath == imgSource.ToString());
 
-            orderedMenuList.Add(food);
-            selectedFood.Items.Refresh();
+            //orderedMenuList.Add(food);
+            //selectedFood.Items.Refresh();
         }
 
         /// <summary>
         /// 메뉴창 아래에있는 이미지를 입력받은 Img로 바꿔줌
         /// </summary>
         /// <param name="imgPath">Img Path</param>
-        private void selectedMenuImgChange(ImageSource imgPath)
+        private void selectedMenuImgChange(string imgPath)
         {
-            foodImage.Source = imgPath;
+            //foodImage.Source = imgPath;
         }
 
-        private void SelectedFood_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private string convertStringToImgSource(string imgPath)
         {
+            string result = "";
 
+
+
+            return result;
         }
     }
 }
