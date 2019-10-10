@@ -25,8 +25,8 @@ namespace Bongruel
     /// </summary>
     public partial class MenuWindow : UserControl
     {
-        public delegate void CompleteHandler(object sender, OrderEventArgs e);
-        public event CompleteHandler OnGoBackMainWindow;
+        public delegate void OrderHandler(object sender);
+        public event OrderHandler OnGoBackMainWindow;
 
         private List<Food> orderedMenuList;
 
@@ -47,11 +47,9 @@ namespace Bongruel
         }
         private void GoBackBtn_Click(object sender, RoutedEventArgs e)
         {
-            OrderEventArgs args = new OrderEventArgs();
-
             if(OnGoBackMainWindow != null)
             {
-                OnGoBackMainWindow(this, args);
+                OnGoBackMainWindow(this);
             }
         }
 

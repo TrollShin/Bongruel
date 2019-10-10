@@ -15,14 +15,28 @@ using System.Windows.Shapes;
 
 namespace Bongruel
 {
+    public class StatEventArgs : EventArgs
+    {
+
+    }
     /// <summary>
     /// StatControl.xaml에 대한 상호 작용 논리
     /// </summary>
     public partial class StatControl : UserControl
     {
+        public delegate void StatEventHandler(object sender);
+        public event StatEventHandler OnGoBackMainWindow;
         public StatControl()
         {
             InitializeComponent();
+        }
+
+        private void GoBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (OnGoBackMainWindow != null)
+            {
+                OnGoBackMainWindow(this);
+            }
         }
     }
 }

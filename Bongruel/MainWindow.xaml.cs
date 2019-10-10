@@ -27,7 +27,8 @@ namespace Bongruel
         {
             InitializeComponent();
 
-            OrderWindow.OnGoBackMainWindow += OrderWindow_OnGoBackMainWindow;
+            OrderWindow.OnGoBackMainWindow += OnGoBackMainWindow;
+            StatControl.OnGoBackMainWindow += OnGoBackMainWindow;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -65,9 +66,11 @@ namespace Bongruel
             mainGrid.Visibility = Visibility.Collapsed;
         }
 
-        private void OrderWindow_OnGoBackMainWindow(object sender, OrderEventArgs e)
+        private void OnGoBackMainWindow(object sender)
         {
-            OrderWindow.Visibility = Visibility.Collapsed;
+            UserControl currentUserControl = sender as UserControl;
+            currentUserControl.Visibility = Visibility.Collapsed;
+
             mainGrid.Visibility = Visibility.Visible;
         }
     }
