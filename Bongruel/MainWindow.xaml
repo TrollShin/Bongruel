@@ -17,6 +17,7 @@
         <local:MenuWindow Visibility="Collapsed" x:Name="OrderWindow"/>
         <!--<local:BNetworkControl Visibility="Collapsed" x:Name="BNetwork"/>-->
         <local:StatControl Visibility="Collapsed" x:Name="StatControl"/>
+        <local:LoginControl Visibility="Collapsed" x:Name="LoginControl"/>
 
         <Grid x:Name="mainGrid">
         <ListView x:Name="listTable" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
@@ -66,6 +67,7 @@
                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                     <Button Width="100" Height="70" Content="MenuWindow로" x:Name="goMenuWindowBtn" Click="GoMenuWindowBtn_Click"/>
                     <Button Width="100" Height="70" Content="StatControl로" x:Name="goStatControlBtn" Click="StatControl_Click" Margin="10,0,10,0"/>
+                    <Button Width="100" Height="70" Content="로그인창으로" x:Name="goLoginControl" Click="GoLoginControl_Click" Margin="5,0,0,0"/>
                 </StackPanel>
             </Grid>
         </Grid>

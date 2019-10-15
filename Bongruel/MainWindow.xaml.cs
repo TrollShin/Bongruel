@@ -73,5 +73,12 @@ namespace Bongruel
 
             mainGrid.Visibility = Visibility.Visible;
         }
+
+        private void GoLoginControl_Click(object sender, RoutedEventArgs e)
+        {
+            disableMain();
+            LoginControl.Visibility = Visibility.Visible;
+
+        }
     }
 }

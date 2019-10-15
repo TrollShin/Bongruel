@@ -40,7 +40,7 @@
             </Grid.ColumnDefinitions>
         </Grid>
 
-        <ListBox Grid.Column="0" Grid.Row="1">
+        <ListBox Grid.Column="0" Grid.Row="1" Name="Category">
             <ListBoxItem>시그니처</ListBoxItem>
             <ListBoxItem>영양</ListBoxItem>
             <ListBoxItem>보양</ListBoxItem>
