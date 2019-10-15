@@ -34,9 +34,20 @@
         </Grid>
         <!--카테고리-->
         <Grid Grid.Column="1" Grid.Row="1">
-            <Border BorderBrush="LightGray" BorderThickness="2">
-
-            </Border>
+            <Border BorderBrush="LightGray" BorderThickness="2"/>
+            <ListView FontSize="16" Foreground="Black">
+                <ListViewItem Content="전체"/>
+                <ListViewItem Content="시그니처"/>
+                <ListViewItem Content="영양"/>
+                <ListViewItem Content="보양"/>
+                <ListViewItem Content="별미"/>
+                <ListViewItem Content="전통"/>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
         </Grid>
         <!--메뉴선택-->
         <Grid Grid.Column="1" Grid.Row="2">

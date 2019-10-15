@@ -146,7 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\동지팥죽_pic.jpg" />
-    <Resource Include="Assets\든든한끼장조림_pic.jpg" />
     <Resource Include="Assets\삼계전복죽_pic.jpg" />
     <Resource Include="Assets\쇠고기미역죽_pic.jpg" />
     <Resource Include="Assets\신불닭죽_pic.jpg" />
