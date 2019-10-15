@@ -19,6 +19,5 @@ namespace GruelModel
         NUTRITION,
         DELICACY,
         TRADITION,
-        SIDEDISH
     }
 }
