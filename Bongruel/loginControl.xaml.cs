@@ -28,9 +28,14 @@ namespace Bongruel
         private void Btnlogin_Click(object sender, RoutedEventArgs e)
         {
             if (id.Text == "admin" && password.Text == "admin")
+            {
                 MessageBox.Show("로그인 성공");
+                goMainWindow();
+            }
             else
+            {
                 MessageBox.Show("아이디와 비밀번호를 다시 확인해주세요.");
+            }
         }
 private void Btnexit_Click(object sender, RoutedEventArgs e)
         {
