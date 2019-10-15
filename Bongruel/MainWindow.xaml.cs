@@ -29,6 +29,7 @@ namespace Bongruel
 
             OrderWindow.OnGoBackMainWindow += OnGoBackMainWindow;
             StatControl.OnGoBackMainWindow += OnGoBackMainWindow;
+            LoginControl.OnGoBackMainWindow += OnGoBackMainWindow;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

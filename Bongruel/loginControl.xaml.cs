@@ -20,17 +20,22 @@ namespace Bongruel
     /// </summary>
     public partial class LoginControl : UserControl
     {
+        public delegate void LoginHandler(object sender);
+        public event LoginHandler OnGoBackMainWindow;
+
         public LoginControl()
         {
             InitializeComponent();
         }
+
+  
 
         private void Btnlogin_Click(object sender, RoutedEventArgs e)
         {
             if (id.Text == "admin" && password.Text == "admin")
             {
                 MessageBox.Show("로그인 성공");
-                goMainWindow();
+                goBackMainWindow();
             }
             else
             {
@@ -47,11 +52,12 @@ private void Btnexit_Click(object sender, RoutedEventArgs e)
             Logingrid.Visibility = Visibility.Collapsed;
         }
 
-        private void goMainWindow()
+        private void goBackMainWindow()
         {
-            disableLogin();
-            MainWindow.Visibility = Visibility.Visible;
+            if(OnGoBackMainWindow != null)
+            {
+                OnGoBackMainWindow(this);
+            }
         }
-
     }
 }
