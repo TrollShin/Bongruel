@@ -6,7 +6,10 @@
              xmlns:local="clr-namespace:Bongruel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Name="grid1" Background="#6E0000">
+    <Grid x:Name="Logingrid" Background="#6E0000">
+        
+        <local:MainWindow Visibility="Collapsed" x:Name="MainWindow"/>
+        
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
             <StackPanel Orientation="Horizontal" Margin="10">

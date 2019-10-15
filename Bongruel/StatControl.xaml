@@ -44,7 +44,6 @@
             <ListBoxItem>시그니처</ListBoxItem>
             <ListBoxItem>영양</ListBoxItem>
             <ListBoxItem>보양</ListBoxItem>
-            <ListBoxItem>반찬</ListBoxItem>
             <ListBoxItem>별미</ListBoxItem>
             <ListBoxItem>전통</ListBoxItem>
         </ListBox>

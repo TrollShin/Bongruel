@@ -36,5 +36,17 @@ private void Btnexit_Click(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.GetCurrentProcess().Kill();
         }
+
+        private void disableLogin()
+        {
+            Logingrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void goMainWindow()
+        {
+            disableLogin();
+            MainWindow.Visibility = Visibility.Visible;
+        }
+
     }
 }
