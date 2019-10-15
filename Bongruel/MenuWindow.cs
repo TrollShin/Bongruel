@@ -63,13 +63,14 @@ namespace Bongruel
 
         private void addOrderedMenu(Food food)
         {
-            if(!isAlreadySelect(food))
+            if(isAlreadySelect(food))
             {
-                orderedMenuList.Add(food);
+                orderedMenuList[orderedMenuList.IndexOf(food)].Count += 1;
+                selectedFood.Items.Refresh();
+                return;   
             }
 
-            orderedMenuList[orderedMenuList.IndexOf(food)].Count += 1;
-
+            orderedMenuList.Add(food);
             selectedFood.Items.Refresh();
         }
 
@@ -92,45 +93,72 @@ namespace Bongruel
         /// <param name="imgPath">Img Path</param>
         private void selectedMenuImgChange(string imgPath)
         {
-            ImageSourceConverter converter = new ImageSourceConverter();
             foodImage.Source = new BitmapImage(new Uri(imgPath, UriKind.Relative));
-        }
-
-        private ImageSource convertStringToImgSource(string imgPath)
-        {
-            ImageSource result = null;
-
-            ImageSourceConverter converter = new ImageSourceConverter();
-            result = (converter.ConvertFromString(imgPath)) as ImageSource;
-
-            return result;
         }
 
         private void plus_btn_Click(object sender, RoutedEventArgs e)
         {
-            /*if ((selectedFood.SelectedItems as List<Food>) == null)
+            
+            if (!isFoodCountCanChange())
             {
                 return;
             }
 
-            foreach (Food item in (selectedFood.SelectedItems as List<Food>))
-            {
-                item.Count += 1;
-            }*/
+            (selectedFood.SelectedItem as Food).Count += 1;
 
-            Food item = selectedFood.SelectedItem as Food;
-
-            if(item == null)
+            /* plus 를 multiSelete 방식으로 수정시 사용
+            for(int i = 0; i < selectedFood.SelectedItems.Count; i++)
             {
-                return;
+                (selectedFood.SelectedItems[i] as Food).Count += 1;
             }
+            */
 
-            item.Count += 1;
+            selectedFood.Items.Refresh();
+
+
+
         }
 
         private void minus_btn_Click(object sender, RoutedEventArgs e)
         {
+            if (!isFoodCountCanChange())
+            {
+                return;
+            }
 
+            if ((selectedFood.SelectedItem as Food).Count == 1)
+            {
+                orderedMenuList.Remove(selectedFood.SelectedItem as Food);
+            }
+            else
+            {
+                (selectedFood.SelectedItem as Food).Count -= 1;
+            }
+
+            selectedFood.Items.Refresh();
+        }
+
+        private bool isFoodCountCanChange()
+        {
+            if((selectedFood.SelectedItem as Food) == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private Food returnFood(object item)
+        {
+            Food result = new Food();
+
+            result.category = (item as Food).category;
+            result.Count = (item as Food).Count;
+            result.ImagePath = (item as Food).ImagePath;
+            result.Name = (item as Food).Name;
+            result.Price = (item as Food).Price;
+
+            return result;
         }
     }
 }

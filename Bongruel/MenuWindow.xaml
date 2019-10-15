@@ -74,7 +74,7 @@
             </Border>
         </Grid>
         <Grid Grid.Row="2">
-            <ListView x:Name="selectedFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2" SelectionMode="Multiple">
+            <ListView x:Name="selectedFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2" SelectionMode="Single">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="메뉴" DisplayMemberBinding="{Binding Name}" Width="350"/>
