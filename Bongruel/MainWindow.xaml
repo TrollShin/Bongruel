@@ -8,61 +8,23 @@
         Title="본죽" Icon="Assets/logo_gnb.png"
         Loaded="Window_Loaded">
     <Grid>
-        <!--
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-        -->
-        <local:MenuWindow Visibility="Collapsed" x:Name="OrderWindow"/>
         <!--<local:BNetworkControl Visibility="Collapsed" x:Name="BNetwork"/>-->
+        <local:MenuWindow Visibility="Collapsed" x:Name="OrderWindow"/>
         <local:StatControl Visibility="Collapsed" x:Name="StatControl"/>
         <local:LoginControl Visibility="Collapsed" x:Name="LoginControl"/>
 
         <Grid x:Name="mainGrid">
-        <ListView x:Name="listTable" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <!--<ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Black" BorderThickness="2"> 
-                    <Grid Width="200" Height="250">
-                        
-                    </Grid>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>-->
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel>
-                        
-                    </WrapPanel>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-        </ListView>
-        <!--
-        <Grid Background="#6E0000">
-            <Image VerticalAlignment="Center" HorizontalAlignment="Left"
-                   Source="Assets/logo_gnb.png"/>
-        </Grid>
-        -->
-        
-        <!--
-        <Grid>
-            <ListView x:Name="lvTable">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+            <ListView x:Name="listTable" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        
+                        <WrapPanel>
+
+                        </WrapPanel>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-        </Grid>
-        -->
 
-        <!--임시 컨트롤 전환 버튼-->
+            <!--임시 컨트롤 전환 버튼-->
            <Grid Grid.Row="1">
                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                     <Button Width="100" Height="70" Content="MenuWindow로" x:Name="goMenuWindowBtn" Click="GoMenuWindowBtn_Click"/>

@@ -27,6 +27,11 @@ namespace Bongruel
         {
             InitializeComponent();
 
+            onEnable();
+        }
+
+        private void onEnable()
+        {
             OrderWindow.OnGoBackMainWindow += OnGoBackMainWindow;
             StatControl.OnGoBackMainWindow += OnGoBackMainWindow;
             LoginControl.OnGoBackMainWindow += OnGoBackMainWindow;
@@ -67,7 +72,7 @@ namespace Bongruel
             mainGrid.Visibility = Visibility.Collapsed;
         }
 
-        private void OnGoBackMainWindow(object sender)
+        private void OnGoBackMainWindow(object sender, EventArgs e)
         {
             UserControl currentUserControl = sender as UserControl;
             currentUserControl.Visibility = Visibility.Collapsed;

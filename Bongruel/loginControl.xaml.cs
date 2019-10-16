@@ -20,7 +20,7 @@ namespace Bongruel
     /// </summary>
     public partial class LoginControl : UserControl
     {
-        public delegate void LoginHandler(object sender);
+        public delegate void LoginHandler(object sender, EventArgs e);
         public event LoginHandler OnGoBackMainWindow;
 
         public LoginControl()
@@ -56,7 +56,7 @@ private void Btnexit_Click(object sender, RoutedEventArgs e)
         {
             if(OnGoBackMainWindow != null)
             {
-                OnGoBackMainWindow(this);
+                OnGoBackMainWindow(this, null);
             }
         }
     }

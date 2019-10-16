@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 public class OrderEventArgs : EventArgs
 {
-
+    public List<Food> lstOrderedFood;
 }
 
 namespace Bongruel
@@ -25,8 +25,8 @@ namespace Bongruel
     /// </summary>
     public partial class MenuWindow : UserControl
     {
-        public delegate void OrderHandler(object sender);
-        public event OrderHandler OnGoBackMainWindow;
+        public delegate void GobackHandler(object sender, OrderEventArgs e);
+        public event GobackHandler OnGoBackMainWindow;
 
         private List<Food> orderedMenuList;
 
@@ -49,7 +49,7 @@ namespace Bongruel
         {
             if(OnGoBackMainWindow != null)
             {
-                OnGoBackMainWindow(this);
+                OnGoBackMainWindow(this, null);
             }
         }
 
@@ -106,17 +106,15 @@ namespace Bongruel
 
             (selectedFood.SelectedItem as Food).Count += 1;
 
-            /* plus 를 multiSelete 방식으로 수정시 사용
-            for(int i = 0; i < selectedFood.SelectedItems.Count; i++)
-            {
-                (selectedFood.SelectedItems[i] as Food).Count += 1;
-            }
-            */
+            /* 
+             * plus 를 multiSelete 방식으로 수정시 사용
+             * for(int i = 0; i < selectedFood.SelectedItems.Count; i++)
+             * {
+             * (selectedFood.SelectedItems[i] as Food).Count += 1;
+             * }
+             */
 
             selectedFood.Items.Refresh();
-
-
-
         }
 
         private void minus_btn_Click(object sender, RoutedEventArgs e)
@@ -138,6 +136,16 @@ namespace Bongruel
             selectedFood.Items.Refresh();
         }
 
+        private void ordered_btn_Click(object sender, RoutedEventArgs e)
+        {
+            OrderEventArgs args = new OrderEventArgs();
+            args.lstOrderedFood = orderedMenuList;
+            if(OnGoBackMainWindow != null)
+            {
+                OnGoBackMainWindow(this, args);
+            }
+        }
+
         private bool isFoodCountCanChange()
         {
             if((selectedFood.SelectedItem as Food) == null)
@@ -146,19 +154,6 @@ namespace Bongruel
             }
 
             return true;
-        }
-
-        private Food returnFood(object item)
-        {
-            Food result = new Food();
-
-            result.category = (item as Food).category;
-            result.Count = (item as Food).Count;
-            result.ImagePath = (item as Food).ImagePath;
-            result.Name = (item as Food).Name;
-            result.Price = (item as Food).Price;
-
-            return result;
         }
 
         private void category_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -204,10 +199,5 @@ namespace Bongruel
 
             return result;
         }
-/*        SIGNATURE,
-        RECUPERATION,
-        NUTRITION,
-        DELICACY,
-        TRADITION,*/
     }
 }
