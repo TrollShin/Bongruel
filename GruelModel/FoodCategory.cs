@@ -11,7 +11,7 @@ namespace GruelModel
         
     }
     
-    //메뉴의 카테고리 (1.시그니처 2.보양 3.영양 4.별미 5.전통 6.반찬)
+    //메뉴의 카테고리 (1.시그니처 2.보양 3.영양 4.별미 5.전통)
     public enum Category
     {
         SIGNATURE,

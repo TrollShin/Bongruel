@@ -35,7 +35,8 @@
         <!--카테고리-->
         <Grid Grid.Column="1" Grid.Row="1">
             <Border BorderBrush="LightGray" BorderThickness="2"/>
-            <ListView FontSize="16" Foreground="Black">
+            <ListView x:Name="category" SelectionChanged="category_SelectionChanged"
+                      FontSize="16" Foreground="Black">
                 <ListViewItem Content="전체"/>
                 <ListViewItem Content="시그니처"/>
                 <ListViewItem Content="영양"/>
