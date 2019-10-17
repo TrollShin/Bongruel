@@ -15,7 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 public class OrderEventArgs : EventArgs
 {
-    public List<Food> lstOrderedFood;
+    public List<Food> LstOrderedFood;
+    public string TableId;
 }
 
 namespace Bongruel
@@ -36,6 +37,18 @@ namespace Bongruel
             this.Loaded += MenuWindow_Loaded;
         }
 
+        public void setOrderMenu(string tableId, List<Food> orderedMenu)
+        {
+            orderedMenuList.Clear();
+
+            this.tableId.Text = tableId;
+
+            if(orderedMenu != null)
+            {
+                this.orderedMenuList = orderedMenu;
+            }
+        }
+
         private void MenuWindow_Loaded(object sender, RoutedEventArgs e)
         {
             orderedMenuList = new List<Food>();
@@ -45,14 +58,8 @@ namespace Bongruel
 
             selectedFood.ItemsSource = orderedMenuList;
         }
-        private void GoBackBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if(OnGoBackMainWindow != null)
-            {
-                OnGoBackMainWindow(this, null);
-            }
-        }
-
+        
+        // 음식 선택 시 실행
         private void Menu_Select(object sender, MouseButtonEventArgs e)
         { 
             Food food = lvFood.SelectedItem as Food;
@@ -61,9 +68,10 @@ namespace Bongruel
             addOrderedMenu(food);
         }
 
+        // 선택한 음식을 메뉴에 추가시킴
         private void addOrderedMenu(Food food)
         {
-            if(isAlreadySelect(food))
+            if(orderedMenuList != null && isAlreadySelect(food))
             {
                 orderedMenuList[orderedMenuList.IndexOf(food)].Count += 1;
                 selectedFood.Items.Refresh();
@@ -74,6 +82,7 @@ namespace Bongruel
             selectedFood.Items.Refresh();
         }
 
+        // 선택한 메뉴가 이미 선택되어 있다면 true 아니면 false
         private bool isAlreadySelect(Food food)
         {
             foreach(Food item in orderedMenuList)
@@ -96,10 +105,11 @@ namespace Bongruel
             foodImage.Source = new BitmapImage(new Uri(imgPath, UriKind.Relative));
         }
 
+        // 선택한 메뉴의 수량을 +1 시킴
         private void plus_btn_Click(object sender, RoutedEventArgs e)
         {
             
-            if (!isFoodCountCanChange())
+            if (!isFoodCountcanChange())
             {
                 return;
             }
@@ -117,9 +127,10 @@ namespace Bongruel
             selectedFood.Items.Refresh();
         }
 
+        // 선택한 메뉴의 수량을 -1 시킴
         private void minus_btn_Click(object sender, RoutedEventArgs e)
         {
-            if (!isFoodCountCanChange())
+            if (!isFoodCountcanChange())
             {
                 return;
             }
@@ -136,19 +147,29 @@ namespace Bongruel
             selectedFood.Items.Refresh();
         }
 
+        // 주문완료 버튼을 누를 시 실행 tableId 와 주문한 메뉴를 args로 만들고 메인화면으로 보냄
         private void ordered_btn_Click(object sender, RoutedEventArgs e)
         {
             OrderEventArgs args = new OrderEventArgs();
-            args.lstOrderedFood = orderedMenuList;
-            if(OnGoBackMainWindow != null)
+            args.LstOrderedFood = orderedMenuList;
+            args.TableId = tableId.Text;
+
+            OnGoBackMainWindow?.Invoke(this, args);
+        }
+
+        private void GoBackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (OnGoBackMainWindow != null)
             {
-                OnGoBackMainWindow(this, args);
+                OnGoBackMainWindow(this, null);
             }
         }
 
-        private bool isFoodCountCanChange()
+        // 메뉴의 수량 변경시 사용자가 메뉴를 선택했는지 확인 
+        //선택하면 true 아니면 false
+        private bool isFoodCountcanChange()
         {
-            if((selectedFood.SelectedItem as Food) == null)
+            if ((selectedFood.SelectedItem as Food) == null)
             {
                 return false;
             }
@@ -156,6 +177,7 @@ namespace Bongruel
             return true;
         }
 
+        // 메뉴의 Category가 바뀌면 실행
         private void category_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListViewItem item = category.SelectedItem as ListViewItem;

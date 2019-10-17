@@ -20,11 +20,13 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.ColumnSpan="2" Grid.Row="0" Background="#6E0000">
-            <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="Assets/logo_gnb.png"/>
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                       FontSize="24" Foreground="White" 
-                       Margin="5,0,0,0" Text="" x:Name="tableId">
-            </TextBlock>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
+                <Image Source="Assets/logo_gnb.png"/>
+                <TextBlock  x:Name="tableId" Text="Default" Margin="10,0,0,0" 
+                            FontSize="24" Foreground="White">
+                </TextBlock>
+            </StackPanel>
+            
         </Grid>
         <!--돌아가기-->
         <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">

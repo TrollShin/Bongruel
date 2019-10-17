@@ -28,6 +28,7 @@ namespace Bongruel
             InitializeComponent();
         }
 
+
         public void SetItem(String seatId)
         {
             tableId.Text = seatId;

@@ -32,7 +32,7 @@ namespace Bongruel
 
         private void onEnable()
         {
-            OrderWindow.OnGoBackMainWindow += OnGoBackMainWindow;
+            OrderWindow.OnGoBackMainWindow += menuWindow_GoBackMainWindow;
             StatControl.OnGoBackMainWindow += OnGoBackMainWindow;
             LoginControl.OnGoBackMainWindow += OnGoBackMainWindow;
         }
@@ -41,10 +41,10 @@ namespace Bongruel
         {
             App.seatData.Load();
 
-            addSeatList();
+            addSeats();
         }
 
-        private void addSeatList()
+        private void addSeats() //MainWindow 모든 테이블을 출력
         {
             foreach(Seat seat in App.seatData.listseat) {
                 TableControl table = new TableControl();
@@ -53,25 +53,9 @@ namespace Bongruel
                 listTable.Items.Add(table);
             }
             listTable.Items.Refresh();
-        }
-
-        private void GoMenuWindowBtn_Click(object sender, RoutedEventArgs e)
-        {
-            disableMain();
-            OrderWindow.Visibility = Visibility.Visible;
-        }
-
-        private void StatControl_Click(object sender, RoutedEventArgs e)
-        {
-            disableMain();
-            StatControl.Visibility = Visibility.Visible;
-        }
-
-        private void disableMain()
-        {
-            mainGrid.Visibility = Visibility.Collapsed;
-        }
-
+        }            
+        
+        //다른 UserControl의 Visibility를 collapsed로 바꿈
         private void OnGoBackMainWindow(object sender, EventArgs e)
         {
             UserControl currentUserControl = sender as UserControl;
@@ -80,11 +64,51 @@ namespace Bongruel
             mainGrid.Visibility = Visibility.Visible;
         }
 
+        //MenuWindow메인화면으로 돌아올 때 주문한 메뉴를 받기위한 함수
+        private void menuWindow_GoBackMainWindow(object sender, OrderEventArgs e)
+        {
+            if (e != null)
+            {
+                (listTable.SelectedItem as TableControl).SetItem(e.LstOrderedFood);//.seat.OrderList = e.LstOrderedFood;
+                listTable.Items.Refresh();
+            }
+            OnGoBackMainWindow(sender, e);
+        }
+
+        //테이블을 선택했을때 실행 ( SelectionChanged 이기 때문에 다른 테이블에 접근하기 전까지 같은 테이블에 접근하지 못해서 수정예정 )
+        private void listTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            OrderWindow.setOrderMenu((listTable.SelectedItem as TableControl).seat.Id, (listTable.SelectedItem as TableControl).seat.OrderList);
+
+            disableMain();
+            OrderWindow.Visibility = Visibility.Visible;
+        }
+
+        //MenuWindow 가는 임시 버튼 
+        private void GoMenuWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            disableMain();
+            OrderWindow.Visibility = Visibility.Visible;
+        }
+
+        //StatControl 가는 임시 버튼
+        private void StatControl_Click(object sender, RoutedEventArgs e)
+        {
+            disableMain();
+            StatControl.Visibility = Visibility.Visible;
+        }
+
+        //GoLoginControl 가는 임시 버튼
         private void GoLoginControl_Click(object sender, RoutedEventArgs e)
         {
             disableMain();
             LoginControl.Visibility = Visibility.Visible;
+        }
 
+        //MainWindow의 Visibility를 collapsed로 바꿈
+        private void disableMain()
+        {
+            mainGrid.Visibility = Visibility.Collapsed;
         }
     }
 }
