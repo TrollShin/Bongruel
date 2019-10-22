@@ -124,13 +124,7 @@ namespace Bongruel
         //결제버튼
         private void payMent_btn_Click(object sender, RoutedEventArgs e)
         {
-            if (!isFoodCountCanChange())
-            {
-                return;
-            }
-
-            orderedMenuList.Remove(selectedFood.SelectedItem as Food);
-            selectedFood.Items.Refresh();
+            
         }
 
         //선택한 메뉴를 제거함
