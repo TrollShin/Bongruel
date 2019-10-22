@@ -84,8 +84,9 @@ namespace Bongruel
         private void addOrderedMenu(Food food)
         {
             if(isAlreadySelect(food))
-            {
+            {                
                 orderedMenuList[orderedMenuList.IndexOf(food)].Count += 1;
+                food.Price *= food.Count;
             }
             else
             {
@@ -126,6 +127,13 @@ namespace Bongruel
         {
             
         }
+        
+        //모든 메뉴를 제거함
+        private void removeAll_btn_Click(object sender, RoutedEventArgs e)
+        {
+            orderedMenuList.Clear();
+            selectedFood.Items.Refresh();
+        }
 
         //선택한 메뉴를 제거함
         private void remove_btn_Click(object sender, RoutedEventArgs e)
@@ -137,6 +145,9 @@ namespace Bongruel
 
             orderedMenuList.Remove(selectedFood.SelectedItem as Food);
             selectedFood.Items.Refresh();
+
+            List<Food> test = App.foodData.listFood;
+
         }
 
         // 선택한 메뉴의 수량을 +1 시킴
@@ -222,6 +233,6 @@ namespace Bongruel
             }
 
             lvFood.ItemsSource = lstSelectedFood;
-        }
+        }      
     }
 }

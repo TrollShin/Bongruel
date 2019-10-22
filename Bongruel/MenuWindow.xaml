@@ -93,6 +93,7 @@
                     <GridView>
                         <GridViewColumn Header="메뉴" DisplayMemberBinding="{Binding Name}" Width="350"/>
                         <GridViewColumn Header="수량" DisplayMemberBinding="{Binding Count}" Width="150"/>
+                        <GridViewColumn Header="수량" DisplayMemberBinding="{Binding Price}" Width="250"/>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -108,6 +109,11 @@
                 <Button Width="80" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"
                         Click="payMent_btn_Click">
                     결제하기
+                </Button>
+                <!--전체 제거 버튼-->
+                <Button Width="80" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"
+                        Click="removeAll_btn_Click">
+                    전체 취소
                 </Button>
                 <!--제거 버튼-->
                 <Button Width="40" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,10,0,0" 

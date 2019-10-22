@@ -43,7 +43,7 @@ namespace Bongruel
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            timeText.Text = DateTime.Now.ToString("yyyy mm dd hh:mm:ss dddd");
+            timeText.Text = DateTime.Now.ToString("yyyy MM dd hh:mm:ss dddd");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
