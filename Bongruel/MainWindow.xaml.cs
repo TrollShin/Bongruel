@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Sockets;
 using GruelModel;
+using System.Windows.Threading;
 
 namespace Bongruel
 {
@@ -23,6 +24,8 @@ namespace Bongruel
     /// </summary>
     public partial class MainWindow : Window
     {
+        private DispatcherTimer timer = new DispatcherTimer();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -35,14 +38,21 @@ namespace Bongruel
             OrderWindow.OnGoBackMainWindow += menuWindow_GoBackMainWindow;
             StatControl.OnGoBackMainWindow += OnGoBackMainWindow;
             LoginControl.OnGoBackMainWindow += OnGoBackMainWindow;
+            timer.Tick += Timer_Tick;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            timeText.Text = DateTime.Now.ToString("yyyy mm dd hh:mm:ss dddd");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             App.seatData.Load();
-            this.timeText.Text = DateTime.Now.ToString("yyyy년 MMM월 dd일 hh:mm:ss dddd");
+            timer.Interval = TimeSpan.FromSeconds(1);
 
             addSeats();
+            timer.Start();
         }
 
         private void addSeats() //MainWindow 모든 테이블을 출력

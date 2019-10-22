@@ -53,7 +53,7 @@ namespace Bongruel
                      lstSelectedFood = App.foodData.listFood.Where(x => x.category == selectCategory).ToList();
                  }
 
-                 lvFood.ItemsSource = lstSelectedFood;
+                 //lvFood.ItemsSource = lstSelectedFood;
              }
 
              private Category foodCategoryConvertFromString(string strCategory)
