@@ -14,19 +14,35 @@
         <local:LoginControl Visibility="Collapsed" x:Name="LoginControl"/>
 
         <Grid x:Name="mainGrid">
-            <ListView x:Name="listTable" SelectionChanged="listTable_SelectionChanged" SelectionMode="Single"
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Background="#6E0000">
+                <Image Source="Assets/logo_gnb.png" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="timeText" HorizontalAlignment="Right" VerticalAlignment="Center"
+                           FontSize="30" Foreground="White"
+                           Margin="0,0,10,0"/>
+            </Grid>
+            
+            <!--테이블-->
+            <Grid Grid.Row="1">
+                <ListView x:Name="listTable" SelectionChanged="listTable_SelectionChanged" SelectionMode="Single"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel>
 
-                        </WrapPanel>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-
+                            </WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </Grid>
+            
             <!--임시 컨트롤 전환 버튼-->
-           <Grid Grid.Row="1">
+           <Grid Grid.Row="2">
                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                     <Button Width="100" Height="70" Content="MenuWindow로" x:Name="goMenuWindowBtn" Click="GoMenuWindowBtn_Click"/>
                     <Button Width="100" Height="70" Content="StatControl로" x:Name="goStatControlBtn" Click="StatControl_Click" Margin="10,0,10,0"/>
