@@ -45,7 +45,7 @@ namespace Bongruel
 
             if(orderedMenu != null)
             {
-                this.orderedMenuList = orderedMenu;
+                orderedMenuList = orderedMenu;
             }
         }
 
@@ -77,7 +77,7 @@ namespace Bongruel
                 selectedFood.Items.Refresh();
                 return;   
             }
-
+            List<Seat> item = App.seatData.listseat;
             orderedMenuList.Add(food);
             selectedFood.Items.Refresh();
         }
