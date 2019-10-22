@@ -39,26 +39,34 @@ namespace Bongruel
 
         public void setOrderMenu(string tableId, List<Food> orderedMenu)
         {
-            orderedMenuList.Clear();
-
             this.tableId.Text = tableId;
 
-            if(orderedMenu != null)
+            if(/*orderedMenu != null*/ orderedMenu.Count != 0)
             {
                 orderedMenuList = orderedMenu;
+                selectedFood.ItemsSource = orderedMenuList;
+                selectedFood.Items.Refresh();
+
+                List<Food> food = orderedMenuList;
             }
         }
 
         private void MenuWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            orderedMenuList = new List<Food>();
-            
             App.foodData.Load();
-            lvFood.ItemsSource = App.foodData.listFood;
 
-            selectedFood.ItemsSource = orderedMenuList;
+            init();
         }
         
+        //초기화
+        private void init()
+        {
+            orderedMenuList = new List<Food>();
+
+            lvFood.ItemsSource = App.foodData.listFood;
+            selectedFood.ItemsSource = orderedMenuList;
+        }
+
         // 음식 선택 시 실행
         private void Menu_Select(object sender, MouseButtonEventArgs e)
         { 
@@ -66,25 +74,33 @@ namespace Bongruel
 
             selectedMenuImgChange(food.ImagePath);
             addOrderedMenu(food);
+
+            selectedFood.Items.Refresh();
+
+            ItemCollection test = selectedFood.Items;
         }
 
         // 선택한 음식을 메뉴에 추가시킴
         private void addOrderedMenu(Food food)
         {
-            if(orderedMenuList != null && isAlreadySelect(food))
+            if(isAlreadySelect(food))
             {
                 orderedMenuList[orderedMenuList.IndexOf(food)].Count += 1;
-                selectedFood.Items.Refresh();
-                return;   
             }
-            List<Seat> item = App.seatData.listseat;
-            orderedMenuList.Add(food);
-            selectedFood.Items.Refresh();
+            else
+            {
+                orderedMenuList.Add(food);
+            }
         }
 
         // 선택한 메뉴가 이미 선택되어 있다면 true 아니면 false
         private bool isAlreadySelect(Food food)
         {
+            if(orderedMenuList == null)
+            {
+                return false;
+            }
+
             foreach(Food item in orderedMenuList)
             {
                 if(food == item)
@@ -105,24 +121,39 @@ namespace Bongruel
             foodImage.Source = new BitmapImage(new Uri(imgPath, UriKind.Relative));
         }
 
+        //결제버튼
+        private void payMent_btn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!isFoodCountCanChange())
+            {
+                return;
+            }
+
+            orderedMenuList.Remove(selectedFood.SelectedItem as Food);
+            selectedFood.Items.Refresh();
+        }
+
+        //선택한 메뉴를 제거함
+        private void remove_btn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!isFoodCountCanChange())
+            {
+                return;
+            }
+
+            orderedMenuList.Remove(selectedFood.SelectedItem as Food);
+            selectedFood.Items.Refresh();
+        }
+
         // 선택한 메뉴의 수량을 +1 시킴
         private void plus_btn_Click(object sender, RoutedEventArgs e)
-        {
-            
-            if (!isFoodCountcanChange())
+        {            
+            if (!isFoodCountCanChange())
             {
                 return;
             }
 
             (selectedFood.SelectedItem as Food).Count += 1;
-
-            /* 
-             * plus 를 multiSelete 방식으로 수정시 사용
-             * for(int i = 0; i < selectedFood.SelectedItems.Count; i++)
-             * {
-             * (selectedFood.SelectedItems[i] as Food).Count += 1;
-             * }
-             */
 
             selectedFood.Items.Refresh();
         }
@@ -130,7 +161,7 @@ namespace Bongruel
         // 선택한 메뉴의 수량을 -1 시킴
         private void minus_btn_Click(object sender, RoutedEventArgs e)
         {
-            if (!isFoodCountcanChange())
+            if (!isFoodCountCanChange())
             {
                 return;
             }
@@ -151,23 +182,26 @@ namespace Bongruel
         private void ordered_btn_Click(object sender, RoutedEventArgs e)
         {
             OrderEventArgs args = new OrderEventArgs();
-            args.LstOrderedFood = orderedMenuList;
+
+            args.LstOrderedFood = orderedMenuList.ToList();
             args.TableId = tableId.Text;
+
+            orderedMenuList.Clear();
 
             OnGoBackMainWindow?.Invoke(this, args);
         }
 
+        //돌아가기 버튼을 누를 시 실행 
         private void GoBackBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (OnGoBackMainWindow != null)
-            {
-                OnGoBackMainWindow(this, null);
-            }
+            orderedMenuList.Clear();
+
+            OnGoBackMainWindow?.Invoke(this, null);
         }
 
         // 메뉴의 수량 변경시 사용자가 메뉴를 선택했는지 확인 
         //선택하면 true 아니면 false
-        private bool isFoodCountcanChange()
+        private bool isFoodCountCanChange()
         {
             if ((selectedFood.SelectedItem as Food) == null)
             {
@@ -189,37 +223,11 @@ namespace Bongruel
             }
             else
             {
-                Category selectCategory = foodCategoryConvertFromString(item.Content.ToString());
+                Category selectCategory = (Category)Enum.Parse(typeof(Category), item.Tag.ToString());
                 lstSelectedFood = App.foodData.listFood.Where(x => x.category == selectCategory).ToList();
             }
 
             lvFood.ItemsSource = lstSelectedFood;
-        }
-
-        private Category foodCategoryConvertFromString(string strCategory) 
-        {
-            Category result = new Category();
-
-            switch(strCategory)
-            {
-                case "시그니처":
-                    result = Category.SIGNATURE;
-                    break;
-                case "영양":
-                    result = Category.NUTRITION;
-                    break;
-                case "보양":
-                    result = Category.RECUPERATION;
-                    break;
-                case "별미":
-                    result = Category.DELICACY;
-                    break;
-                case "전통":
-                    result = Category.TRADITION;
-                    break;
-            }
-
-            return result;
         }
     }
 }

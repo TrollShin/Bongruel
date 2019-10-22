@@ -40,6 +40,7 @@ namespace Bongruel
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             App.seatData.Load();
+            this.timeText.Text = DateTime.Now.ToString("yyyy년 MMM월 dd일 hh:mm:ss dddd");
 
             addSeats();
         }
@@ -70,7 +71,7 @@ namespace Bongruel
             if (e != null)
             {
                 (listTable.SelectedItem as TableControl).SetItem(e.LstOrderedFood);//.seat.OrderList = e.LstOrderedFood;
-                List<Seat> test = App.seatData.listseat;
+
                 listTable.Items.Refresh();
             }
             OnGoBackMainWindow(sender, e);
@@ -79,11 +80,6 @@ namespace Bongruel
         //테이블을 선택했을때 실행 ( SelectionChanged 이기 때문에 다른 테이블에 접근하기 전까지 같은 테이블에 접근하지 못해서 수정예정 )
         private void listTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            /*OrderWindow.setOrderMenu((listTable.SelectedItem as TableControl).seat.Id, (listTable.SelectedItem as TableControl).seat.OrderList);
-
-            disableMain();
-            OrderWindow.Visibility = Visibility.Visible;*/
-
             Seat tableControl = new Seat();
             tableControl = (listTable.SelectedItem as TableControl).seat;
 

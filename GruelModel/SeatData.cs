@@ -18,12 +18,12 @@ namespace GruelModel
 
             listseat = new List<Seat>()
             {
-                new Seat() {Id = "1", OrderList = null},
-                new Seat() {Id = "2", OrderList = null},
-                new Seat() {Id = "3", OrderList = null},
-                new Seat() {Id = "4", OrderList = null},
-                new Seat() {Id = "5", OrderList = null},
-                new Seat() {Id = "6", OrderList = null},
+                new Seat() {Id = "1", OrderList = new List<Food>()},
+                new Seat() {Id = "2", OrderList = new List<Food>()},
+                new Seat() {Id = "3", OrderList = new List<Food>()},
+                new Seat() {Id = "4", OrderList = new List<Food>()},
+                new Seat() {Id = "5", OrderList = new List<Food>()},
+                new Seat() {Id = "6", OrderList = new List<Food>()},
             };
 
             isLoaded = true;

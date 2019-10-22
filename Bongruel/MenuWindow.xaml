@@ -40,11 +40,11 @@
             <ListView x:Name="category" SelectionChanged="category_SelectionChanged"
                       FontSize="16" Foreground="Black">
                 <ListViewItem Content="전체"/>
-                <ListViewItem Content="시그니처"/>
-                <ListViewItem Content="영양"/>
-                <ListViewItem Content="보양"/>
-                <ListViewItem Content="별미"/>
-                <ListViewItem Content="전통"/>
+                <ListViewItem Content="시그니처" Tag="SIGNATURE"/>
+                <ListViewItem Content="영양" Tag="NUTRITION"/>
+                <ListViewItem Content="보양" Tag="RECUPERATION"/>
+                <ListViewItem Content="별미" Tag="DELICACY"/>
+                <ListViewItem Content="전통" Tag="TRADITION"/>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
@@ -97,6 +97,7 @@
                 </ListView.View>
             </ListView>
         </Grid>
+        <!--메뉴 컨트롤 버튼-->
         <Grid Grid.Row="3">
             <Border BorderBrush="LightGray" BorderThickness="2"/>
             <StackPanel Orientation="Horizontal">
@@ -104,14 +105,23 @@
                         Click="ordered_btn_Click">
                     주문하기
                 </Button>
-                <Button Width="80" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0">
+                <Button Width="80" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"
+                        Click="payMent_btn_Click">
                     결제하기
                 </Button>
+                <!--제거 버튼-->
+                <Button Width="40" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,10,0,0" 
+                        Background="Transparent" BorderBrush="Transparent" 
+                        Click="remove_btn_Click">
+                    <Image Source="Assets/remove-symbol.png"/>
+                </Button>
+                <!--수량 추가 버튼-->
                 <Button Width="40" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,10,0,0" 
                         Background="Transparent" BorderBrush="Transparent" 
                         Click="plus_btn_Click">
                     <Image Source="Assets/plus-black-symbol.png"/>
                 </Button>
+                <!--수량 감소 버튼-->
                 <Button Width="40" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" 
                         Background="Transparent" BorderBrush="Transparent" 
                         Click="minus_btn_Click">

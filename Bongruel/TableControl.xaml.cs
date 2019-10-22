@@ -39,7 +39,9 @@ namespace Bongruel
             seat.Id = seatId;
         }
         public void SetItem(List<Food> orderedMenu)
-        {         
+        {
+            if (orderedMenu == null) return;
+
             string message = "";
             message = changeFoodListToString(orderedMenu);
 
@@ -77,9 +79,9 @@ namespace Bongruel
 
             foreach (Food item in foods)
             {
-                if (foods.IndexOf(item) == 4)
+                if (foods.IndexOf(item) == 3)
                 {
-                    result += "... 및" + (foods.Count - 4).ToString() + "개\n";
+                    result += "... 및" + (foods.Count - 3).ToString() + "개\n";
                     break;
                 }
 
