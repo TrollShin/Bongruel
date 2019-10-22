@@ -29,7 +29,7 @@ namespace Bongruel
         public delegate void GobackHandler(object sender, OrderEventArgs e);
         public event GobackHandler OnGoBackMainWindow;
 
-        private List<Food> orderedMenuList;
+         private List<Food> orderedMenuList;
 
         public MenuWindow()
         {
