@@ -14,6 +14,8 @@ namespace Bongruel
     /// </summary>
     public partial class App : Application
     {
+
+
         public static FoodData foodData = new FoodData();
         public static SeatData seatData = new SeatData();
     }

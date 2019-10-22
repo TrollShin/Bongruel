@@ -10,16 +10,11 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="9*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="8*"/>
-
-        </Grid.ColumnDefinitions>
 
         <Label Content="하루 매출액:" Grid.Row="0" Grid.Column="0" FontSize="20" FontWeight="ExtraBlack" VerticalContentAlignment="Top"/>
-        <Label Content="XXX원" Grid.Row="0" Grid.Column="1" FontSize="20" FontWeight="ExtraBlack" VerticalContentAlignment="Top"/>
 
         <Grid Grid.Column="1">
             <Button VerticalAlignment="Center" HorizontalAlignment="Right" 
@@ -29,24 +24,24 @@
             </Button>
         </Grid>        
 
-        <Grid Grid.Row="0" Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Border BorderBrush="LightGray" BorderThickness="2"/>
+            <ListView x:Name="category" SelectionChanged="category_SelectionChanged"
+                      FontSize="16" Foreground="Black">
+                <ListViewItem Content="전체"/>
+                <ListViewItem Content="시그니처"/>
+                <ListViewItem Content="영양"/>
+                <ListViewItem Content="보양"/>
+                <ListViewItem Content="별미"/>
+                <ListViewItem Content="전통"/>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
         </Grid>
 
-        <ListBox Grid.Column="0" Grid.Row="1" Name="Category">
-            <ListBoxItem>시그니처</ListBoxItem>
-            <ListBoxItem>영양</ListBoxItem>
-            <ListBoxItem>보양</ListBoxItem>
-            <ListBoxItem>별미</ListBoxItem>
-            <ListBoxItem>전통</ListBoxItem>
-        </ListBox>
 
 
     </Grid>
