@@ -21,13 +21,17 @@ namespace Bongruel
     /// </summary>
     public partial class TableControl : UserControl
     {
-        public Seat seat= new Seat();
+        public Seat seat = new Seat();
 
         public TableControl()
         {
             InitializeComponent();
         }
 
+        public void initSeat(Seat item)
+        {
+            this.seat = item;
+        }
 
         public void SetItem(String seatId)
         {
@@ -35,13 +39,18 @@ namespace Bongruel
             seat.Id = seatId;
         }
         public void SetItem(List<Food> orderedMenu)
-        {
+        {         
             string message = "";
             message = changeFoodListToString(orderedMenu);
 
             textOrderedMenu.Text = message;
 
-            seat.OrderList = orderedMenu;
+            foreach (Food item in orderedMenu)
+            {
+                seat.OrderList.Add(item);
+            }
+
+            //seat.OrderList = orderedMenu;
         }
         public void SetItem(GruelModel.Seat seat)
         {

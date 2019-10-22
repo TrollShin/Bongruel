@@ -14,7 +14,7 @@
         <local:LoginControl Visibility="Collapsed" x:Name="LoginControl"/>
 
         <Grid x:Name="mainGrid">
-            <ListView x:Name="listTable" SelectionChanged="listTable_SelectionChanged"
+            <ListView x:Name="listTable" SelectionChanged="listTable_SelectionChanged" SelectionMode="Single"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
