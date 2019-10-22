@@ -22,7 +22,7 @@
                     Click="GoBackButton_Click">
                 <Image Source="Assets/left-arrow.png"/>
             </Button>
-        </Grid>        
+        </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1">
             <Border BorderBrush="LightGray" BorderThickness="2"/>
