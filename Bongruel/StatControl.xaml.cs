@@ -40,18 +40,18 @@ namespace Bongruel
          //메뉴의 Category가 바뀌면 실행
              private void category_SelectionChanged(object sender, SelectionChangedEventArgs e)
              {
-                 ListViewItem item = category.SelectedItem as ListViewItem;
-                 List<Food> lstSelectedFood = new List<Food>();
+            ListViewItem item = category.SelectedItem as ListViewItem;
+            List<Food> lstSelectedFood = new List<Food>();
 
-                 if (item.Content.ToString().Equals("전체"))
-                 {
-                     lstSelectedFood = App.foodData.listFood;
-                 }
-                 else
-                 {
-                     Category selectCategory = statCategoryConvertFromString(item.Content.ToString());
-                     lstSelectedFood = App.foodData.listFood.Where(x => x.category == selectCategory).ToList();
-                 }
+            if (item.Content.ToString().Equals("전체"))
+            {
+                lstSelectedFood = new List<Food>(App.foodData.listFood);
+            }
+            else
+            {
+                Category selectCategory = (Category)Enum.Parse(typeof(Category), item.Tag.ToString());
+                lstSelectedFood = new List<Food>(App.foodData.listFood).Where(x => x.category == selectCategory).ToList();
+            }
 
             int TotalPrice = 0;
             int TotalCount = 0;
@@ -66,31 +66,7 @@ namespace Bongruel
                  tbTotalPrice.Content = "매출액:" + TotalPrice.ToString() + "판매량:" + TotalCount.ToString();
               }
 
-             private Category statCategoryConvertFromString(string strCategory)
-             {
-                 Category result = new Category();
-
-                 switch (strCategory)
-                 {
-                     case "시그니처":
-                         result = Category.SIGNATURE;
-                         break;
-                     case "영양":
-                         result = Category.NUTRITION;
-                         break;
-                     case "보양":
-                         result = Category.RECUPERATION;
-                         break;
-                     case "별미":
-                         result = Category.DELICACY;
-                         break;
-                     case "전통":
-                         result = Category.TRADITION;
-                         break;
-                 }
-
-                 return result;
-             }
+            
          }
     }
 

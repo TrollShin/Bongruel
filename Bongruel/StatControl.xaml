@@ -29,11 +29,11 @@
             <ListView x:Name="category" SelectionChanged="category_SelectionChanged"
                       FontSize="16" Foreground="Black">
                 <ListViewItem Content="전체"/>
-                <ListViewItem Content="시그니처"/>
-                <ListViewItem Content="영양"/>
-                <ListViewItem Content="보양"/>
-                <ListViewItem Content="별미"/>
-                <ListViewItem Content="전통"/>
+                <ListViewItem Content="시그니처" Tag="SIGNATURE"/>
+                <ListViewItem Content="영양" Tag="NUTRITION"/>
+                <ListViewItem Content="보양" Tag="RECUPERATION"/>
+                <ListViewItem Content="별미" Tag="DELICACY"/>
+                <ListViewItem Content="전통" Tag="TRADITION"/>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
