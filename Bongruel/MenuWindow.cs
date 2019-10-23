@@ -15,8 +15,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 public class OrderEventArgs : EventArgs
 {
-    public List<Food> LstOrderedFood;
+    /*public List<Food> LstOrderedFood;
     public string TableId;
+    */
+    public Seat seat;
 }
 
 namespace Bongruel
@@ -29,7 +31,9 @@ namespace Bongruel
         public delegate void GobackHandler(object sender, OrderEventArgs e);
         public event GobackHandler OnGoBackMainWindow;
 
-         private List<Food> orderedMenuList;
+        private List<Food> orderedMenuList;
+
+        private bool isLoaded = false;
 
         public MenuWindow()
         {
@@ -37,40 +41,59 @@ namespace Bongruel
             this.Loaded += MenuWindow_Loaded;
         }
 
-        public void setOrderMenu(string tableId, List<Food> orderedMenu)
+        public void setOrderMenu(Seat seat)
         {
-            this.tableId.Text = tableId;
+            this.tableId.Text = seat.Id;
+            this.lastOrderedTime.Text = seat.orderTime;
+            List<Food> lstFood = new List<Food>(seat.OrderList);
 
-            if(/*orderedMenu != null*/ orderedMenu.Count != 0)
+            if (seat.OrderList.Count != 0)
             {
-                orderedMenuList = orderedMenu;
+                orderedMenuList = lstFood;
                 selectedFood.ItemsSource = orderedMenuList;
                 selectedFood.Items.Refresh();
-
-                List<Food> food = orderedMenuList;
             }
         }
 
         private void MenuWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            App.foodData.Load();
-
             init();
         }
         
         //초기화
         private void init()
         {
+            if(isLoaded)
+            {
+                return;
+            }
+
             orderedMenuList = new List<Food>();
 
-            lvFood.ItemsSource = App.foodData.listFood;
+            initLvFood();
+
             selectedFood.ItemsSource = orderedMenuList;
+
+            isLoaded = true;
+        }
+
+        private void initLvFood()
+        {
+            foreach (Food item in new List<Food>(App.foodData.listFood))
+            {
+                Food food = new Food();
+
+                food = returnFood(item);
+
+                lvFood.Items.Add(food);
+            }
         }
 
         // 음식 선택 시 실행
         private void Menu_Select(object sender, MouseButtonEventArgs e)
         { 
-            Food food = lvFood.SelectedItem as Food;
+            Food food = new Food();
+            food = lvFood.SelectedItem as Food;
 
             selectedMenuImgChange(food.ImagePath);
             addOrderedMenu(food);
@@ -83,14 +106,19 @@ namespace Bongruel
         // 선택한 음식을 메뉴에 추가시킴
         private void addOrderedMenu(Food food)
         {
-            if(isAlreadySelect(food))
-            {                
-                orderedMenuList[orderedMenuList.IndexOf(food)].Count += 1;
-                food.Price *= food.Count;
+            Food item = new Food();
+            item = returnFood(food);
+
+            if (isAlreadySelect(item))
+            {
+                Food selecteFoodItem = new Food();
+                selecteFoodItem = orderedMenuList.Find(x => x.Name == item.Name);
+                selecteFoodItem.Count += 1;
+                selecteFoodItem.Price += getFoodPrice(selecteFoodItem);
             }
             else
             {
-                orderedMenuList.Add(food);
+                orderedMenuList.Add(item);
             }
         }
 
@@ -104,7 +132,7 @@ namespace Bongruel
 
             foreach(Food item in orderedMenuList)
             {
-                if(food == item)
+                if(food.Name == item.Name)
                 {
                     return true;
                 }
@@ -158,7 +186,9 @@ namespace Bongruel
                 return;
             }
 
-            (selectedFood.SelectedItem as Food).Count += 1;
+            Food selecteFoodItem = selectedFood.SelectedItem as Food;
+            selecteFoodItem.Count += 1;
+            selecteFoodItem.Price += getFoodPrice(selecteFoodItem);
 
             selectedFood.Items.Refresh();
         }
@@ -171,13 +201,16 @@ namespace Bongruel
                 return;
             }
 
+            Food selecteFoodItem = selectedFood.SelectedItem as Food;
+
             if ((selectedFood.SelectedItem as Food).Count == 1)
             {
-                orderedMenuList.Remove(selectedFood.SelectedItem as Food);
+                orderedMenuList.Remove(selecteFoodItem);
             }
             else
             {
-                (selectedFood.SelectedItem as Food).Count -= 1;
+                (selecteFoodItem).Count -= 1;
+                selecteFoodItem.Price -= getFoodPrice(selecteFoodItem);
             }
 
             selectedFood.Items.Refresh();
@@ -187,9 +220,14 @@ namespace Bongruel
         private void ordered_btn_Click(object sender, RoutedEventArgs e)
         {
             OrderEventArgs args = new OrderEventArgs();
+            Seat item = new Seat();
 
-            args.LstOrderedFood = orderedMenuList.ToList();
-            args.TableId = tableId.Text;
+            item.Id = tableId.Text;
+            item.OrderList = new List<Food>(orderedMenuList);
+            item.orderTime = DateTime.Now.ToString();
+
+            args.seat = new Seat();
+            args.seat = item;
 
             orderedMenuList.Clear();
 
@@ -219,20 +257,57 @@ namespace Bongruel
         // 메뉴의 Category가 바뀌면 실행
         private void category_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            lvFood.Items.Clear();
             ListViewItem item = category.SelectedItem as ListViewItem;
             List<Food> lstSelectedFood = new List<Food>();
 
             if (item.Content.ToString().Equals("전체"))
             {
-                lstSelectedFood = App.foodData.listFood;
+                lstSelectedFood = new List<Food>(App.foodData.listFood);
             }
             else
             {
                 Category selectCategory = (Category)Enum.Parse(typeof(Category), item.Tag.ToString());
-                lstSelectedFood = App.foodData.listFood.Where(x => x.category == selectCategory).ToList();
+                lstSelectedFood = new List<Food>(App.foodData.listFood).Where(x => x.category == selectCategory).ToList();
             }
 
             lvFood.ItemsSource = lstSelectedFood;
-        }      
+        }
+
+        private void resetOrderedList()
+        {
+            foreach(Food item in orderedMenuList)
+            {
+                item.Count = 1;
+                item.Price = (App.foodData.listFood.Where(x => x.Name == item.Name).ToList())[0].Price;
+            }
+
+            orderedMenuList.Clear();
+        }
+
+        private List<Food> returnFoodList(List<Food> lstFood)
+        {
+            //List<Food> result = new List<Food>(lstFood);
+            return new List<Food>();
+        }
+
+        //단순히 대입해서 넣으면 연결되어 버리기 때문에 이를 방지하기 위해서 만들었다
+        private Food returnFood(Food food)
+        {
+            Food item = new Food();
+
+            item.category = food.category;
+            item.Count = food.Count;
+            item.ImagePath = food.ImagePath;
+            item.Name = food.Name;
+            item.Price = food.Price;
+
+            return item;
+        }
+    
+        private int getFoodPrice(Food food)
+        {
+            return (App.foodData.listFood.Where(x => x.Name == food.Name).ToList())[0].Price;
+        }
     }
 }
