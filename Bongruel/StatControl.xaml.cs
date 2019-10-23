@@ -54,15 +54,17 @@ namespace Bongruel
                  }
 
             int TotalPrice = 0;
+            int TotalCount = 0;
 
             for (int i = 0; i < lstSelectedFood.Count; i++)
             {
                 TotalPrice += lstSelectedFood[i].Price * lstSelectedFood[i].Count;
+                TotalCount += lstSelectedFood[i].Count;
             }
 
                  Stat.ItemsSource = lstSelectedFood;
-            tbTotalPrice.Content = "매출액:" + TotalPrice.ToString();
-             }
+            tbTotalPrice.Content = "매출액:" + TotalPrice.ToString() + "판매량:" + TotalCount.ToString();
+              }
 
              private Category statCategoryConvertFromString(string strCategory)
              {
