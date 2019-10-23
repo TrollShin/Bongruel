@@ -14,7 +14,7 @@
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
 
-        <Label Content="하루 매출액:" Grid.Row="0" Grid.Column="0" FontSize="20" FontWeight="ExtraBlack" VerticalContentAlignment="Top"/>
+        <Label Name="tbTotalPrice" Grid.Row="0" Grid.Column="0" FontSize="20" FontWeight="ExtraBlack" VerticalContentAlignment="Top"/>
 
         <Grid Grid.Column="1">
             <Button VerticalAlignment="Center" HorizontalAlignment="Right" 
@@ -46,9 +46,9 @@
         <ListView x:Name="Stat" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2" SelectionMode="Single">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="메뉴" DisplayMemberBinding="{Binding Name}" Width="350"/>
-                    <GridViewColumn Header="수량" DisplayMemberBinding="{Binding Count}" Width="150"/>
-                    <GridViewColumn Header="가격" DisplayMemberBinding="{Binding Price}" Width="250"/>
+                    <GridViewColumn Header="메뉴" DisplayMemberBinding="{Binding Name}" Width="200"/>
+                    <GridViewColumn Header="수량" DisplayMemberBinding="{Binding Count}" Width="250"/>
+                    <GridViewColumn Header="총액" DisplayMemberBinding="{Binding Price}" Width="350"/>
                 </GridView>
             </ListView.View>
         </ListView>

@@ -53,7 +53,15 @@ namespace Bongruel
                      lstSelectedFood = App.foodData.listFood.Where(x => x.category == selectCategory).ToList();
                  }
 
+            int TotalPrice = 0;
+
+            for (int i = 0; i < lstSelectedFood.Count; i++)
+            {
+                TotalPrice += lstSelectedFood[i].Price * lstSelectedFood[i].Count;
+            }
+
                  Stat.ItemsSource = lstSelectedFood;
+            tbTotalPrice.Content = "매출액:" + TotalPrice.ToString();
              }
 
              private Category statCategoryConvertFromString(string strCategory)
