@@ -24,7 +24,7 @@ namespace Bongruel
     {
         public delegate void StatEventHandler(object sender, EventArgs e);
         public event StatEventHandler OnGoBackMainWindow;
-        //private List<Food> TotalMenuList;
+        /*private List<Food> StatList;*/
         public StatControl()
         {
             InitializeComponent();
@@ -49,14 +49,14 @@ namespace Bongruel
                  }
                  else
                  {
-                     Category selectCategory = foodCategoryConvertFromString(item.Content.ToString());
+                     Category selectCategory = statCategoryConvertFromString(item.Content.ToString());
                      lstSelectedFood = App.foodData.listFood.Where(x => x.category == selectCategory).ToList();
                  }
 
-                 //lvFood.ItemsSource = lstSelectedFood;
+                 Stat.ItemsSource = lstSelectedFood;
              }
 
-             private Category foodCategoryConvertFromString(string strCategory)
+             private Category statCategoryConvertFromString(string strCategory)
              {
                  Category result = new Category();
 

@@ -42,6 +42,18 @@
             </ListView>
         </Grid>
 
+        <Grid Grid.Row="2" Grid.Column="1">
+        <ListView x:Name="Stat" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2" SelectionMode="Single">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="메뉴" DisplayMemberBinding="{Binding Name}" Width="350"/>
+                    <GridViewColumn Header="수량" DisplayMemberBinding="{Binding Count}" Width="150"/>
+                    <GridViewColumn Header="가격" DisplayMemberBinding="{Binding Price}" Width="250"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        </Grid>
+
 
 
     </Grid>
