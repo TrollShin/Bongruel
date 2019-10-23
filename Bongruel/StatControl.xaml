@@ -43,7 +43,7 @@
         </Grid>
 
         <Grid Grid.Row="2" Grid.Column="1">
-        <ListView x:Name="Stat" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2" SelectionMode="Single">
+        <ListView x:Name="payedFoodList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2" SelectionMode="Single">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="메뉴" DisplayMemberBinding="{Binding Name}" Width="200"/>

@@ -37,6 +37,18 @@ namespace Bongruel
                 OnGoBackMainWindow(this, null);
             }
         }
+
+        public void setStatData(List<Food> foodList)
+        {
+             foreach(Food item in foodList)
+            {
+                item.TotalPrice = item.Count * item.Price;
+            }
+
+            payedFoodList.ItemsSource = foodList;
+            payedFoodList.Items.Refresh();
+        }
+
          //메뉴의 Category가 바뀌면 실행
              private void category_SelectionChanged(object sender, SelectionChangedEventArgs e)
              {
@@ -62,7 +74,7 @@ namespace Bongruel
                 TotalCount += lstSelectedFood[i].Count;
             }
 
-                 Stat.ItemsSource = lstSelectedFood;
+                 payedFoodList.ItemsSource = lstSelectedFood;
                  tbTotalPrice.Content = "매출액:" + TotalPrice.ToString() + "판매량:" + TotalCount.ToString();
               }
 
