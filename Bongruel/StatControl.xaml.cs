@@ -63,7 +63,7 @@ namespace Bongruel
             }
 
                  Stat.ItemsSource = lstSelectedFood;
-            tbTotalPrice.Content = "매출액:" + TotalPrice.ToString() + "판매량:" + TotalCount.ToString();
+                 tbTotalPrice.Content = "매출액:" + TotalPrice.ToString() + "판매량:" + TotalCount.ToString();
               }
 
              private Category statCategoryConvertFromString(string strCategory)
