@@ -28,11 +28,6 @@ namespace Bongruel
             InitializeComponent();
         }
 
-        public void initSeat(Seat item)
-        {
-            this.seat = item;
-        }
-
         public void SetItem(String seatId)
         {
             tableId.Text = seatId;
@@ -51,7 +46,6 @@ namespace Bongruel
             {
                 seat.OrderList.Add(item);
             }
-
             //seat.OrderList = orderedMenu;
         }
         public void SetItem(GruelModel.Seat seat)

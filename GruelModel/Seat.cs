@@ -11,5 +11,7 @@ namespace GruelModel
         public string Id { get; set; }
 
         public List<Food> OrderList { get; set; }
+
+        public string orderTime { get; set; }
     }
 }

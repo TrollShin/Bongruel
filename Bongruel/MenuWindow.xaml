@@ -23,10 +23,11 @@
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
                 <Image Source="Assets/logo_gnb.png"/>
                 <TextBlock  x:Name="tableId" Text="Default" Margin="10,0,0,0" 
-                            FontSize="24" Foreground="White">
-                </TextBlock>
+                            FontSize="24" Foreground="White"/>
             </StackPanel>
-            
+            <TextBlock x:Name="lastOrderedTime" Text="DEFAULT" Margin="0,0,10,0"
+                           FontSize="24" Foreground="White"
+                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
         </Grid>
         <!--돌아가기-->
         <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
