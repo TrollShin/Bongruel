@@ -32,8 +32,6 @@ namespace Bongruel
             listTable.Items.Add(new LoadingControl());
 
             onEnable();
-
-            Load();
         }
 
         private void onEnable()
@@ -60,6 +58,8 @@ namespace Bongruel
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             listTable.Items.Clear();
+
+            Load();
 
             timeText.Text = DateTime.Now.ToString("yyyy년 MM월 dd일 hh:mm:ss dddd");
             timer.Start();

@@ -70,16 +70,16 @@ namespace Bongruel
 
             orderedMenuList = new List<Food>();
 
-            initLvFood();
+            initLvFood(new List<Food>(App.foodData.listFood));
 
             selectedFood.ItemsSource = orderedMenuList;
 
             isLoaded = true;
         }
 
-        private void initLvFood()
+        private void initLvFood(List<Food> lstFood)
         {
-            foreach (Food item in new List<Food>(App.foodData.listFood))
+            foreach (Food item in lstFood)
             {
                 Food food = new Food();
 
@@ -112,6 +112,7 @@ namespace Bongruel
             if (isAlreadySelect(item))
             {
                 Food selecteFoodItem = new Food();
+
                 selecteFoodItem = orderedMenuList.Find(x => x.Name == item.Name);
                 selecteFoodItem.Count += 1;
                 selecteFoodItem.Price += getFoodPrice(selecteFoodItem);
@@ -257,6 +258,8 @@ namespace Bongruel
         // 메뉴의 Category가 바뀌면 실행
         private void category_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            lvFood.Items.Clear();
+
             ListViewItem item = category.SelectedItem as ListViewItem;
             List<Food> lstSelectedFood = new List<Food>();
 
@@ -270,24 +273,7 @@ namespace Bongruel
                 lstSelectedFood = new List<Food>(App.foodData.listFood).Where(x => x.category == selectCategory).ToList();
             }
 
-            lvFood.ItemsSource = lstSelectedFood;
-        }
-
-        private void resetOrderedList()
-        {
-            foreach(Food item in orderedMenuList)
-            {
-                item.Count = 1;
-                item.Price = (App.foodData.listFood.Where(x => x.Name == item.Name).ToList())[0].Price;
-            }
-
-            orderedMenuList.Clear();
-        }
-
-        private List<Food> returnFoodList(List<Food> lstFood)
-        {
-            //List<Food> result = new List<Food>(lstFood);
-            return new List<Food>();
+            initLvFood(lstSelectedFood);
         }
 
         //단순히 대입해서 넣으면 연결되어 버리기 때문에 이를 방지하기 위해서 만들었다

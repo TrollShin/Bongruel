@@ -43,10 +43,9 @@
             
             <!--임시 컨트롤 전환 버튼-->
            <Grid Grid.Row="2">
-               <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-                    <Button Width="100" Height="70" Content="MenuWindow로" x:Name="goMenuWindowBtn" Click="GoMenuWindowBtn_Click"/>
-                    <Button Width="100" Height="70" Content="StatControl로" x:Name="goStatControlBtn" Click="StatControl_Click" Margin="10,0,10,0"/>
-                    <Button Width="100" Height="70" Content="로그인창으로" x:Name="goLoginControl" Click="GoLoginControl_Click" Margin="5,0,0,0"/>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                    <Button Width="100" Height="70" Content="통계" x:Name="goStatControlBtn" Click="StatControl_Click" Margin="10,0,10,10"
+                            FontSize="24"/>
                 </StackPanel>
             </Grid>
         </Grid>
