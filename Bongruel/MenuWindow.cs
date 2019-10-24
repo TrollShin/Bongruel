@@ -170,9 +170,9 @@ namespace Bongruel
             args.seat = new Seat();
             args.seat = item;
 
-            orderedMenuList.Clear();
+            //orderedMenuList.Clear();
 
-            OnGoBackMainWindow?.Invoke(this, args);
+            //OnGoBackMainWindow?.Invoke(this, args);
         }
         
         //모든 메뉴를 제거함
