@@ -19,6 +19,7 @@ public class OrderEventArgs : EventArgs
     public string TableId;
     */
     public Seat seat;
+    public PaymentType paymentType; 
 }
 
 namespace Bongruel
@@ -34,6 +35,8 @@ namespace Bongruel
         private List<Food> orderedMenuList;
 
         private bool isLoaded = false;
+
+        private PaymentType paymentType;
 
         public MenuWindow()
         {
@@ -68,10 +71,11 @@ namespace Bongruel
                 return;
             }
 
+            paymentType = PaymentType.CASH;
+            cashRadioButton.IsChecked = true;
+
             orderedMenuList = new List<Food>();
-
             initLvFood(new List<Food>(App.foodData.listFood));
-
             selectedFood.ItemsSource = orderedMenuList;
 
             isLoaded = true;
@@ -121,6 +125,8 @@ namespace Bongruel
             {
                 orderedMenuList.Add(item);
             }
+
+            refrashTotalPrice();
         }
 
         // 선택한 메뉴가 이미 선택되어 있다면 true 아니면 false
@@ -154,13 +160,16 @@ namespace Bongruel
         //결제버튼
         private void payMent_btn_Click(object sender, RoutedEventArgs e)
         {
-            
+            OrderEventArgs args = new OrderEventArgs();
+            args.paymentType = this.paymentType;
+            args.seat = 
         }
         
         //모든 메뉴를 제거함
         private void removeAll_btn_Click(object sender, RoutedEventArgs e)
         {
             orderedMenuList.Clear();
+            refrashTotalPrice();
             selectedFood.Items.Refresh();
         }
 
@@ -173,10 +182,8 @@ namespace Bongruel
             }
 
             orderedMenuList.Remove(selectedFood.SelectedItem as Food);
+            refrashTotalPrice();
             selectedFood.Items.Refresh();
-
-            List<Food> test = App.foodData.listFood;
-
         }
 
         // 선택한 메뉴의 수량을 +1 시킴
@@ -186,13 +193,11 @@ namespace Bongruel
             {
                 return;
             }
+            int price = getFoodPrice(selectedFood.SelectedItem as Food);
 
-            Food selecteFoodItem = selectedFood.SelectedItem as Food;
-            selecteFoodItem.Count += 1;
-            selecteFoodItem.Price += getFoodPrice(selecteFoodItem);
-
-            selectedFood.Items.Refresh();
-        }
+            foodCountChange(1, price);
+            refrashTotalPrice();
+        }      
 
         // 선택한 메뉴의 수량을 -1 시킴
         private void minus_btn_Click(object sender, RoutedEventArgs e)
@@ -204,16 +209,16 @@ namespace Bongruel
 
             Food selecteFoodItem = selectedFood.SelectedItem as Food;
 
-            if ((selectedFood.SelectedItem as Food).Count == 1)
+            if (selecteFoodItem.Count == 1)
             {
                 orderedMenuList.Remove(selecteFoodItem);
             }
             else
             {
-                (selecteFoodItem).Count -= 1;
-                selecteFoodItem.Price -= getFoodPrice(selecteFoodItem);
+                foodCountChange(-1, -getFoodPrice(selecteFoodItem));
             }
 
+            refrashTotalPrice();
             selectedFood.Items.Refresh();
         }
 
@@ -241,6 +246,20 @@ namespace Bongruel
             orderedMenuList.Clear();
 
             OnGoBackMainWindow?.Invoke(this, null);
+        }
+
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            RadioButton paymentBtn = sender as RadioButton;
+
+            if((PaymentType)Enum.Parse(typeof(PaymentType), paymentBtn.Name) == PaymentType.CASH)
+            {
+                paymentType = PaymentType.CASH;
+            }
+            else
+            {
+                paymentType = PaymentType.CREDIT;
+            }
         }
 
         // 메뉴의 수량 변경시 사용자가 메뉴를 선택했는지 확인 
@@ -293,6 +312,32 @@ namespace Bongruel
         private int getFoodPrice(Food food)
         {
             return (App.foodData.listFood.Where(x => x.Name == food.Name).ToList())[0].Price;
+        }
+
+        private void foodCountChange(int count, int price)
+        {
+            Food selecteFoodItem = selectedFood.SelectedItem as Food;
+            selecteFoodItem.Count += count;
+            selecteFoodItem.Price += price;
+
+            selectedFood.Items.Refresh();
+        }
+
+        private void refrashTotalPrice()
+        {
+            totalPrice.Text = "가격 " + getTotalPrice().ToString();
+        }
+
+        private int getTotalPrice()
+        {
+            int result = 0; 
+
+            foreach(Food item in orderedMenuList)
+            {
+                result += item.Price;
+            }
+
+            return result;
         }
     }
 }

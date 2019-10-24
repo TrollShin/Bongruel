@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace GruelModel
 {
-    class payment
+    class Payment
     {
-        public enum Payment
-        {   
-            card,
-            cash
-        };
+
+    }
+
+    public enum PaymentType
+    {
+        CREDIT,
+        CASH,
     }
 }

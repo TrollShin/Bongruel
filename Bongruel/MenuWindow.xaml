@@ -102,7 +102,13 @@
         <!--메뉴 컨트롤 버튼-->
         <Grid Grid.Row="3">
             <Border BorderBrush="LightGray" BorderThickness="2"/>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="100,5,0,0">
+                <RadioButton x:Name="CASH" Click="RadioButton_Click" GroupName="Payment" Content="현금"/>
+                <RadioButton x:Name="CREDIT" Click="RadioButton_Click" GroupName="Payment" Content="카드"/>
+                <TextBlock x:Name="totalPrice" Text="가격 0" Margin="80,0,0,30" VerticalAlignment="Bottom"
+                           FontSize="44"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                 <Button Width="80" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"
                         Click="ordered_btn_Click">
                     주문하기
