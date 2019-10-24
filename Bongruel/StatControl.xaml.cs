@@ -53,16 +53,16 @@ namespace Bongruel
         private void category_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListViewItem item = category.SelectedItem as ListViewItem;
-            List<Food> lstSelectedFood = new List<Food>();
+            List<Food> lstSelectedFood = new List<Food>();          
 
             if (item.Content.ToString().Equals("전체"))
             {
-                lstSelectedFood = new List<Food>(App.statData.PayedListFood) ;
+                lstSelectedFood = new List<Food>(App.foodData.listFood) ;
             }
             else
             {
                 Category selectCategory = (Category)Enum.Parse(typeof(Category), item.Tag.ToString());
-                lstSelectedFood = new List<Food>(App.statData.PayedListFood).Where(x => x.category == selectCategory).ToList();
+                lstSelectedFood = new List<Food>(App.foodData.listFood).Where(x => x.category == selectCategory).ToList();
             }
 
             int TotalPrice = 0;
