@@ -18,5 +18,6 @@ namespace Bongruel
 
         public static FoodData foodData = new FoodData();
         public static SeatData seatData = new SeatData();
+        public static StatData statData = new StatData();
     }
 }

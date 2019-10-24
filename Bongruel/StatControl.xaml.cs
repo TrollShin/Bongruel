@@ -57,12 +57,12 @@ namespace Bongruel
 
             if (item.Content.ToString().Equals("전체"))
             {
-                lstSelectedFood = new List<Food>(App.foodData.listFood);
+                lstSelectedFood = new List<Food>(App.statData.PayedListFood) ;
             }
             else
             {
                 Category selectCategory = (Category)Enum.Parse(typeof(Category), item.Tag.ToString());
-                lstSelectedFood = new List<Food>(App.foodData.listFood).Where(x => x.category == selectCategory).ToList();
+                lstSelectedFood = new List<Food>(App.statData.PayedListFood).Where(x => x.category == selectCategory).ToList();
             }
 
             int TotalPrice = 0;

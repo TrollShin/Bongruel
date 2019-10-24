@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace GruelModel
 {
-    class StatData
+    public class StatData
     {
             
         private bool isPayed = false;
 
-        public List<Food> StatlistFood;
+        public List<Food> PayedListFood;
 
         public void Pay()
         {
             if (isPayed) return;
 
-            StatlistFood = new List<Food>()
+            PayedListFood = new List<Food>()
             {
                 new Food() {Name = "신불닭죽", TotalPrice = 0, category = Category.DELICACY},
                 new Food() {Name = "둥지팥죽", TotalPrice = 0,  category = Category.TRADITION },
