@@ -162,7 +162,17 @@ namespace Bongruel
         {
             OrderEventArgs args = new OrderEventArgs();
             args.paymentType = this.paymentType;
-            args.seat = 
+            
+            Seat item = new Seat();
+
+            item = getSeat();
+
+            args.seat = new Seat();
+            args.seat = item;
+
+            orderedMenuList.Clear();
+
+            OnGoBackMainWindow?.Invoke(this, args);
         }
         
         //모든 메뉴를 제거함
@@ -228,9 +238,7 @@ namespace Bongruel
             OrderEventArgs args = new OrderEventArgs();
             Seat item = new Seat();
 
-            item.Id = tableId.Text;
-            item.OrderList = new List<Food>(orderedMenuList);
-            item.orderTime = DateTime.Now.ToString();
+            item = getSeat();
 
             args.seat = new Seat();
             args.seat = item;
@@ -336,6 +344,17 @@ namespace Bongruel
             {
                 result += item.Price;
             }
+
+            return result;
+        }
+
+        private Seat getSeat()
+        {
+            Seat result = new Seat();
+
+            result.Id = tableId.Text;
+            result.OrderList = new List<Food>(orderedMenuList);
+            result.orderTime = DateTime.Now.ToString();
 
             return result;
         }
