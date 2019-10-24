@@ -72,7 +72,7 @@ namespace Bongruel
             }
 
             paymentType = PaymentType.CASH;
-            cashRadioButton.IsChecked = true;
+            CASH.IsChecked = true;
 
             orderedMenuList = new List<Food>();
             initLvFood(new List<Food>(App.foodData.listFood));
