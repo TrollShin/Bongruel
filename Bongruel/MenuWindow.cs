@@ -257,7 +257,6 @@ namespace Bongruel
         // 메뉴의 Category가 바뀌면 실행
         private void category_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            lvFood.Items.Clear();
             ListViewItem item = category.SelectedItem as ListViewItem;
             List<Food> lstSelectedFood = new List<Food>();
 
