@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.Windows.Media.Animation;
 
 namespace Bongruel
 {
@@ -27,7 +28,7 @@ namespace Bongruel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public int WorkerState
+        /*public int WorkerState
         {
             get { return workerState; }
             set
@@ -36,12 +37,24 @@ namespace Bongruel
                 if (PropertyChanged != null)
                     PropertyChanged(this, new PropertyChangedEventArgs("WorkerState"));
             }
-        }
+        }*/
         public LoadingControl()
         {
             InitializeComponent();
 
-            DataContext = this;
+            DoubleAnimation loadAni = new DoubleAnimation();
+            loadAni.From = 0;
+            loadAni.To = 360;
+            loadAni.Duration = new Duration(TimeSpan.FromSeconds(1));
+            loadAni.RepeatBehavior = RepeatBehavior.Forever;
+
+            RotateTransform rt = new RotateTransform();
+            loadImg.RenderTransform = rt;
+            rt.CenterX += loadImg.Width / 2;
+            rt.CenterY += loadImg.Height / 2;
+
+            rt.BeginAnimation(RotateTransform.AngleProperty, loadAni);
+            /*DataContext = this;
 
             bgWorker.DoWork += (s, e) =>
             {
@@ -52,7 +65,7 @@ namespace Bongruel
                 }
                 MessageBox.Show("로딩 완료!");
             };
-            bgWorker.RunWorkerAsync();
+            bgWorker.RunWorkerAsync();*/
         }
     }
 }

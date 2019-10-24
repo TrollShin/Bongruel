@@ -29,8 +29,11 @@ namespace Bongruel
         public MainWindow()
         {
             InitializeComponent();
+            listTable.Items.Add(new LoadingControl());
 
             onEnable();
+
+            Load();
         }
 
         private void onEnable()
@@ -41,19 +44,27 @@ namespace Bongruel
             timer.Tick += Timer_Tick;
         }
 
+        private void Load()
+        {
+            App.seatData.Load();
+            App.foodData.Load();
+
+            timer.Interval = TimeSpan.FromSeconds(1);
+        }
+
         private void Timer_Tick(object sender, EventArgs e)
         {
-            timeText.Text = DateTime.Now.ToString("yyyy MM dd hh:mm:ss dddd");
+            timeText.Text = DateTime.Now.ToString("yyyy년 MM월 dd일 hh:mm:ss dddd");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            App.seatData.Load();
-            App.foodData.Load();
-            timer.Interval = TimeSpan.FromSeconds(1);
+            listTable.Items.Clear();
 
-            addSeats();
+            timeText.Text = DateTime.Now.ToString("yyyy년 MM월 dd일 hh:mm:ss dddd");
             timer.Start();
+            addSeats();
+            //LoadingControl.Visibility = Visibility.Collapsed;
         }
 
         private void addSeats() //MainWindow 모든 테이블을 출력

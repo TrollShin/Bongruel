@@ -16,15 +16,12 @@ namespace GruelModel
         {
             if (isLoaded) return;
 
-            listseat = new List<Seat>()
+            listseat = new List<Seat>();
+
+            for(int i =0;i<6;i++)
             {
-                new Seat() {Id = "1", OrderList = new List<Food>()},
-                new Seat() {Id = "2", OrderList = new List<Food>()},
-                new Seat() {Id = "3", OrderList = new List<Food>()},
-                new Seat() {Id = "4", OrderList = new List<Food>()},
-                new Seat() {Id = "5", OrderList = new List<Food>()},
-                new Seat() {Id = "6", OrderList = new List<Food>()},
-            };
+                listseat.Add(new Seat() { Id = i.ToString(), OrderList = new List<Food>() });
+            }
 
             isLoaded = true;
         }

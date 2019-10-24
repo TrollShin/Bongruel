@@ -165,5 +165,8 @@
   <ItemGroup>
     <Resource Include="Assets\remove-symbol.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\spinner-of-dots.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
