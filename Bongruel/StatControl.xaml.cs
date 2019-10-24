@@ -38,7 +38,7 @@ namespace Bongruel
             }
         }
 
-        public void setStatData(List<Food> foodList)
+        public void payedFoodData(List<Food> foodList)
         {
              foreach(Food item in foodList)
             {
