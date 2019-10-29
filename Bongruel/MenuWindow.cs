@@ -19,7 +19,8 @@ public class OrderEventArgs : EventArgs
     public string TableId;
     */
     public Seat seat;
-    public PaymentType paymentType; 
+    //public PaymentType paymentType;
+    public bool isPayment;
 }
 
 namespace Bongruel
@@ -161,7 +162,7 @@ namespace Bongruel
         private void payMent_btn_Click(object sender, RoutedEventArgs e)
         {
             OrderEventArgs args = new OrderEventArgs();
-            args.paymentType = this.paymentType;
+            //args.paymentType = this.paymentType;
             
             Seat item = new Seat();
 
@@ -169,10 +170,18 @@ namespace Bongruel
 
             args.seat = new Seat();
             args.seat = item;
+            args.isPayment = true;
 
-            //orderedMenuList.Clear();
+            orderedMenuList.Clear();
 
-            //OnGoBackMainWindow?.Invoke(this, args);
+            if(paymentType.ToString() == "CASH")
+            {
+                OnGoBackMainWindow?.Invoke(this, args);
+            }
+            else if(paymentType.ToString() == "CREDIT")
+            {
+                OnGoBackMainWindow?.Invoke(this, args);
+            }
         }
         
         //모든 메뉴를 제거함
@@ -242,6 +251,7 @@ namespace Bongruel
 
             args.seat = new Seat();
             args.seat = item;
+            args.isPayment = false;
 
             orderedMenuList.Clear();
 

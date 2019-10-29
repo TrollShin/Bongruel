@@ -91,18 +91,26 @@ namespace Bongruel
         private void menuWindow_GoBackMainWindow(object sender, OrderEventArgs e)
         {
             if (e != null)
-            {
+            {               
                 Seat item = new Seat();
+
                 item.Id = e.seat.Id;
                 item.OrderList = e.seat.OrderList;
                 item.orderTime = e.seat.orderTime;
 
-                (listTable.SelectedItem as TableControl).SetItem(item);//.seat.OrderList = e.LstOrderedFood;
+                if (e.isPayment)
+                {
+                    StatControl.payedFoodData(item.OrderList);
 
-                listTable.Items.Refresh();
+                    (listTable.SelectedItem as TableControl).InitTable();
+                }
+                else
+                {
+                    (listTable.SelectedItem as TableControl).SetItem(item);//.seat.OrderList = e.LstOrderedFood;                  
+                }         
+
+            listTable.Items.Refresh();
             }
-            List<Seat> test = App.seatData.listseat;
-            ItemCollection seat = listTable.Items;
 
             OnGoBackMainWindow(sender, e);
         }

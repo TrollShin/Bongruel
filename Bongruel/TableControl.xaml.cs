@@ -21,11 +21,21 @@ namespace Bongruel
     /// </summary>
     public partial class TableControl : UserControl
     {
-        public Seat seat = new Seat();
+        public Seat seat;
 
         public TableControl()
         {
             InitializeComponent();
+
+            seat = new Seat();
+        }
+
+        public void InitTable()
+        {
+            seat.OrderList.Clear();
+            seat.orderTime = "";
+
+            textOrderedMenu.Text = "";
         }
 
         public void SetItem(String seatId)
@@ -33,6 +43,7 @@ namespace Bongruel
             tableId.Text = seatId;
             seat.Id = seatId;
         }
+
         public void SetItem(List<Food> orderedMenu)
         {
             if (orderedMenu == null) return;
