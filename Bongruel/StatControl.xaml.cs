@@ -42,7 +42,7 @@ namespace Bongruel
         {
             foreach (Food item in foodList)
             {
-                item.TotalPrice = item.Count * item.Price;
+                item.TotalPrice = item.Price;
             }
 
             payedFoodList.ItemsSource = foodList;
