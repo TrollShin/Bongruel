@@ -24,6 +24,8 @@ namespace Bongruel
     {
         public delegate void StatEventHandler(object sender, EventArgs e);
         public event StatEventHandler OnGoBackMainWindow;
+
+        private List<Food> lstPayedFood = new List<Food>();
         /*private List<Food> StatList;*/
         public StatControl()
         {
@@ -42,10 +44,16 @@ namespace Bongruel
         {
             foreach (Food item in foodList)
             {
-                item.TotalPrice = item.Price;
+                lstPayedFood.Add(item);
             }
 
-            payedFoodList.ItemsSource = foodList;
+            //payedFoodList.ItemsSource = foodList;
+
+            foreach(Food item in lstPayedFood)
+            {
+                payedFoodList.Items.Add(item);
+            }
+
             payedFoodList.Items.Refresh();
         }
 
@@ -53,11 +61,11 @@ namespace Bongruel
         private void category_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListViewItem item = category.SelectedItem as ListViewItem;
-            List<Food> lstSelectedFood = new List<Food>();          
+            List<Food> lstSelectedFood = new List<Food>();
 
             if (item.Content.ToString().Equals("전체"))
             {
-                lstSelectedFood = new List<Food>(App.statData.PayedListFood) ;
+                lstSelectedFood = new List<Food>(App.statData.PayedListFood);
             }
             else
             {
@@ -65,20 +73,8 @@ namespace Bongruel
                 lstSelectedFood = new List<Food>(App.statData.PayedListFood).Where(x => x.category == selectCategory).ToList();
             }
 
-            int TotalPrice = 0;
-            int TotalCount = 0;
 
-            for (int i = 0; i < lstSelectedFood.Count; i++)
-            {
-                TotalPrice += lstSelectedFood[i].Price * lstSelectedFood[i].Count;
-                TotalCount += lstSelectedFood[i].Count;
-            }
-
-            payedFoodList.ItemsSource = lstSelectedFood;
-            tbTotalPrice.Content = "매출액:" + TotalPrice.ToString() + "판매량:" + TotalCount.ToString();
         }
-
-
     }
 }
 
