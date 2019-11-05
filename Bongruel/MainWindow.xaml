@@ -8,19 +8,20 @@
         Title="본죽" Icon="Assets/logo_gnb.png"
         Loaded="Window_Loaded">
     <Grid>
-        <!--<local:BNetworkControl Visibility="Collapsed" x:Name="BNetwork"/>-->
+        <local:BNetworkControl Visibility="Collapsed" x:Name="BNetwork"/>
         <local:MenuWindow Visibility="Collapsed" x:Name="OrderWindow"/>
         <local:StatControl Visibility="Collapsed" x:Name="StatControl"/>
         <local:LoginControl Visibility="Collapsed" x:Name="LoginControl"/>
 
         <Grid x:Name="mainGrid">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="8*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
             <Grid Background="#6E0000">
+                <Image Source="Assets/sub_visual_bonjuk.jpg" Stretch="UniformToFill" VerticalAlignment="Center"/>
                 <Image Source="Assets/logo_gnb.png" HorizontalAlignment="Left"/>
                 <TextBlock x:Name="timeText" HorizontalAlignment="Right" VerticalAlignment="Center"
                            FontSize="30" Foreground="White"
@@ -45,6 +46,8 @@
            <Grid Grid.Row="2">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                     <Button Width="100" Height="70" Content="통계" x:Name="goStatControlBtn" Click="StatControl_Click" Margin="10,0,10,10"
+                            FontSize="24"/>
+                    <Button Width="100" Height="70" Content="서버" x:Name="goServerControlBtn" Click="BNetworkControl_Click" Margin="10,0,10,10"
                             FontSize="24"/>
                 </StackPanel>
             </Grid>

@@ -141,6 +141,12 @@ namespace Bongruel
             StatControl.Visibility = Visibility.Visible;
         }
 
+        private void BNetworkControl_Click(object sender, RoutedEventArgs e)
+        {
+            disableMain();
+            BNetwork.Visibility = Visibility.Visible;
+        }
+
         //GoLoginControl 가는 임시 버튼
         private void GoLoginControl_Click(object sender, RoutedEventArgs e)
         {

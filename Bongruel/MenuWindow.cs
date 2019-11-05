@@ -49,12 +49,12 @@ namespace Bongruel
         {
             this.tableId.Text = seat.Id;
             this.lastOrderedTime.Text = seat.orderTime;
-            List<Food> lstFood = new List<Food>(seat.OrderList);
 
             if (seat.OrderList.Count != 0)
             {
-                orderedMenuList = lstFood;
+                orderedMenuList.AddRange(seat.OrderList);// = new List<Food>(seat.OrderList);
                 selectedFood.ItemsSource = orderedMenuList;
+
                 selectedFood.Items.Refresh();
             }
         }
@@ -72,6 +72,7 @@ namespace Bongruel
                 return;
             }
 
+            //현금이 기본
             paymentType = PaymentType.CASH;
             CASH.IsChecked = true;
 
@@ -254,9 +255,12 @@ namespace Bongruel
             args.isPayment = false;
 
             orderedMenuList.Clear();
+            selectedFood.Items.Refresh();
 
             OnGoBackMainWindow?.Invoke(this, args);
         }
+
+
 
         //돌아가기 버튼을 누를 시 실행 
         private void GoBackBtn_Click(object sender, RoutedEventArgs e)
