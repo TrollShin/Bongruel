@@ -22,6 +22,7 @@ namespace Bongruel
     {
         public delegate void LoginHandler(object sender, EventArgs e);
         public event LoginHandler OnGoBackMainWindow;
+        private Helper.BNetwork bNetwork = new Helper.BNetwork();
 
         public LoginControl()
         {
@@ -32,8 +33,9 @@ namespace Bongruel
 
         private void Btnlogin_Click(object sender, RoutedEventArgs e)
         {
-            if (id.Text == "admin" && password.Text == "admin")
+            if (id.Text == "@2114" && password.Text == "admin")
             {
+                bNetwork.Send(id.Text);
                 MessageBox.Show("로그인 성공");
                 goBackMainWindow();
             }
@@ -57,6 +59,7 @@ private void Btnexit_Click(object sender, RoutedEventArgs e)
             if(OnGoBackMainWindow != null)
             {
                 OnGoBackMainWindow(this, null);
+               
             }
         }
     }

@@ -16,6 +16,7 @@ namespace Bongruel.Helper
 
         private byte[] buffer;
    
+        
         public void Create()
         {
             if(socket == null)
@@ -25,6 +26,7 @@ namespace Bongruel.Helper
             }
         }
 
+       
         public void ConnectCallback(IAsyncResult ar)
         {
            //Socket client = (Socket) ar.AsyncState;
@@ -47,7 +49,7 @@ namespace Bongruel.Helper
             Debug.WriteLine("Connect");
         }
 
-
+        
         public void Send(string message)
         {
             if(socket == null)
@@ -59,6 +61,7 @@ namespace Bongruel.Helper
             socket.BeginSend(messageBuffer, 0, messageBuffer.Length, SocketFlags.None, SendCallback, null);
             Debug.WriteLine("Send");
         }
+
 
         public void SendCallback(IAsyncResult ar)
         {
@@ -77,7 +80,7 @@ namespace Bongruel.Helper
 
         }
         #endif
-
+        
         public void ReceiveCallback(IAsyncResult ar)
         {
             //socket client = (socket) ar.AsyncState;
