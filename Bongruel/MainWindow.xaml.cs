@@ -52,7 +52,7 @@ namespace Bongruel
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            timeText.Text = DateTime.Now.ToString("yyyy년 MM월 dd일 hh:mm:ss dddd");
+            timeText.Text = DateTime.Now.ToString("hh:mm:ss");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -61,7 +61,8 @@ namespace Bongruel
 
             Load();
 
-            timeText.Text = DateTime.Now.ToString("yyyy년 MM월 dd일 hh:mm:ss dddd");
+            dayText.Text = DateTime.Now.ToString("yyyy년 MM월 dd일 dddd");
+            timeText.Text = DateTime.Now.ToString("hh:mm:ss");
             timer.Start();
             addSeats();
             //LoadingControl.Visibility = Visibility.Collapsed;

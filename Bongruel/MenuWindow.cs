@@ -260,8 +260,6 @@ namespace Bongruel
             OnGoBackMainWindow?.Invoke(this, args);
         }
 
-
-
         //돌아가기 버튼을 누를 시 실행 
         private void GoBackBtn_Click(object sender, RoutedEventArgs e)
         {

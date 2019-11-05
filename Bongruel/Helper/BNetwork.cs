@@ -85,6 +85,7 @@ namespace Bongruel.Helper
         {
             //socket client = (socket) ar.AsyncState;
             socket.EndReceive(ar);
+            socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
             Debug.WriteLine("ReceiveCallback");
         }
     }

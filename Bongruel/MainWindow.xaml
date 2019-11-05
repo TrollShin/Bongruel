@@ -15,17 +15,21 @@
 
         <Grid x:Name="mainGrid">
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
                 <RowDefinition Height="8*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
             <Grid Background="#6E0000">
-                <Image Source="Assets/sub_visual_bonjuk.jpg" Stretch="UniformToFill" VerticalAlignment="Center"/>
+                <Image Source="Assets/sub_visual_bonjuk.jpg" Stretch="UniformToFill" VerticalAlignment="Center" Opacity="0.25"/>
                 <Image Source="Assets/logo_gnb.png" HorizontalAlignment="Left"/>
-                <TextBlock x:Name="timeText" HorizontalAlignment="Right" VerticalAlignment="Center"
-                           FontSize="30" Foreground="White"
-                           Margin="0,0,10,0"/>
+                
+                <StackPanel HorizontalAlignment="Right">
+                    <TextBlock x:Name="dayText" Margin="0,0,10,0"
+                           FontSize="35" Foreground="White"/>
+                    <TextBlock x:Name="timeText" Margin="0,0,10,0" HorizontalAlignment="Right"
+                           FontSize="35" Foreground="White"/>
+                </StackPanel>
             </Grid>
             
             <!--테이블-->
