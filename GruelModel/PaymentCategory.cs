@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GruelModel
 {
-    class Payment
+    class PaymentCategory
     {
 
     }
