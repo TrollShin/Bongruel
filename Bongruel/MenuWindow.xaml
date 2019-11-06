@@ -105,8 +105,11 @@
             <StackPanel Orientation="Horizontal" Margin="100,5,0,0">
                 <RadioButton x:Name="CASH" Click="RadioButton_Click" GroupName="Payment" Content="현금"/>
                 <RadioButton x:Name="CREDIT" Click="RadioButton_Click" GroupName="Payment" Content="카드"/>
-                <TextBlock x:Name="totalPrice" Text="가격 0" Margin="80,0,0,30" VerticalAlignment="Bottom"
-                           FontSize="44"/>
+                <TextBlock Margin="80,0,0,30" VerticalAlignment="Bottom"
+                           FontSize="44">
+                    <Run Text="가격"/>
+                    <Run x:Name="totalPrice" Text="0"/>
+                </TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                 <Button Width="80" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"

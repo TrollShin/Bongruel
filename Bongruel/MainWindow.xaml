@@ -8,10 +8,10 @@
         Title="본죽" Icon="Assets/logo_gnb.png"
         Loaded="Window_Loaded">
     <Grid>
-        <local:BNetworkControl Visibility="Collapsed" x:Name="BNetwork"/>
-        <local:MenuWindow Visibility="Collapsed" x:Name="OrderWindow"/>
-        <local:StatControl Visibility="Collapsed" x:Name="StatControl"/>
-        <local:LoginControl Visibility="Collapsed" x:Name="LoginControl"/>
+        <local:BNetworkControl x:Name="BNetwork" Visibility="Collapsed"/>
+        <local:MenuWindow x:Name="OrderWindow" Visibility="Collapsed"/>
+        <local:StatControl x:Name="StatControl" Visibility="Collapsed"/>
+        <local:LoginControl x:Name="LoginControl" Visibility="Collapsed"/>
 
         <Grid x:Name="mainGrid">
             <Grid.RowDefinitions>
@@ -38,9 +38,7 @@
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel>
-
-                            </WrapPanel>
+                            <WrapPanel/>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
                 </ListView>

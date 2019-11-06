@@ -42,6 +42,7 @@ namespace Bongruel
         public MenuWindow()
         {
             InitializeComponent();
+
             this.Loaded += MenuWindow_Loaded;
         }
 
@@ -50,10 +51,11 @@ namespace Bongruel
             this.tableId.Text = seat.Id;
             this.lastOrderedTime.Text = seat.orderTime;
 
+            //seat.orderList에 food 가 1개이상 들어있다면 orderedMenuList에 추가시킴
             if (seat.OrderList.Count != 0)
             {
                 orderedMenuList.AddRange(seat.OrderList);// = new List<Food>(seat.OrderList);
-                selectedFood.ItemsSource = orderedMenuList;
+                //selectedFood.ItemsSource = orderedMenuList;
 
                 selectedFood.Items.Refresh();
             }
@@ -83,13 +85,12 @@ namespace Bongruel
             isLoaded = true;
         }
 
+        //메뉴 초기화
         private void initLvFood(List<Food> lstFood)
         {
             foreach (Food item in lstFood)
             {
-                Food food = new Food();
-
-                food = returnFood(item);
+                Food food = new Food(item);
 
                 lvFood.Items.Add(food);
             }
@@ -98,34 +99,28 @@ namespace Bongruel
         // 음식 선택 시 실행
         private void Menu_Select(object sender, MouseButtonEventArgs e)
         { 
-            Food food = new Food();
-            food = lvFood.SelectedItem as Food;
+            Food food = new Food(lvFood.SelectedItem as Food);
 
             selectedMenuImgChange(food.ImagePath);
             addOrderedMenu(food);
 
             selectedFood.Items.Refresh();
-
-            ItemCollection test = selectedFood.Items;
         }
 
         // 선택한 음식을 메뉴에 추가시킴
         private void addOrderedMenu(Food food)
         {
-            Food item = new Food();
-            item = returnFood(food);
-
-            if (isAlreadySelect(item))
+            if (isAlreadySelect(food))
             {
                 Food selecteFoodItem = new Food();
 
-                selecteFoodItem = orderedMenuList.Find(x => x.Name == item.Name);
+                selecteFoodItem = orderedMenuList.Find(x => x.Name == food.Name);
                 selecteFoodItem.Count += 1;
                 selecteFoodItem.Price += getFoodPrice(selecteFoodItem);
             }
             else
             {
-                orderedMenuList.Add(item);
+                orderedMenuList.Add(food);
             }
 
             refrashTotalPrice();
@@ -163,18 +158,14 @@ namespace Bongruel
         private void payMent_btn_Click(object sender, RoutedEventArgs e)
         {
             OrderEventArgs args = new OrderEventArgs();
-            //args.paymentType = this.paymentType;
-            
-            Seat item = new Seat();
+            //args.paymentType = this.paymentType;           
 
-            item = getSeat();
-
-            args.seat = new Seat();
-            args.seat = item;
+            args.seat = new Seat(getSeat());
             args.isPayment = true;
 
             orderedMenuList.Clear();
 
+            //아직은 현금과 카드에서 다른점이 없다
             if(paymentType.ToString() == "CASH")
             {
                 OnGoBackMainWindow?.Invoke(this, args);
@@ -196,7 +187,7 @@ namespace Bongruel
         //선택한 메뉴를 제거함
         private void remove_btn_Click(object sender, RoutedEventArgs e)
         {
-            if (!isFoodCountCanChange())
+            if (!isFoodSelected())
             {
                 return;
             }
@@ -209,7 +200,7 @@ namespace Bongruel
         // 선택한 메뉴의 수량을 +1 시킴
         private void plus_btn_Click(object sender, RoutedEventArgs e)
         {            
-            if (!isFoodCountCanChange())
+            if (!isFoodSelected())
             {
                 return;
             }
@@ -222,7 +213,7 @@ namespace Bongruel
         // 선택한 메뉴의 수량을 -1 시킴
         private void minus_btn_Click(object sender, RoutedEventArgs e)
         {
-            if (!isFoodCountCanChange())
+            if (!isFoodSelected())
             {
                 return;
             }
@@ -246,12 +237,8 @@ namespace Bongruel
         private void ordered_btn_Click(object sender, RoutedEventArgs e)
         {
             OrderEventArgs args = new OrderEventArgs();
-            Seat item = new Seat();
 
-            item = getSeat();
-
-            args.seat = new Seat();
-            args.seat = item;
+            args.seat = new Seat(getSeat());
             args.isPayment = false;
 
             orderedMenuList.Clear();
@@ -284,7 +271,7 @@ namespace Bongruel
 
         // 메뉴의 수량 변경시 사용자가 메뉴를 선택했는지 확인 
         //선택하면 true 아니면 false
-        private bool isFoodCountCanChange()
+        private bool isFoodSelected()
         {
             if ((selectedFood.SelectedItem as Food) == null)
             {
@@ -314,20 +301,6 @@ namespace Bongruel
 
             initLvFood(lstSelectedFood);
         }
-
-        //단순히 대입해서 넣으면 연결되어 버리기 때문에 이를 방지하기 위해서 만들었다
-        private Food returnFood(Food food)
-        {
-            Food item = new Food();
-
-            item.category = food.category;
-            item.Count = food.Count;
-            item.ImagePath = food.ImagePath;
-            item.Name = food.Name;
-            item.Price = food.Price;
-
-            return item;
-        }
     
         private int getFoodPrice(Food food)
         {
@@ -345,7 +318,7 @@ namespace Bongruel
 
         private void refrashTotalPrice()
         {
-            totalPrice.Text = "가격 " + getTotalPrice().ToString();
+            totalPrice.Text = getTotalPrice().ToString();
         }
 
         private int getTotalPrice()

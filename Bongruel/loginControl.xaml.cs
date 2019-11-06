@@ -29,13 +29,13 @@ namespace Bongruel
             InitializeComponent();
         }
 
-  
+    
 
         private void Btnlogin_Click(object sender, RoutedEventArgs e)
         {
-            if(bNetwork.CheckServer() == true)
+            if (id.Text == "@2114" && password.Text == "1234")
             {
-                if(id.Text == "@2114" && password.Text == "1234")
+                if(bNetwork.CheckServer("10.80.163.138", 8000) == true)
                 {
                     bNetwork.Send(id.Text);
                     MessageBox.Show("로그인 성공");
@@ -44,8 +44,7 @@ namespace Bongruel
                 else
                 {
                     MessageBox.Show("아이디와 비밀번호를 다시 확인해주세요");
-                }
-            
+                } 
             }
             else
             {

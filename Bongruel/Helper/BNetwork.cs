@@ -17,6 +17,10 @@ namespace Bongruel.Helper
 
         private byte[] buffer;
 
+        public const string ip = "10.80.163.138";
+        public const int port = 8000;
+
+
 
         public void Create()
         {
@@ -30,17 +34,24 @@ namespace Bongruel.Helper
 
         public void ConnectCallback(IAsyncResult ar)
         {
-            //Socket client = (Socket) ar.AsyncState;
-            socket.EndConnect(ar);
-            buffer = new byte[socket.ReceiveBufferSize];
-            socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
-            Debug.WriteLine("ConnectCallback");
+            try
+            {
+                //Socket client = (Socket) ar.AsyncState;
+                socket.EndConnect(ar);
+                buffer = new byte[socket.ReceiveBufferSize];
+                socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
+                Debug.WriteLine("ConnectCallback");
+            }
+            catch(Exception ex)
+            {
+                return;
+            }
         }
-
+/*
         internal bool CheckServer()
         {
             throw new NotImplementedException();
-        }
+        }*/
 
         public void Connect(string ip, int port)
         {
