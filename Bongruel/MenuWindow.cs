@@ -206,7 +206,7 @@ namespace Bongruel
             }
             int price = getFoodPrice(selectedFood.SelectedItem as Food);
 
-            foodCountChange(1, price);
+            changeFoodCount(1, price);
             refrashTotalPrice();
         }      
 
@@ -217,7 +217,6 @@ namespace Bongruel
             {
                 return;
             }
-
             Food selecteFoodItem = selectedFood.SelectedItem as Food;
 
             if (selecteFoodItem.Count == 1)
@@ -226,7 +225,7 @@ namespace Bongruel
             }
             else
             {
-                foodCountChange(-1, -getFoodPrice(selecteFoodItem));
+                changeFoodCount(-1, -getFoodPrice(selecteFoodItem));
             }
 
             refrashTotalPrice();
@@ -255,6 +254,7 @@ namespace Bongruel
             OnGoBackMainWindow?.Invoke(this, null);
         }
 
+        //결제수단 선택
         private void RadioButton_Click(object sender, RoutedEventArgs e)
         {
             RadioButton paymentBtn = sender as RadioButton;
@@ -302,12 +302,13 @@ namespace Bongruel
             initLvFood(lstSelectedFood);
         }
     
+        //parameter food 의 가격을 리턴함
         private int getFoodPrice(Food food)
         {
             return (App.foodData.listFood.Where(x => x.Name == food.Name).ToList())[0].Price;
         }
 
-        private void foodCountChange(int count, int price)
+        private void changeFoodCount(int count, int price)
         {
             Food selecteFoodItem = selectedFood.SelectedItem as Food;
             selecteFoodItem.Count += count;
@@ -316,11 +317,13 @@ namespace Bongruel
             selectedFood.Items.Refresh();
         }
 
+        //총 각격을 출력해줌
         private void refrashTotalPrice()
         {
             totalPrice.Text = getTotalPrice().ToString();
         }
 
+        //총 가격을 리턴해줌
         private int getTotalPrice()
         {
             int result = 0; 
@@ -329,17 +332,6 @@ namespace Bongruel
             {
                 result += item.Price;
             }
-
-            return result;
-        }
-
-        private Seat getSeat()
-        {
-            Seat result = new Seat();
-
-            result.Id = tableId.Text;
-            result.OrderList = new List<Food>(orderedMenuList);
-            result.orderTime = DateTime.Now.ToString();
 
             return result;
         }
