@@ -33,15 +33,23 @@ namespace Bongruel
 
         private void Btnlogin_Click(object sender, RoutedEventArgs e)
         {
-            if (id.Text == "@2114" && password.Text == "admin")
+            if(bNetwork.CheckServer() == true)
             {
-                bNetwork.Send(id.Text);
-                MessageBox.Show("로그인 성공");
-                goBackMainWindow();
+                if(id.Text == "@2114" && password.Text == "1234")
+                {
+                    bNetwork.Send(id.Text);
+                    MessageBox.Show("로그인 성공");
+                    goBackMainWindow();
+                }
+                else
+                {
+                    MessageBox.Show("아이디와 비밀번호를 다시 확인해주세요");
+                }
+            
             }
             else
             {
-                MessageBox.Show("아이디와 비밀번호를 다시 확인해주세요.");
+                MessageBox.Show("서버에 연결을 할수없습니다");
             }
         }
 private void Btnexit_Click(object sender, RoutedEventArgs e)

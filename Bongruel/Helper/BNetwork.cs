@@ -37,6 +37,11 @@ namespace Bongruel.Helper
             Debug.WriteLine("ConnectCallback");
         }
 
+        internal bool CheckServer()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Connect(string ip, int port)
         {
             if (socket == null)
@@ -90,27 +95,45 @@ namespace Bongruel.Helper
             Debug.WriteLine("ReceiveCallback");
         }
 
-        public static bool CheckServer(string hostName)
+        public bool CheckServer(string ip, int port)
         {
             try
             {
-                Ping pingsender = new Ping();
-                PingReply reply = pingsender.Send(hostName, 8000);
+                if (socket == null)
+                {
+                    Create();
+                }
+
+                IPAddress ipAddress = IPAddress.Parse(ip);
+                IPEndPoint endpoint = new IPEndPoint(ipAddress, port);
+
+                Ping pingSender = new Ping();
+                PingOptions options = new PingOptions();
+
+                options.DontFragment = true;
+
+                string data = "서버에연결을확인합니다";
+                byte[] buffer = Encoding.UTF8.GetBytes(data);
+                int timeout = 120;
+                PingReply reply = pingSender.Send(ipAddress, timeout, buffer, options);
+
                 if (reply.Status == IPStatus.Success)
                 {
-                    return true;
+                    Connect(ip, port);
                 }
                 else
+                {
+                    throw new Exception();
+                }
+                return true;
+            }
+            catch (Exception)
             {
                 return false;
             }
-        }
-            catch
-            {
-                return false;
-            }
-        }
-            
+
+
         }
 
     }
+}
