@@ -26,11 +26,5 @@ namespace GruelModel
         public int Count { get; set; }
         public string ImagePath { get; set; }
         public Category category { get; set; }
-
-        public int TotalPrice { get; set; }
-
-        /*public int TotalCount { get; set; }*/
-
-        public string Payment { get; set; }
     }
 }

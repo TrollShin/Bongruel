@@ -22,6 +22,12 @@
                     Click="GoBackButton_Click">
                 <Image Source="Assets/left-arrow.png"/>
             </Button>
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left"
+                       FontSize="24"
+                       Margin="10,10,0,0">
+                <Run Text="총 매출 : "/>
+                <Run x:Name="totalPrice" Text="0"/>
+            </TextBlock>
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1">
@@ -46,7 +52,7 @@
         <ListView x:Name="payedFoodList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2" SelectionMode="Single">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="메뉴" DisplayMemberBinding="{Binding Name}" Width="200"/>
+                    <GridViewColumn Header="메뉴" DisplayMemberBinding="{Binding FoodName}" Width="200"/>
                     <GridViewColumn Header="수량" DisplayMemberBinding="{Binding Count}" Width="250"/>
                     <GridViewColumn Header="총액" DisplayMemberBinding="{Binding Price}" Width="350"/>
                 </GridView>

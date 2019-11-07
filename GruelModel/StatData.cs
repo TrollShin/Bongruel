@@ -9,24 +9,24 @@ namespace GruelModel
     public class StatData
     {
             
-        private bool isPayed = false;
+        private bool isLoaded = false;
 
-        public List<Food> PayedListFood;
+        public List<Stat> PayedListFood;
 
-        public void Pay()
+        public void Load()
         {
-            if (isPayed) return;
+            if (isLoaded) return;
 
-            PayedListFood = new List<Food>()
+            PayedListFood = new List<Stat>()
             {
-                new Food() {Name = "신불닭죽", TotalPrice = 0, category = Category.DELICACY},
-                new Food() {Name = "둥지팥죽", TotalPrice = 0,  category = Category.TRADITION },
-                new Food() {Name = "쇠고기미역죽", TotalPrice = 0, category = Category.NUTRITION },
-                new Food() {Name = "삼계전복죽", TotalPrice = 0,  category = Category.RECUPERATION },
-                new Food() {Name = "트러플전복죽", TotalPrice = 0, category = Category.SIGNATURE },
+                new Stat() { FoodName = "신불닭죽", Price = 0, Count = 0, FoodCategory = Category.DELICACY},
+                new Stat() { FoodName = "둥지팥죽", Price = 0, Count = 0, FoodCategory = Category.TRADITION},
+                new Stat() { FoodName = "쇠고기미역죽", Price = 0, Count = 0, FoodCategory = Category.NUTRITION},
+                new Stat() { FoodName = "삼계전복죽", Price = 0, Count = 0, FoodCategory = Category.RECUPERATION},
+                new Stat() { FoodName = "트러플전복죽", Price = 0, Count = 0, FoodCategory = Category.SIGNATURE},
             };
 
-            isPayed = true;
+            isLoaded = true;
         }
     }
 }

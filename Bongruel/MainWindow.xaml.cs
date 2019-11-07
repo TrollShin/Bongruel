@@ -49,9 +49,11 @@ namespace Bongruel
 
             App.seatData.Load();
             App.foodData.Load();
+            App.statData.Load();
 
             addSeats();
             OrderWindow.init();
+            StatControl.init();
         }
 
         private void Timer_Tick(object sender, EventArgs e)

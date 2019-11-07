@@ -25,58 +25,77 @@ namespace Bongruel
         public delegate void StatEventHandler(object sender, EventArgs e);
         public event StatEventHandler OnGoBackMainWindow;
 
-        private List<Food> lstPayedFood = new List<Food>();
+        private List<Stat> lstPayedFood;
         /*private List<Food> StatList;*/
         public StatControl()
         {
             InitializeComponent();
         }
 
+        public void init()
+        {
+            lstPayedFood = App.statData.PayedListFood;
+
+            payedFoodList.ItemsSource = lstPayedFood;
+        }
+
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
-            /*if (OnGoBackMainWindow != null)
-            {
-                OnGoBackMainWindow(this, null);
-            }*/
             OnGoBackMainWindow?.Invoke(this, null);
         }
 
         public void payedFoodData(List<Food> foodList)
         {
-            foreach (Food item in foodList)
-            {
-                lstPayedFood.Add(item);
-            }
+            List<Food> item = new List<Food>(foodList);
 
-            //payedFoodList.ItemsSource = foodList;
-
-            foreach (Food item in lstPayedFood)
-            {
-                payedFoodList.Items.Add(item);
-            }
+            applyPayedFoodData(item);
+            totalPrice.Text = getTotalPrice().ToString();
 
             payedFoodList.Items.Refresh();
+        }
+
+        private void applyPayedFoodData(List<Food> foodList)
+        {
+            List<Stat> lstStat = App.statData.PayedListFood;
+
+            for(int i = 0 ; i < foodList.Count() ; i++)
+            {
+                Stat item = lstStat.Find(x => x.FoodName == foodList[i].Name);
+                item.Count += foodList[i].Count;
+                item.Price += foodList[i].Price;
+            }
         }
 
         //메뉴의 Category가 바뀌면 실행
         private void category_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListViewItem item = category.SelectedItem as ListViewItem;
-            List<Food> lstSelectedFood = new List<Food>();
+            List<Stat> lstSelectedFood = App.statData.PayedListFood;
 
-            if (item.Content.ToString().Equals("전체"))
-            {
-                lstSelectedFood = new List<Food>(App.statData.PayedListFood);
-            }
-            else
+            if (!(item.Content.ToString().Equals("전체")))
             {
                 Category selectCategory = (Category)Enum.Parse(typeof(Category), item.Tag.ToString());
-                lstSelectedFood = new List<Food>(App.statData.PayedListFood).Where(x => x.category == selectCategory).ToList();
+                lstSelectedFood = App.statData.PayedListFood.Where(x => x.FoodCategory == selectCategory).ToList();
             }
+
+            lstPayedFood = lstSelectedFood;
+
+            payedFoodList.ItemsSource = lstPayedFood;
+        }
+
+        private int getTotalPrice()
+        {
+            int result = 0;
+            List<Stat> lstStat = App.statData.PayedListFood;
+
+            for(int i = 0; i < lstStat.Count(); i++)
+            {
+                result += lstStat[i].Price;
+            }
+
+            return result;
         }
     }
-
-
 }
 
 
