@@ -49,7 +49,7 @@ namespace Bongruel
 
             //payedFoodList.ItemsSource = foodList;
 
-            foreach(Food item in lstPayedFood)
+            foreach (Food item in lstPayedFood)
             {
                 payedFoodList.Items.Add(item);
             }
@@ -72,10 +72,10 @@ namespace Bongruel
                 Category selectCategory = (Category)Enum.Parse(typeof(Category), item.Tag.ToString());
                 lstSelectedFood = new List<Food>(App.statData.PayedListFood).Where(x => x.category == selectCategory).ToList();
             }
-
-
         }
     }
+
+
 }
 
 
