@@ -34,10 +34,11 @@ namespace Bongruel
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
-            if (OnGoBackMainWindow != null)
+            /*if (OnGoBackMainWindow != null)
             {
                 OnGoBackMainWindow(this, null);
-            }
+            }*/
+            OnGoBackMainWindow?.Invoke(this, null);
         }
 
         public void payedFoodData(List<Food> foodList)
