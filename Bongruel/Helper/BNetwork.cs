@@ -74,6 +74,11 @@ namespace Bongruel.Helper
                 Create();
             }
 
+            if(socket.Connected == false)
+            {
+                return;
+            }
+
             byte[] messageBuffer = Encoding.UTF8.GetBytes(message);
             socket.BeginSend(messageBuffer, 0, messageBuffer.Length, SocketFlags.None, SendCallback, null);
             Debug.WriteLine("Send");

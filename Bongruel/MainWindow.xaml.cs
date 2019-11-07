@@ -62,8 +62,7 @@ namespace Bongruel
             addSeats();
             //LoadingControl.Visibility = Visibility.Collapsed;
 
-            //*******************************************************푸시하기전에 확인*****************************************************************************************
-            //changeUserControl(LoginControl);
+            changeUserControl(LoginControl);
         }
 
         //MainWindow 모든 테이블을 출력
