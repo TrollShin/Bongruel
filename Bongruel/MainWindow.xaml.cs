@@ -65,7 +65,8 @@ namespace Bongruel
 
             if(listTable.Items.Count != 0)
             {
-                goBackMainWindow(Loading);
+                Loading.Visibility = Visibility.Collapsed;
+                changeUserControl(LoginControl);
                 timer.Tick -= Timer_CheckLoad;
             }
         }
