@@ -66,6 +66,7 @@ namespace Bongruel
             if(listTable.Items.Count != 0)
             {
                 goBackMainWindow(Loading);
+                timer.Tick -= Timer_CheckLoad;
             }
         }
 
