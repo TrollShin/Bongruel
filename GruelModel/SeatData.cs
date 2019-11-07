@@ -18,7 +18,7 @@ namespace GruelModel
 
             listseat = new List<Seat>();
 
-            for(int i =1;i<=6;i++)
+            for(int i =1;i<=3000;i++)
             {
                 listseat.Add(new Seat() { Id = i.ToString(), OrderList = new List<Food>() });
             }

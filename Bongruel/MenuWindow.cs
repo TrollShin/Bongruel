@@ -335,5 +335,16 @@ namespace Bongruel
 
             return result;
         }
+
+        private Seat getSeat()
+        {
+            Seat result = new Seat();
+
+            result.Id = tableId.Text;
+            result.OrderList = new List<Food>(orderedMenuList);
+            result.orderTime = DateTime.Now.ToString();
+
+            return result;
+        }
     }
 }
