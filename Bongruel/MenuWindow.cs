@@ -63,11 +63,11 @@ namespace Bongruel
 
         private void MenuWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            init();
+            //init();
         }
         
         //초기화
-        private void init()
+        public void init()
         {
             if(isLoaded)
             {

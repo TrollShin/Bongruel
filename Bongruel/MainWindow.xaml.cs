@@ -26,23 +26,32 @@ namespace Bongruel
     {
         private DispatcherTimer timer = new DispatcherTimer();
 
+        private bool isLoaded = false;
+
         public MainWindow()
-        {
+        { 
             InitializeComponent();
-//            listTable.Items.Add(new LoadingControl());
 
             OrderWindow.OnGoBackMainWindow += menuWindow_GoBackMainWindow;
             StatControl.OnGoBackMainWindow += OnGoBackMainWindow;
             LoginControl.OnGoBackMainWindow += OnGoBackMainWindow;
             timer.Tick += Timer_Tick;
+            timer.Tick += Timer_CheckLoad;
         }
 
         private void Load()
         {
+            if(isLoaded)
+            {
+                return;
+            }
+            isLoaded = true;
+
             App.seatData.Load();
             App.foodData.Load();
 
-            timer.Interval = TimeSpan.FromSeconds(1);
+            addSeats();
+            OrderWindow.init();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -50,20 +59,26 @@ namespace Bongruel
             timeText.Text = DateTime.Now.ToString("hh:mm:ss");
         }
 
+        private void Timer_CheckLoad(object sender, EventArgs e)
+        {
+            Load();
+
+            if(listTable.Items.Count != 0)
+            {
+                goBackMainWindow(Loading);
+            }
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             listTable.Items.Clear();
 
-            Load();
+            timer.Interval = TimeSpan.FromSeconds(1);
 
             dayText.Text = DateTime.Now.ToString("yyyy년 MM월 dd일 dddd");
             timeText.Text = DateTime.Now.ToString("hh:mm:ss");
             timer.Start();
-            addSeats();
-            //LoadingControl.Visibility = Visibility.Collapsed;
-
-            //*******************************************************푸시하기전에 확인*****************************************************************************************
-            //changeUserControl(LoginControl);
+            //addSeats();
         }
 
         //MainWindow 모든 테이블을 출력

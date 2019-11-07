@@ -61,6 +61,9 @@
       <DependentUpon>BNetworkControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper\BNetwork.cs" />
+    <Compile Include="LoadingConrol.xaml.cs">
+      <DependentUpon>LoadingConrol.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginControl.xaml.cs">
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
@@ -74,6 +77,10 @@
       <DependentUpon>TableControl.xaml</DependentUpon>
     </Compile>
     <Page Include="BNetworkControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadingConrol.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,9 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\sub_visual_bonjuk.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <SplashScreen Include="SplashScreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
