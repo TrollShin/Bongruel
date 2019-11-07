@@ -27,7 +27,7 @@ namespace Bongruel
         public LoginControl()
         {
             InitializeComponent();
-            bNetwork.Connect("10.80.162.108", 8000);
+            bNetwork.Connect("10.80.163.138", 8000);
         }
 
     
@@ -36,9 +36,10 @@ namespace Bongruel
         {
             if (id.Text == "@2114" && password.Text == "1234")
             {
-                bNetwork.Send(id.Text);
-                if (bNetwork.CheckServer("10.80.162.108", 8000) == true)
-                {                  
+                
+                if (bNetwork.CheckServer("10.80.163.138", 8000) == true)
+                {
+                    bNetwork.Send(id.Text);
                     MessageBox.Show("로그인 성공");
                     goBackMainWindow();
                 }
