@@ -37,9 +37,7 @@ namespace Bongruel.Helper
             try
             {
                 //Socket client = (Socket) ar.AsyncState;
-                socket.EndConnect(ar);
                 buffer = new byte[socket.ReceiveBufferSize];
-                socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
                 Debug.WriteLine("ConnectCallback");
             }
             catch(Exception)
@@ -105,10 +103,18 @@ namespace Bongruel.Helper
 
         public void ReceiveCallback(IAsyncResult ar)
         {
-            //socket client = (socket) ar.AsyncState;
-            socket.EndReceive(ar);
-            socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
-            Debug.WriteLine("ReceiveCallback");
+            try
+            {
+                //socket client = (socket) ar.AsyncState;
+                socket.EndReceive(ar);
+                socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
+                Debug.WriteLine("ReceiveCallback");
+            }
+            catch(Exception)
+            {
+                return;
+            }
+    
         }
 
         public bool CheckServer(string ip, int port)
