@@ -174,7 +174,7 @@ namespace Bongruel
             {
                 OnGoBackMainWindow?.Invoke(this, args);
             }
-        }
+        } 
         
         //모든 메뉴를 제거함
         private void removeAll_btn_Click(object sender, RoutedEventArgs e)

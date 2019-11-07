@@ -8,12 +8,16 @@
         Title="본죽" Icon="Assets/logo_gnb.png"
         Loaded="Window_Loaded">
     <Grid>
-        <local:BNetworkControl x:Name="BNetwork" Visibility="Collapsed"/>
-        <local:MenuWindow x:Name="OrderWindow" Visibility="Collapsed"/>
-        <local:StatControl x:Name="StatControl" Visibility="Collapsed"/>
-        <local:LoginControl x:Name="LoginControl" Visibility="Collapsed"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <local:BNetworkControl x:Name="BNetwork" Visibility="Collapsed" Grid.ColumnSpan="2"/>
+        <local:MenuWindow x:Name="OrderWindow" Visibility="Collapsed" Grid.ColumnSpan="2"/>
+        <local:StatControl x:Name="StatControl" Visibility="Collapsed" Grid.ColumnSpan="2"/>
+        <local:LoginControl x:Name="LoginControl" Visibility="Collapsed" Grid.ColumnSpan="2"/>
 
-        <Grid x:Name="mainGrid">
+        <Grid x:Name="mainGrid" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="8*"/>
@@ -23,7 +27,7 @@
             <Grid Background="#6E0000">
                 <Image Source="Assets/sub_visual_bonjuk.jpg" Stretch="UniformToFill" VerticalAlignment="Center" Opacity="0.3"/>
                 <Image Source="Assets/logo_gnb.png" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="None"/>
-                
+
                 <StackPanel HorizontalAlignment="Right">
                     <TextBlock x:Name="dayText" Margin="0,0,10,0"
                            FontSize="35" Foreground="White"/>
@@ -31,7 +35,7 @@
                            FontSize="35" Foreground="White"/>
                 </StackPanel>
             </Grid>
-            
+
             <!--테이블-->
             <Grid Grid.Row="1">
                 <ListView x:Name="listTable" SelectionChanged="listTable_SelectionChanged" SelectionMode="Single"
@@ -43,9 +47,9 @@
                     </ListView.ItemsPanel>
                 </ListView>
             </Grid>
-            
+
             <!--임시 컨트롤 전환 버튼-->
-           <Grid Grid.Row="2">
+            <Grid Grid.Row="2">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                     <Button Width="100" Height="70" Content="통계" x:Name="goStatControlBtn" Click="StatControl_Click" Margin="10,0,10,10"
                             FontSize="24"/>

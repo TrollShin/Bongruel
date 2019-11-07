@@ -35,7 +35,7 @@ namespace Bongruel
         {
             if (id.Text == "@2114" && password.Text == "1234")
             {
-                if(bNetwork.CheckServer("10.80.163.138", 8000) == true)
+               if(bNetwork.CheckServer("10.80.163.138", 8000) == true)
                 {
                     bNetwork.Send(id.Text);
                     MessageBox.Show("로그인 성공");
