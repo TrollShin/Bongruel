@@ -42,7 +42,7 @@ namespace Bongruel.Helper
                 socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
                 Debug.WriteLine("ConnectCallback");
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return;
             }
@@ -72,6 +72,11 @@ namespace Bongruel.Helper
             if (socket == null)
             {
                 Create();
+            }
+
+            if(socket.Connected == false)
+            {
+                return;
             }
 
             byte[] messageBuffer = Encoding.UTF8.GetBytes(message);
