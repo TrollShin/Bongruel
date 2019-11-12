@@ -56,11 +56,13 @@ namespace Bongruel
             StatControl.init();
         }
 
+        //현재 시간 표시
         private void Timer_Tick(object sender, EventArgs e)
         {
             timeText.Text = DateTime.Now.ToString("hh:mm:ss");
         }
 
+        //모두 Load 되었는지 확인하고 모두 Load 되었다면 로딩을 종료 
         private void Timer_CheckLoad(object sender, EventArgs e)
         {
             Load();
@@ -82,7 +84,6 @@ namespace Bongruel
             dayText.Text = DateTime.Now.ToString("yyyy년 MM월 dd일 dddd");
             timeText.Text = DateTime.Now.ToString("hh:mm:ss");
             timer.Start();
-            //addSeats();
         }
 
         //MainWindow 모든 테이블을 출력

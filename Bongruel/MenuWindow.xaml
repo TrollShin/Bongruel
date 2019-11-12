@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Bongruel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             Loaded="MenuWindow_Loaded">
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
@@ -60,9 +59,10 @@
                 <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid Width="150" Height="150" Margin="5, 5, 5, 5">
-                                <Border BorderBrush="Black" BorderThickness="1">
-                                <Image Source="{Binding ImagePath}" Stretch="Fill" MouseLeftButtonUp="Menu_Select"/>
-                            </Border>
+                                
+                                    <Image Source="{Binding ImagePath}" Stretch="Fill" MouseLeftButtonUp="Menu_Select"/>
+                                    <TextBlock Text="{Binding Name}"/>
+                                
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
