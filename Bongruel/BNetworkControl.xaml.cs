@@ -27,7 +27,7 @@ namespace Bongruel
             InitializeComponent();
             tbInput.Text = "@2114";
             bNetwork.Create();
-            bNetwork.Connect("10.80.163.138", 8000);
+            bNetwork.Connect("10.80.163.138", 80);
         }
         private void BtnSend_Click(object sender, RoutedEventArgs e)
         {

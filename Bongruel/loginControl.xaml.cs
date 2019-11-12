@@ -27,35 +27,23 @@ namespace Bongruel
         public LoginControl()
         {
             InitializeComponent();
-            bNetwork.Connect("10.80.163.138", 8000);
+            bNetwork.Create();
+            bNetwork.Connect("10.80.163.138", 80);
         }
 
     
 
         private void Btnlogin_Click(object sender, RoutedEventArgs e)
         {
-            if (id.Text == "@2114" && password.Text == "1234")
+            if (id.Text == "@2114")
             {
-                
-                if (bNetwork.CheckServer("10.80.163.138", 8000) == true)
-                {
-                    bNetwork.Send(id.Text);
-                    MessageBox.Show("로그인 성공");
-                    goBackMainWindow();
-                }
-                else
-                {
-                    MessageBox.Show("서버 접속 불가: 서버 응답 없음");
-                    goBackMainWindow();
-                }
-
+                bNetwork.Send(id.Text);
+                goBackMainWindow();
             }
             else
             {
-                MessageBox.Show("아이디와 비밀번호를 다시 확인해주세요");
+                MessageBox.Show("아이디를 다시 확인해주세요");
             }
-
-            
         }
 private void Btnexit_Click(object sender, RoutedEventArgs e)
         {

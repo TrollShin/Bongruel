@@ -18,7 +18,7 @@ namespace Bongruel.Helper
         private byte[] buffer;
 
         public const string ip = "10.80.163.138";
-        public const int port = 8000;
+        public const int port = 80;
 
 
 
@@ -27,7 +27,7 @@ namespace Bongruel.Helper
             if (socket == null)
             {
                 socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                Debug.WriteLine("소켓 생성");
+                Debug.WriteLine("Create");
             }
         }
 
@@ -91,15 +91,14 @@ namespace Bongruel.Helper
 
         }
 
-#if false
         public void Receive(Socket socket)
         {
                       
             byte[] buffer = new byte[255];
             socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
-
+            Debug.WriteLine("Receive");
         }
-#endif
+
 
         public void ReceiveCallback(IAsyncResult ar)
         {
