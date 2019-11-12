@@ -134,8 +134,8 @@ namespace Bongruel.Helper
 
                 options.DontFragment = true;
 
-                string data = "서버에연결을확인합니다";
-                byte[] buffer = Encoding.UTF8.GetBytes(data);
+                string data = "aaaaaaaaaaaaaaaa";
+                byte[] buffer = Encoding.ASCII.GetBytes(data);
                 int timeout = 120;
                 PingReply reply = pingSender.Send(ipAddress, timeout, buffer, options);
 

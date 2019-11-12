@@ -45,7 +45,7 @@ namespace Bongruel
                 }
                 else
                 {
-                    MessageBox.Show("서버에 연결을 할수없습니다");
+                    MessageBox.Show("서버 접속 불가: 서버 응답 없음");
                     goBackMainWindow();
                 }
 

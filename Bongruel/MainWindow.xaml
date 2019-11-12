@@ -24,7 +24,7 @@
             <Grid Background="#6E0000">
                 <Image Source="Assets/sub_visual_bonjuk.jpg" Stretch="UniformToFill" VerticalAlignment="Center" Opacity="0.3"/>
                 <Image Source="Assets/logo_gnb.png" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="None"/>
-                
+
                 <StackPanel HorizontalAlignment="Right">
                     <TextBlock x:Name="dayText" Margin="0,0,10,0"
                            FontSize="35" Foreground="White"/>

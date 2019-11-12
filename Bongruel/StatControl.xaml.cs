@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace Bongruel
     {
         public delegate void StatEventHandler(object sender, EventArgs e);
         public event StatEventHandler OnGoBackMainWindow;
+        private Helper.BNetwork bNetwork = new Helper.BNetwork();
 
         private List<Stat> lstPayedFood;
         /*private List<Food> StatList;*/
@@ -95,7 +97,25 @@ namespace Bongruel
 
             return result;
         }
+        
+        private void TotalPriceSend_Click(object sender, RoutedEventArgs e)
+        {
+            totalPrice.Text = getTotalPrice().ToString();
+                    
+            if (bNetwork.CheckServer("10.80.163.138", 8000) == true)
+            {
+                bNetwork.Send("총 매출액: " + totalPrice.Text + "");
+                MessageBox.Show("성공적으로 통계를 보냈습니다.");
+            }
+            else
+            {
+                Debug.WriteLine("총 매출액: " + totalPrice.Text + "");
+                MessageBox.Show("서버 접속 불가: 서버 응답 없음");
+                
+            }
+        }
     }
+
 }
 
 
