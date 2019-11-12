@@ -42,8 +42,6 @@ namespace Bongruel
         public MenuWindow()
         {
             InitializeComponent();
-
-            this.Loaded += MenuWindow_Loaded;
         }
 
         public void setOrderMenu(Seat seat)
@@ -59,11 +57,6 @@ namespace Bongruel
 
                 selectedFood.Items.Refresh();
             }
-        }
-
-        private void MenuWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            //init();
         }
         
         //초기화
