@@ -152,13 +152,6 @@
     <Resource Include="Assets\logo_gnb.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\동지팥죽_pic.jpg" />
-    <Resource Include="Assets\삼계전복죽_pic.jpg" />
-    <Resource Include="Assets\쇠고기미역죽_pic.jpg" />
-    <Resource Include="Assets\신불닭죽_pic.jpg" />
-    <Resource Include="Assets\트러플전복죽_pic.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\minus-symbol.png" />
     <Resource Include="Assets\plus-black-symbol.png" />
   </ItemGroup>
@@ -170,6 +163,33 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\sub_visual_bonjuk.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\낙지김치죽.jpg" />
+    <Resource Include="Assets\녹두죽.jpg" />
+    <Resource Include="Assets\단호박죽.jpg" />
+    <Resource Include="Assets\동지팥죽.jpg" />
+    <Resource Include="Assets\든든한끼장조림.jpg" />
+    <Resource Include="Assets\매생이굴죽.jpg" />
+    <Resource Include="Assets\버섯굴죽.jpg" />
+    <Resource Include="Assets\불낙죽.jpg" />
+    <Resource Include="Assets\삼계전복죽.jpg" />
+    <Resource Include="Assets\삼계죽.jpg" />
+    <Resource Include="Assets\새우죽.jpg" />
+    <Resource Include="Assets\쇠고기미역죽.jpg" />
+    <Resource Include="Assets\쇠고기버섯죽.jpg" />
+    <Resource Include="Assets\쇠고기야채죽.jpg" />
+    <Resource Include="Assets\신불닭죽.jpg" />
+    <Resource Include="Assets\신짬뽕죽.jpg" />
+    <Resource Include="Assets\야채죽.jpg" />
+    <Resource Include="Assets\자연송이쇠고기죽.jpg" />
+    <Resource Include="Assets\잣죽.jpg" />
+    <Resource Include="Assets\진품쇠고기육개장죽.jpg" />
+    <Resource Include="Assets\참치야채죽.jpg" />
+    <Resource Include="Assets\트러플전복죽.jpg" />
+    <Resource Include="Assets\해물죽.jpg" />
+    <Resource Include="Assets\홍게품은죽.jpg" />
+    <Resource Include="Assets\흑임자죽.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

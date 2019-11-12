@@ -56,11 +56,13 @@ namespace Bongruel
             StatControl.init();
         }
 
+        //현재 시간 표시
         private void Timer_Tick(object sender, EventArgs e)
         {
             timeText.Text = DateTime.Now.ToString("hh:mm:ss");
         }
 
+         
         private void Timer_CheckLoad(object sender, EventArgs e)
         {
             Load();
