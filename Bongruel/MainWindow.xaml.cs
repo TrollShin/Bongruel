@@ -107,13 +107,13 @@ namespace Bongruel
             goBackMainWindow(currentUserControl);
         }
 
-        //MainWindow에서 메인화면으로 돌아올 때 실행되는 함수
+        //MenuWindow에서 메인화면으로 돌아올 때 실행되는 함수
         private void menuWindow_GoBackMainWindow(object sender, OrderEventArgs e)
         {
             //e == null 이라면 돌아가기 버튼
             //e != null 이라면 주문하기 or 결제하기
             if (e != null)
-            {               
+            {                      
                 Seat item = new Seat();
 
                 item.Id = e.seat.Id;
@@ -132,7 +132,7 @@ namespace Bongruel
         private void addOrderedMenu(Seat seat, bool isPayment)
         {
             if (isPayment)
-            {
+            {                
                 StatControl.payedFoodData(seat.OrderList);
 
                 (listTable.SelectedItem as TableControl).InitTable();
