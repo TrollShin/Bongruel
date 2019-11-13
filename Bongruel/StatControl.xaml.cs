@@ -35,8 +35,6 @@ namespace Bongruel
         public StatControl()
         {
             InitializeComponent();
-            bNetwork.Create();
-            bNetwork.Connect(ip, port);
         }
 
         public void init()
