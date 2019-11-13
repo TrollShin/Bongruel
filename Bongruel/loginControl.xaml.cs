@@ -24,9 +24,13 @@ namespace Bongruel
         public event LoginHandler OnGoBackMainWindow;
         private Helper.BNetwork bNetwork = new Helper.BNetwork();
 
+        public const string ip = "10.80.163.138";
+        public const int port = 80;
+
         public LoginControl()
         {
             InitializeComponent();
+            bNetwork.Connect(ip, port);           
         }
 
     
