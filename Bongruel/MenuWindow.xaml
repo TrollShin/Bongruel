@@ -58,12 +58,17 @@
                       BorderBrush="LightGray" BorderThickness="2">
                 <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Width="150" Height="150" Margin="5, 5, 5, 5">
-                                
-                                    <Image Source="{Binding ImagePath}" Stretch="Fill" MouseLeftButtonUp="Menu_Select"/>
-                                    <TextBlock Text="{Binding Name}"/>
-                                
-                            </Grid>
+                        <Grid Width="150" Height="150" Margin="5, 5, 5, 5">
+                            <Image Source="{Binding ImagePath}" Stretch="Fill" MouseLeftButtonUp="Menu_Select"/>
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Top"
+                                       Background="Black" Opacity="0.8" Height="20"
+                                       Foreground="White"/>
+                            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Right"
+                                       Foreground="White">
+                                <Run Text="{Binding Price}"/>
+                                <Run Text="\"/>
+                            </TextBlock>
+                        </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 <ListView.ItemsPanel>

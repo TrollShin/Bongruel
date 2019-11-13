@@ -37,7 +37,7 @@ namespace GruelModel
                 new Food() {Name = "야채죽", Price = 8000, ImagePath = "", category = Category.NUTRITION, Count = 1},
                 new Food() {Name = "자연송이쇠고기죽", Price = 13000, ImagePath = "", category = Category.RECUPERATION, Count = 1},
                 new Food() {Name = "잣죽", Price = 9500, ImagePath = "", category = Category.TRADITION, Count = 1},
-                new Food() {Name = "진품쇠고기육개장죽", Price = 10000, ImagePath = "", category = Category.DELICACY, Count = 1},
+                new Food() {Name = "쇠고기육개장죽", Price = 10000, ImagePath = "", category = Category.DELICACY, Count = 1},
                 new Food() {Name = "참치야채죽", Price = 8500, ImagePath = "", category = Category.NUTRITION, Count = 1},
                 new Food() {Name = "트러플전복죽", Price = 16000, ImagePath = "", category = Category.SIGNATURE, Count = 1},
                 new Food() {Name = "해물죽", Price = 10000, ImagePath = "", category = Category.NUTRITION, Count = 1},

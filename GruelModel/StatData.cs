@@ -42,7 +42,7 @@ namespace GruelModel
                 new Stat() {FoodName = "야채죽", Price = 0, FoodCategory = Category.NUTRITION, Count = 0},
                 new Stat() {FoodName = "자연송이쇠고기죽", Price = 0, FoodCategory = Category.RECUPERATION, Count = 0},
                 new Stat() {FoodName = "잣죽", Price = 0, FoodCategory = Category.TRADITION, Count = 0},
-                new Stat() {FoodName = "진품쇠고기육개장죽", Price = 0, FoodCategory = Category.DELICACY, Count = 0},
+                new Stat() {FoodName = "쇠고기육개장죽", Price = 0, FoodCategory = Category.DELICACY, Count = 0},
                 new Stat() {FoodName = "참치야채죽", Price = 0, FoodCategory = Category.NUTRITION, Count = 0},
                 new Stat() {FoodName = "트러플전복죽", Price = 0, FoodCategory = Category.SIGNATURE, Count = 0},
                 new Stat() {FoodName = "해물죽", Price = 0, FoodCategory = Category.NUTRITION, Count = 0},

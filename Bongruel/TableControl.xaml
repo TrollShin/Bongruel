@@ -5,12 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Bongruel"
              mc:Ignorable="d">
-    <Grid Width="200" Height="250">
+    <Grid Width="350" Height="250">
         <Border VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1.5">
-            <TextBlock x:Name="textOrderedMenu" Width="200" Height="190"
+            <TextBlock x:Name="textOrderedMenu" Height="190"
                    FontFamily="bold" FontSize="40" Foreground="Black"
                    TextAlignment="Left" Text="ID"
-                   VerticalAlignment="Top"/>
+                   VerticalAlignment="Top" HorizontalAlignment="Left"/>
         </Border>
         <TextBlock x:Name="tableId" FontFamily="bold" FontSize="50" Foreground="Black"  
                    Text="DEFAULT"
