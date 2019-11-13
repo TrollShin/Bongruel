@@ -70,7 +70,7 @@ namespace Bongruel
             if(listTable.Items.Count != 0)
             {
                 Loading.Visibility = Visibility.Collapsed;
-                changeUserControl(LoginControl);
+                //changeUserControl(LoginControl);
                 timer.Tick -= Timer_CheckLoad;
             }
         }
@@ -83,7 +83,7 @@ namespace Bongruel
 
             dayText.Text = DateTime.Now.ToString("yyyy년 MM월 dd일 dddd");
             timeText.Text = DateTime.Now.ToString("hh:mm:ss");
-            loginDate.Text = DateTime.Now.ToString("최근 로그인:yyyy.MM.dd.dddd hh:mm:ss");
+            loginDate.Text = DateTime.Now.ToString("yyyy.dddd.MM.dd hh:mm:ss");
             timer.Start();
         }
 
@@ -163,7 +163,7 @@ namespace Bongruel
         //BNetworkControl 가는 버튼
         private void BNetworkControl_Click(object sender, RoutedEventArgs e)
         {
-            changeUserControl(BNetwork);
+            //changeUserControl(BNetwork);
         }
 
         //메인으로 돌아가기

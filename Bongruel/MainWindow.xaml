@@ -8,13 +8,12 @@
         Title="본죽" Icon="Assets/logo_gnb.png"
         Loaded="Window_Loaded">
     <Grid>
-        <local:LoadingConrol x:Name="Loading" Visibility="Visible"/>
-        <local:BNetworkControl x:Name="BNetwork" Visibility="Collapsed"/>
+        <local:LoadingConrol x:Name="Loading" Visibility="Collapsed"/>
         <local:MenuWindow x:Name="OrderWindow" Visibility="Collapsed"/>
         <local:StatControl x:Name="StatControl" Visibility="Collapsed"/>
         <local:LoginControl x:Name="LoginControl" Visibility="Collapsed"/>
 
-        <Grid x:Name="mainGrid" Visibility="Collapsed">
+        <Grid x:Name="mainGrid" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="8*"/>
@@ -26,14 +25,10 @@
                 <Image Source="Assets/logo_gnb.png" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="None"/>
 
                 <StackPanel HorizontalAlignment="Right">
-                    <TextBlock x:Name="dayText" Margin="0,0,10,0"
+                    <TextBlock x:Name="dayText" Margin="0,0,10,0" HorizontalAlignment="Right"
                            FontSize="35" Foreground="White"/>
                     <TextBlock x:Name="timeText" Margin="0,0,10,0" HorizontalAlignment="Right"
                            FontSize="35" Foreground="White"/>
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Center">
-                    <TextBlock x:Name="loginDate" Margin="0,40,50,0"
-                               FontSize="35" Foreground="White"/>
                 </StackPanel>
             </Grid>
             
@@ -57,6 +52,11 @@
                     <Button Width="100" Height="70" Content="서버" x:Name="goServerControlBtn" Click="BNetworkControl_Click" Margin="10,0,10,10"
                             FontSize="24"/>
                 </StackPanel>
+                <TextBlock Margin="0,0,0,0" HorizontalAlignment="Left"
+                               FontSize="35" Foreground="Black">
+                        <Run Text="최근 로그인 "/>
+                        <Run x:Name="loginDate"/>
+                </TextBlock>
             </Grid>
         </Grid>
     </Grid>
