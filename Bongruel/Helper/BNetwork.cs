@@ -67,11 +67,6 @@ namespace Bongruel.Helper
 
         public void Send(string message)
         {
-            if (socket == null)
-            {
-                Create();
-            }
-
             if(socket.Connected == false)
             {
                 return;

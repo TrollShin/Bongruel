@@ -27,8 +27,6 @@ namespace Bongruel
         public LoginControl()
         {
             InitializeComponent();
-            bNetwork.Create();
-            bNetwork.Connect("10.80.163.138", 80);
         }
 
     

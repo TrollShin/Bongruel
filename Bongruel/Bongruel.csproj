@@ -57,9 +57,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BNetworkControl.xaml.cs">
-      <DependentUpon>BNetworkControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Helper\BNetwork.cs" />
     <Compile Include="LoadingConrol.xaml.cs">
       <DependentUpon>LoadingConrol.xaml</DependentUpon>
@@ -76,10 +73,6 @@
     <Compile Include="TableControl.xaml.cs">
       <DependentUpon>TableControl.xaml</DependentUpon>
     </Compile>
-    <Page Include="BNetworkControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="LoadingConrol.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
