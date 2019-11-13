@@ -29,12 +29,15 @@ namespace Bongruel
 
         public const string ip = "10.80.163.138";
         public const int port = 80;
+        string id = "@2114";
 
         private List<Stat> lstPayedFood;
         /*private List<Food> StatList;*/
         public StatControl()
         {
             InitializeComponent();
+            bNetwork.Connect(ip, port);
+            
         }
 
         public void init()
@@ -106,7 +109,7 @@ namespace Bongruel
 
             totalPrice.Text = getTotalPrice().ToString();
 
-                bNetwork.Send("@2114#총 매출액: " + totalPrice.Text + "원");
+                bNetwork.Send(id + "#총 매출액: " + totalPrice.Text + "원");
                 MessageBox.Show("성공적으로 통계를 보냈습니다.");
         }
     }
