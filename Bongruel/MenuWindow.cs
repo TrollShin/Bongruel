@@ -15,12 +15,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 public class OrderEventArgs : EventArgs
 {
-    /*public List<Food> LstOrderedFood;
-    public string TableId;
-    */
     public Seat seat;
-    //public PaymentType paymentType;
     public bool isPayment;
+    public int totalPrice;
 }
 
 namespace Bongruel
@@ -151,10 +148,8 @@ namespace Bongruel
         private void payMent_btn_Click(object sender, RoutedEventArgs e)
         {
             OrderEventArgs args = new OrderEventArgs();
-            //args.paymentType = this.paymentType;           
 
-            args.seat = new Seat(getSeat());
-            args.isPayment = true;
+            args = getOrederEventArgs(true);
 
             orderedMenuList.Clear();
 
@@ -230,13 +225,23 @@ namespace Bongruel
         {
             OrderEventArgs args = new OrderEventArgs();
 
-            args.seat = new Seat(getSeat());
-            args.isPayment = false;
+            args = getOrederEventArgs(false);
 
             orderedMenuList.Clear();
             selectedFood.Items.Refresh();
 
             OnGoBackMainWindow?.Invoke(this, args);
+        }
+
+        private OrderEventArgs getOrederEventArgs(bool isPayment)
+        {
+            OrderEventArgs result = new OrderEventArgs();
+
+            result.seat = new Seat(getSeat());
+            result.isPayment = isPayment;
+            result.totalPrice = getTotalPrice();
+
+            return result;
         }
 
         //돌아가기 버튼을 누를 시 실행 
