@@ -152,9 +152,6 @@
     <Resource Include="Assets\remove-symbol.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\spinner-of-dots.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\sub_visual_bonjuk.jpg" />
   </ItemGroup>
   <ItemGroup>
