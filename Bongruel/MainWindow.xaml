@@ -31,6 +31,10 @@
                     <TextBlock x:Name="timeText" Margin="0,0,10,0" HorizontalAlignment="Right"
                            FontSize="35" Foreground="White"/>
                 </StackPanel>
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock x:Name="loginDate" Margin="0,40,50,0"
+                               FontSize="35" Foreground="White"/>
+                </StackPanel>
             </Grid>
             
             <!--테이블-->

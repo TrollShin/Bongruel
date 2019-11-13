@@ -83,6 +83,7 @@ namespace Bongruel
 
             dayText.Text = DateTime.Now.ToString("yyyy년 MM월 dd일 dddd");
             timeText.Text = DateTime.Now.ToString("hh:mm:ss");
+            loginDate.Text = DateTime.Now.ToString("최근 로그인:yyyy.MM.dd.dddd hh:mm:ss");
             timer.Start();
         }
 

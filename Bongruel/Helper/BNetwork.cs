@@ -116,7 +116,7 @@ namespace Bongruel.Helper
     
         }
 
-        public bool CheckServer(string ip, int port)
+        /*public bool CheckServer(string ip, int port)
         {
             try
             {
@@ -154,7 +154,7 @@ namespace Bongruel.Helper
             }
 
 
-        }
+        }*/
 
     }
 }
