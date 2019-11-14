@@ -27,6 +27,8 @@ namespace Bongruel
         private DispatcherTimer timer = new DispatcherTimer();
 
         private bool isLoaded = false;
+        //public delegate void ConnectedHandler(object sender, bool isConnected);
+        //public event ConnectedHandler OnConnected;
 
         public MainWindow()
         { 
@@ -35,8 +37,15 @@ namespace Bongruel
             OrderWindow.OnGoBackMainWindow += menuWindow_GoBackMainWindow;
             StatControl.OnGoBackMainWindow += OnGoBackMainWindow;
             LoginControl.OnGoBackMainWindow += OnGoBackMainWindow;
+            App.bNetwork.OnConnected += BNetwork_OnConnected;
+            
             timer.Tick += Timer_Tick;
             timer.Tick += Timer_CheckLoad;
+        }
+
+        private void BNetwork_OnConnected(object sender, bool isConnected)
+        {
+            changeUserControl(LoginControl);           
         }
 
         private void Load()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,7 +23,6 @@ namespace Bongruel
     {
         public delegate void LoginHandler(object sender, EventArgs e);
         public event LoginHandler OnGoBackMainWindow;
-        private Helper.BNetwork bNetwork = new Helper.BNetwork();
 
         public const string ip = "10.80.163.138";
         public const int port = 80;
@@ -30,16 +30,15 @@ namespace Bongruel
         public LoginControl()
         {
             InitializeComponent();
-            bNetwork.Connect(ip, port);           
-        }
-
-    
+            App.bNetwork.Connect(ip, port);
+            
+        }    
 
         private void Btnlogin_Click(object sender, RoutedEventArgs e)
         {
-            if (id.Text == "@2114")
-            {
-                bNetwork.Send(id.Text);
+            if (id.Text == "@2114" || id.Text == "@2112")
+            { 
+                App.bNetwork.Send(id.Text);
                 goBackMainWindow();
             }
             else
@@ -47,6 +46,7 @@ namespace Bongruel
                 MessageBox.Show("아이디를 다시 확인해주세요");
             }
         }
+
 private void Btnexit_Click(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.GetCurrentProcess().Kill();
@@ -59,11 +59,7 @@ private void Btnexit_Click(object sender, RoutedEventArgs e)
 
         private void goBackMainWindow()
         {
-            if(OnGoBackMainWindow != null)
-            {
-                OnGoBackMainWindow(this, null);
-               
-            }
+            OnGoBackMainWindow?.Invoke(this, null);
         }
     }
 }

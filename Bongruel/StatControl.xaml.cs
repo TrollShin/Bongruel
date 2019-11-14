@@ -25,6 +25,8 @@ namespace Bongruel
     {
         public delegate void StatEventHandler(object sender, EventArgs e);
         public event StatEventHandler OnGoBackMainWindow;
+        public delegate void ConnectedHandler(object sender, bool isConnected);
+        public event ConnectedHandler OnConnected;
         private Helper.BNetwork bNetwork = new Helper.BNetwork();
 
         public const string ip = "10.80.163.138";

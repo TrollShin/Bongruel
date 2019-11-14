@@ -17,6 +17,7 @@ namespace Bongruel
         public static FoodData foodData = new FoodData();
         public static SeatData seatData = new SeatData();
         public static StatData statData = new StatData();
+        public static Helper.BNetwork bNetwork = new Helper.BNetwork();
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {

@@ -30,6 +30,9 @@ namespace Bongruel
         public delegate void GobackHandler(object sender, OrderEventArgs e);
         public event GobackHandler OnGoBackMainWindow;
 
+        public delegate void ConnectedHandler(object sender, bool isConnected);
+        public event ConnectedHandler OnConnected;
+
         private List<Food> orderedMenuList;
 
         private bool isLoaded = false;

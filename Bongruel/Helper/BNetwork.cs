@@ -12,15 +12,16 @@ namespace Bongruel.Helper
 {
     public class BNetwork
     {
+        public delegate void ConnectedHandler(object sender, bool isConnected);
+        public event ConnectedHandler OnConnected;
+
         //server address: 10.80.163.138 port: 8000
         public Socket socket = null;
 
         private byte[] buffer;
 
         public const string ip = "10.80.163.138";
-        public const int port = 80;
-
-
+        public const int port = 80;   
 
         public void Create()
         {
@@ -52,7 +53,7 @@ namespace Bongruel.Helper
         }*/
 
         public void Connect(string ip, int port)
-        {
+             {
             if (socket == null)
             {
                 Create();
@@ -83,6 +84,7 @@ namespace Bongruel.Helper
             //Socket client = (Socket) ar.AsyncState;
             socket.EndSend(ar);
             Debug.WriteLine("SendCallback");
+            Receive(socket);
 
         }
 
@@ -100,15 +102,22 @@ namespace Bongruel.Helper
             try
             {
                 //socket client = (socket) ar.AsyncState;
-                socket.EndReceive(ar);
-                socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
-                Debug.WriteLine("ReceiveCallback");
+                int status = socket.EndReceive(ar);
+                if(status > 0)
+                {
+                    socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
+                    Debug.WriteLine("ReceiveCallback");
+                }
+                else //서버가 종료된 상황으로 보자
+                {
+                    Debug.WriteLine("서버 종료됨");
+                }
+
             }
             catch(Exception)
             {
                 return;
-            }
-    
+            }   
         }
 
         /*public bool CheckServer(string ip, int port)
