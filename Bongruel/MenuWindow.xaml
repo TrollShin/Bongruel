@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Bongruel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="White">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="3*"/>
@@ -21,16 +22,17 @@
         <Grid Grid.ColumnSpan="2" Grid.Row="0" Background="#6E0000">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
                 <Image Source="Assets/logo_gnb.png" Stretch="Uniform"/>
-                <TextBlock  x:Name="tableId" Text="Default" Margin="10,10,0,0" 
-                            FontSize="24" Foreground="White"/>
+                <TextBlock x:Name="tableId" Text="Default" Margin="10,10,0,0" 
+                           FontSize="24" Foreground="White"/>
             </StackPanel>
             <TextBlock x:Name="lastOrderedTime" Text="DEFAULT" Margin="0,0,10,0"
-                           FontSize="24" Foreground="White"
-                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                       FontSize="24" Foreground="White"
+                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
         </Grid>
         <!--돌아가기-->
         <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Button Background="Transparent" BorderBrush="Transparent" x:Name="goBackBtn" Click="GoBackBtn_Click">
+            <Button Click="GoBackBtn_Click" 
+                    Background="Transparent" BorderBrush="Transparent" >
                 <Image Source="Assets/left-arrow.png"/>
             </Button>
         </Grid>
@@ -54,21 +56,20 @@
         </Grid>
         <!--메뉴선택-->
         <Grid Grid.Column="1" Grid.Row="2">
-            <ListView x:Name="lvFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                      BorderBrush="LightGray" BorderThickness="2">
+            <ListView x:Name="lvFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemTemplate>
                         <DataTemplate>
-                        <Grid Width="150" Height="150" Margin="5, 5, 5, 5" MouseLeftButtonUp="Menu_Select">
-                            <Image Source="{Binding ImagePath}" Stretch="Fill"/>
-                            <TextBlock Text="{Binding Name}" VerticalAlignment="Top"
-                                       Background="Black" Opacity="0.8" Height="20"
-                                       Foreground="White"/>
-                            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Right"
-                                       Foreground="White">
-                                <Run Text="{Binding Price}"/>
-                                <Run Text="\"/>
-                            </TextBlock>
-                        </Grid>
+                            <Grid Width="150" Height="150" MouseLeftButtonUp="Menu_Select">
+                                <Image Source="{Binding ImagePath}"/>
+                                <Grid Height="20" Background="#232323" VerticalAlignment="Top"/>
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Top" Margin="2,0,0,0"   
+                                           Foreground="White"/>
+                                <TextBlock VerticalAlignment="Top" HorizontalAlignment="Right"
+                                           Foreground="White" Margin="0,0,2,0">
+                                    <Run Text="{Binding Price}"/>
+                                    <Run Text="\"/>
+                                </TextBlock>
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 <ListView.ItemsPanel>
@@ -80,42 +81,38 @@
         </Grid>
         <!--메뉴선택 후 선택한 메뉴 이미지 출력-->
         <Grid Grid.Column="1" Grid.Row="3">
-            <Border BorderBrush="LightGray" BorderThickness="2">
-                <Image x:Name="foodImage" Stretch="UniformToFill" VerticalAlignment="Center"/>
-            </Border>
+            <Border BorderBrush="LightGray" BorderThickness="1"/>
+            <Image x:Name="foodImage" Stretch="UniformToFill" VerticalAlignment="Center"/>
         </Grid>
 
         <Grid Grid.Row="1">
-            <Border BorderBrush="LightGray" BorderThickness="2">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                        FontSize="28" FontWeight="Bold">
                 주문
-                </TextBlock>
-            </Border>
+            </TextBlock>
+            <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"
+                       FontSize="28" FontWeight="Bold">
+                    <Run Text="가격"/>
+                    <Run x:Name="totalPrice" Text="0"/>
+                    <Run Text="\"/>
+            </TextBlock>
         </Grid>
+        
         <Grid Grid.Row="2">
-            <ListView x:Name="selectedFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2" SelectionMode="Single">
+            <ListView x:Name="selectedFood" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      SelectionMode="Single">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="메뉴" DisplayMemberBinding="{Binding Name}" Width="350"/>
                         <GridViewColumn Header="수량" DisplayMemberBinding="{Binding Count}" Width="150"/>
-                        <GridViewColumn Header="수량" DisplayMemberBinding="{Binding Price}" Width="250"/>
+                        <GridViewColumn Header="가격" DisplayMemberBinding="{Binding Price}" Width="250"/>
                     </GridView>
                 </ListView.View>
             </ListView>
         </Grid>
         <!--메뉴 컨트롤 버튼-->
         <Grid Grid.Row="3">
-            <Border BorderBrush="LightGray" BorderThickness="2"/>
-            <StackPanel Orientation="Horizontal" Margin="100,5,0,0">
-                <RadioButton x:Name="CASH" Click="RadioButton_Click" GroupName="Payment" Content="현금"/>
-                <RadioButton x:Name="CREDIT" Click="RadioButton_Click" GroupName="Payment" Content="카드"/>
-                <TextBlock Margin="80,0,0,30" VerticalAlignment="Bottom"
-                           FontSize="44">
-                    <Run Text="가격"/>
-                    <Run x:Name="totalPrice" Text="0"/>
-                </TextBlock>
-            </StackPanel>
+
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                 <Button Width="80" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"
                         Click="ordered_btn_Click">
@@ -125,6 +122,10 @@
                         Click="payMent_btn_Click">
                     결제하기
                 </Button>
+                <StackPanel Orientation="Vertical" Margin="10,20,0,0">
+                    <RadioButton x:Name="CASH" Click="RadioButton_Click" GroupName="Payment" Content="현금" Margin="0,0,0,5"/>
+                    <RadioButton x:Name="CREDIT" Click="RadioButton_Click" GroupName="Payment" Content="카드"/>
+                </StackPanel>
                 <!--전체 제거 버튼-->
                 <Button Width="80" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"
                         Click="removeAll_btn_Click">

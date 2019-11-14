@@ -70,7 +70,7 @@ namespace Bongruel
             {
                 Food item = lstStat.Find(x => x.Name == foodList[i].Name);
                 item.Count += foodList[i].Count;
-                item.Price = foodList[i].Price;
+                item.Price += foodList[i].Price;
             }
         }
 
