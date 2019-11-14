@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Bongruel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -42,7 +42,7 @@
         <Grid Grid.Row="2" Grid.Column="0">
             <Border BorderBrush="LightGray" BorderThickness="2"/>
             <ListView x:Name="category" SelectionChanged="category_SelectionChanged"
-                      FontSize="16" Foreground="Black">
+                      FontSize="24" Foreground="Black">
                 <ListViewItem Content="전체"/>
                 <ListViewItem Content="시그니처" Tag="SIGNATURE"/>
                 <ListViewItem Content="영양" Tag="NUTRITION"/>
@@ -61,7 +61,7 @@
         <ListView x:Name="payedFoodList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="LightGray" BorderThickness="2" SelectionMode="Single">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="메뉴" DisplayMemberBinding="{Binding FoodName}" Width="200"/>
+                    <GridViewColumn Header="메뉴" DisplayMemberBinding="{Binding Name}" Width="200"/>
                     <GridViewColumn Header="수량" DisplayMemberBinding="{Binding Count}" Width="250"/>
                     <GridViewColumn Header="총액" DisplayMemberBinding="{Binding Price}" Width="350"/>
                 </GridView>

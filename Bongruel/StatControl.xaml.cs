@@ -33,7 +33,7 @@ namespace Bongruel
         public const int port = 80;
         string id = "@2114";
 
-        private List<Stat> lstPayedFood;
+        private List<Food> lstPayedFood;
         /*private List<Food> StatList;*/
         public StatControl()
         {
@@ -66,11 +66,11 @@ namespace Bongruel
 
         private void applyPayedFoodData(List<Food> foodList)
         {
-            List<Stat> lstStat = App.statData.PayedListFood;
+            List<Food> lstStat = App.statData.PayedListFood;
 
             for(int i = 0 ; i < foodList.Count() ; i++)
             {
-                Stat item = lstStat.Find(x => x.FoodName == foodList[i].Name);
+                Food item = lstStat.Find(x => x.Name == foodList[i].Name);
                 item.Count += foodList[i].Count;
                 item.Price += foodList[i].Price;
             }
@@ -80,12 +80,12 @@ namespace Bongruel
         private void category_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListViewItem item = category.SelectedItem as ListViewItem;
-            List<Stat> lstSelectedFood = App.statData.PayedListFood;
+            List<Food> lstSelectedFood = App.statData.PayedListFood;
 
             if (!(item.Content.ToString().Equals("전체")))
             {
                 Category selectCategory = (Category)Enum.Parse(typeof(Category), item.Tag.ToString());
-                lstSelectedFood = App.statData.PayedListFood.Where(x => x.FoodCategory == selectCategory).ToList();
+                lstSelectedFood = App.statData.PayedListFood.Where(x => x.category == selectCategory).ToList();
             }
 
             lstPayedFood = lstSelectedFood;
@@ -96,11 +96,11 @@ namespace Bongruel
         private int getTotalPrice()
         {
             int result = 0;
-            List<Stat> lstStat = App.statData.PayedListFood;
+            List<Food> lstStat = App.statData.PayedListFood;
 
             for(int i = 0; i < lstStat.Count(); i++)
             {
-                result += lstStat[i].Price;
+                result += lstStat[i].Price * lstStat[i].Count;
             }
 
             return result;
