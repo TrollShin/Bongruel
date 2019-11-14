@@ -58,8 +58,8 @@
                       BorderBrush="LightGray" BorderThickness="2">
                 <ListView.ItemTemplate>
                         <DataTemplate>
-                        <Grid Width="150" Height="150" Margin="5, 5, 5, 5">
-                            <Image Source="{Binding ImagePath}" Stretch="Fill" MouseLeftButtonUp="Menu_Select"/>
+                        <Grid Width="150" Height="150" Margin="5, 5, 5, 5" MouseLeftButtonUp="Menu_Select">
+                            <Image Source="{Binding ImagePath}" Stretch="Fill"/>
                             <TextBlock Text="{Binding Name}" VerticalAlignment="Top"
                                        Background="Black" Opacity="0.8" Height="20"
                                        Foreground="White"/>
