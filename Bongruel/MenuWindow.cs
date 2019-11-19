@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 public class OrderEventArgs : EventArgs
 {
     public Seat seat;
+    public int totalPrice;
     public bool isPayment;
 }
 
@@ -238,6 +239,7 @@ namespace Bongruel
 
             result.seat = new Seat(getSeat());
             result.isPayment = isPayment;
+            result.totalPrice = int.Parse(totalPrice.Text);//getTotalPrice();
 
             return result;
         }
