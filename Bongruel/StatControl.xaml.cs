@@ -52,23 +52,16 @@ namespace Bongruel
             OnGoBackMainWindow?.Invoke(this, null);
         }
 
-        public void payedFoodData(Seat seat)
+        public void payedFoodData(Seat seat, int price)
         {
             List<Food> item = new List<Food>(seat.OrderList);
 
             applyPayedFoodData(item);
-            totalPrice.Text = getTotalPrice(App.statData.PayedListFood).ToString();
+            totalPrice.Text = (int.Parse(totalPrice.Text) + price).ToString();
             sendPaymentData(seat);
 
             payedFoodList.Items.Refresh();
-        }       
-
-        private void sendPaymentData(Seat seat)
-        {
-            String text = id + "#" + seat.Id + " 테이블 " + getTotalPrice(seat.OrderList).ToString() + "원 결제";
-
-            bNetwork.Send(text);
-        }
+        }               
 
         private void applyPayedFoodData(List<Food> foodList)
         {
@@ -99,7 +92,7 @@ namespace Bongruel
             payedFoodList.ItemsSource = lstPayedFood;
         }
 
-        private int getTotalPrice(List<Food> lstFood)
+        /*private int getTotalPrice(List<Food> lstFood)
         {
             int result = 0;
             List<Food> lstItem = lstFood;
@@ -110,15 +103,19 @@ namespace Bongruel
             }
 
             return result;
-        }
+        }*/
         
         private void TotalPriceSend_Click(object sender, RoutedEventArgs e)
         {
-
-            totalPrice.Text = getTotalPrice(App.statData.PayedListFood).ToString();
-
             bNetwork.Send(id + "#총 매출액: " + totalPrice.Text + "원");
             MessageBox.Show("성공적으로 통계를 보냈습니다.");
+        }
+
+        private void sendPaymentData(Seat seat)
+        {
+            String text = id + "#" + seat.Id + " 테이블 " + totalPrice.Text + "원 결제";
+
+            bNetwork.Send(text);
         }
     }
 

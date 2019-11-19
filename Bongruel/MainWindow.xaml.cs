@@ -128,33 +128,27 @@ namespace Bongruel
             //e == null 이라면 돌아가기 버튼
             //e != null 이라면 주문하기 or 결제하기
             if (e != null)
-            {                      
-                Seat item = new Seat();
+            {
+                addOrderedMenu(e);
 
-                item.Id = e.seat.Id;
-                item.OrderList = e.seat.OrderList;
-                item.orderTime = e.seat.orderTime;
-
-                addOrderedMenu(item, e.isPayment);
-
-            listTable.Items.Refresh();
+                listTable.Items.Refresh();
             }
 
             OnGoBackMainWindow(sender, e);
         }
 
         //MenuWindow에서 메인화면으로 돌아올 때 주문한 메뉴를 받기위한 함수
-        private void addOrderedMenu(Seat seat, bool isPayment)
+        private void addOrderedMenu(OrderEventArgs e)
         {
-            if (isPayment)
-            {                
-                StatControl.payedFoodData(seat);
+            if (e.isPayment)
+            {
+                StatControl.payedFoodData(e.seat, e.totalPrice);
 
                 (listTable.SelectedItem as TableControl).InitTable();
             }
             else
             {
-                (listTable.SelectedItem as TableControl).SetItem(seat);          
+                (listTable.SelectedItem as TableControl).SetItem(e.seat);          
             }
         }
 
