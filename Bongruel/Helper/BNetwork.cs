@@ -40,6 +40,9 @@ namespace Bongruel.Helper
                 //Socket client = (Socket) ar.AsyncState;
                 buffer = new byte[socket.ReceiveBufferSize];
                 Debug.WriteLine("ConnectCallback");
+                socket.EndConnect(ar);
+
+                socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
             }
             catch(Exception)
             {
@@ -84,7 +87,7 @@ namespace Bongruel.Helper
             //Socket client = (Socket) ar.AsyncState;
             socket.EndSend(ar);
             Debug.WriteLine("SendCallback");
-            Receive(socket);
+           // Receive(socket);
 
         }
 
@@ -111,6 +114,7 @@ namespace Bongruel.Helper
                 else //서버가 종료된 상황으로 보자
                 {
                     Debug.WriteLine("서버 종료됨");
+                    OnConnected(this, false);                   
                 }
 
             }
