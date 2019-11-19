@@ -142,7 +142,7 @@ namespace Bongruel
         {
             if (isPayment)
             {                
-                StatControl.payedFoodData(seat.OrderList);
+                StatControl.payedFoodData(seat);
 
                 (listTable.SelectedItem as TableControl).InitTable();
             }

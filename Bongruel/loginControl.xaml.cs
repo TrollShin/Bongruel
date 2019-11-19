@@ -30,7 +30,7 @@ namespace Bongruel
         public LoginControl()
         {
             InitializeComponent();
-            App.bNetwork.Connect(ip, port);
+            //App.bNetwork.Connect(ip, port);
             
         }    
 

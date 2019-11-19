@@ -20,7 +20,7 @@ namespace GruelModel
 
             for(int i =1;i<=6;i++)
             {
-                listseat.Add(new Seat() { Id = i.ToString(), OrderList = new List<Food>() });
+                listseat.Add(new Seat() { Id = i.ToString() + "번", OrderList = new List<Food>() });
             }
 
             isLoaded = true;

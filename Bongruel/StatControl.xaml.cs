@@ -25,9 +25,7 @@ namespace Bongruel
     {
         public delegate void StatEventHandler(object sender, EventArgs e);
         public event StatEventHandler OnGoBackMainWindow;
-        public delegate void ConnectedHandler(object sender, bool isConnected);
-        public event ConnectedHandler OnConnected;
-        private Helper.BNetwork bNetwork = new Helper.BNetwork();
+        private Helper.BNetwork bNetwork = App.bNetwork;
 
         public const string ip = "10.80.163.138";
         public const int port = 80;
@@ -54,14 +52,22 @@ namespace Bongruel
             OnGoBackMainWindow?.Invoke(this, null);
         }
 
-        public void payedFoodData(List<Food> foodList)
+        public void payedFoodData(Seat seat)
         {
-            List<Food> item = new List<Food>(foodList);
+            List<Food> item = new List<Food>(seat.OrderList);
 
             applyPayedFoodData(item);
-            totalPrice.Text = getTotalPrice().ToString();
+            totalPrice.Text = getTotalPrice(App.statData.PayedListFood).ToString();
+            sendPaymentData(seat);
 
             payedFoodList.Items.Refresh();
+        }       
+
+        private void sendPaymentData(Seat seat)
+        {
+            String text = id + "#" + seat.Id + " 테이블 " + getTotalPrice(seat.OrderList).ToString() + "원 결제";
+
+            bNetwork.Send(text);
         }
 
         private void applyPayedFoodData(List<Food> foodList)
@@ -93,14 +99,14 @@ namespace Bongruel
             payedFoodList.ItemsSource = lstPayedFood;
         }
 
-        private int getTotalPrice()
+        private int getTotalPrice(List<Food> lstFood)
         {
             int result = 0;
-            List<Food> lstStat = App.statData.PayedListFood;
+            List<Food> lstItem = lstFood;
 
-            for(int i = 0; i < lstStat.Count(); i++)
+            for(int i = 0; i < lstItem.Count(); i++)
             {
-                result += lstStat[i].Price * lstStat[i].Count;
+                result += lstItem[i].Price;
             }
 
             return result;
@@ -109,10 +115,10 @@ namespace Bongruel
         private void TotalPriceSend_Click(object sender, RoutedEventArgs e)
         {
 
-            totalPrice.Text = getTotalPrice().ToString();
+            totalPrice.Text = getTotalPrice(App.statData.PayedListFood).ToString();
 
-                bNetwork.Send(id + "#총 매출액: " + totalPrice.Text + "원");
-                MessageBox.Show("성공적으로 통계를 보냈습니다.");
+            bNetwork.Send(id + "#총 매출액: " + totalPrice.Text + "원");
+            MessageBox.Show("성공적으로 통계를 보냈습니다.");
         }
     }
 

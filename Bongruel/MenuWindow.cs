@@ -17,7 +17,6 @@ public class OrderEventArgs : EventArgs
 {
     public Seat seat;
     public bool isPayment;
-    public int totalPrice;
 }
 
 namespace Bongruel
@@ -29,9 +28,6 @@ namespace Bongruel
     {
         public delegate void GobackHandler(object sender, OrderEventArgs e);
         public event GobackHandler OnGoBackMainWindow;
-
-        public delegate void ConnectedHandler(object sender, bool isConnected);
-        public event ConnectedHandler OnConnected;
 
         private List<Food> orderedMenuList;
 
@@ -242,7 +238,6 @@ namespace Bongruel
 
             result.seat = new Seat(getSeat());
             result.isPayment = isPayment;
-            result.totalPrice = getTotalPrice();
 
             return result;
         }
