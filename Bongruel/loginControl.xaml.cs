@@ -47,7 +47,7 @@ namespace Bongruel
             }
         }
 
-private void Btnexit_Click(object sender, RoutedEventArgs e)
+        private void Btnexit_Click(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.GetCurrentProcess().Kill();
         }

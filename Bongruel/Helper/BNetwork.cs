@@ -113,8 +113,8 @@ namespace Bongruel.Helper
                 }
                 else //서버가 종료된 상황으로 보자
                 {
-                    Debug.WriteLine("서버 종료됨");
-                    OnConnected(this, false);                   
+                    OnConnected(this, false);
+                    Debug.WriteLine("서버 종료됨");               
                 }
 
             }

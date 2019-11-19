@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Net.Sockets;
 using GruelModel;
 using System.Windows.Threading;
+using System.Diagnostics;
 
 namespace Bongruel
 {
@@ -27,8 +28,6 @@ namespace Bongruel
         private DispatcherTimer timer = new DispatcherTimer();
 
         private bool isLoaded = false;
-        //public delegate void ConnectedHandler(object sender, bool isConnected);
-        //public event ConnectedHandler OnConnected;
 
         public MainWindow()
         { 
@@ -37,16 +36,23 @@ namespace Bongruel
             OrderWindow.OnGoBackMainWindow += menuWindow_GoBackMainWindow;
             StatControl.OnGoBackMainWindow += OnGoBackMainWindow;
             LoginControl.OnGoBackMainWindow += OnGoBackMainWindow;
-            App.bNetwork.OnConnected += BNetwork_OnConnected;
-            
+            App.bNetwork.OnConnected += CheckServer;
+
             timer.Tick += Timer_Tick;
             timer.Tick += Timer_CheckLoad;
         }
 
-        private void BNetwork_OnConnected(object sender, bool isConnected)
+        private void CheckServer(object sender, bool isConnected)
         {
-            changeUserControl(LoginControl);           
+            if(isConnected)
+            {
+                return;
+            }
+            MessageBox.Show("서버와의 연결이 끊겼습니다");
+            changeUserControl(LoginControl);
         }
+
+
 
         private void Load()
         {
