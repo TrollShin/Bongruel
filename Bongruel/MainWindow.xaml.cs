@@ -213,5 +213,10 @@ namespace Bongruel
             userControl.Visibility = Visibility.Visible;
             mainGrid.Visibility = Visibility.Collapsed;
         }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
