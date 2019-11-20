@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Net.Sockets;
 using GruelModel;
 using System.Windows.Threading;
+using System.Diagnostics;
 
 namespace Bongruel
 {
@@ -35,22 +36,48 @@ namespace Bongruel
             OrderWindow.OnGoBackMainWindow += menuWindow_GoBackMainWindow;
             StatControl.OnGoBackMainWindow += OnGoBackMainWindow;
             LoginControl.OnGoBackMainWindow += OnGoBackMainWindow;
-            App.bNetwork.OnConnected += BNetwork_OnConnected;
-            
+           // App.bNetwork.OnConnected += CheckServer;
+            App.bNetwork.OnDisConncected += Disconnected;
+
             timer.Tick += Timer_Tick;
             timer.Tick += Timer_CheckLoad;
         }
 
-        private void BNetwork_OnConnected(object sender, bool isConnected)
+        private void CheckServer(object sender, bool isConnected)
         {
+            if(isConnected == false) //chris - 서버가 종료되면
+            {    
+                MessageBox.Show("서버와의 연결이 끊겼습니다");
+                connectedDate.Text = DateTime.Now.ToString("yyyy.dddd.MM.dd hh:mm:ss");
+               changeUserControl(LoginControl);
+            }
+
+            #if false
             if(isConnected)
             {
                 return;
-            } //return
-
-            MessageBox.Show("서버와의 연결이 끊어졌습니다.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            changeUserControl(LoginControl);
+            }
+            MessageBox.Show("서버와의 연결이 끊겼습니다");
+            connectedDate.Text = DateTime.Now.ToString("yyyy.dddd.MM.dd hh:mm:ss");
+            #endif
         }
+
+        private void Disconnected(object sender, bool? isConnected)
+        {
+            MessageBox.Show("서버와의 연결이 끊겼습니다");
+            connectedDate.Text = DateTime.Now.ToString("yyyy.dddd.MM.dd hh:mm:ss");
+            changeUserControl(LoginControl);
+         }
+
+        #if false
+        if(isConnected)
+        {
+            return;
+        }
+        MessageBox.Show("서버와의 연결이 끊겼습니다");
+        connectedDate.Text = DateTime.Now.ToString("yyyy.dddd.MM.dd hh:mm:ss");
+        #endif
+
 
         private void Load()
         {
@@ -183,13 +210,8 @@ namespace Bongruel
         //다른 UserControl로 가기
         private void changeUserControl(UserControl userControl)
         {
-            mainGrid.Visibility = Visibility.Collapsed;
             userControl.Visibility = Visibility.Visible;
-        }
-
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-
+            mainGrid.Visibility = Visibility.Collapsed;
         }
     }
 }

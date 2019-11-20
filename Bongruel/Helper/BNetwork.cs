@@ -14,13 +14,15 @@ namespace Bongruel.Helper
     {
         public delegate void ConnectedHandler(object sender, bool isConnected);
         public event ConnectedHandler OnConnected;
+        public delegate void DisconnectedHandler(object sender, bool? isConnected);
+        public event DisconnectedHandler OnDisConncected;
 
         //server address: 10.80.163.138 port: 8000
         public Socket socket = null;
 
         private byte[] buffer;
 
-        public const string ip = "10.80.163.138";
+        public const string ip = "10.80.162.157";
         public const int port = 80;   
 
         public void Create()
@@ -42,7 +44,13 @@ namespace Bongruel.Helper
                 Debug.WriteLine("ConnectCallback");
                 socket.EndConnect(ar);
 
-                socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
+                if(OnConnected != null)
+                {
+                    Debug.WriteLine("ConnectCallback delegate 호출");
+                    OnConnected(this, true);
+                }
+
+                //socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
             }
             catch(Exception)
             {
@@ -56,7 +64,7 @@ namespace Bongruel.Helper
         }*/
 
         public void Connect(string ip, int port)
-             {
+        {
             if (socket == null)
             {
                 Create();
@@ -68,6 +76,11 @@ namespace Bongruel.Helper
             Debug.WriteLine("Connect");
         }
 
+
+        public void StartReceive()
+        {
+            socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
+        }
 
         public void Send(string message)
         {
@@ -113,13 +126,17 @@ namespace Bongruel.Helper
                 }
                 else //서버가 종료된 상황으로 보자
                 {
-                    Debug.WriteLine("서버 종료됨");
-                    OnConnected(this, false);                   
+                    if(OnDisConncected != null)
+                    {
+                        OnDisConncected(this, null);
+                    }
+                    Debug.WriteLine("서버 종료됨");               
                 }
 
             }
-            catch(Exception)
+            catch(Exception e)
             {
+                Console.WriteLine(e.StackTrace);
                 return;
             }   
         }

@@ -64,6 +64,11 @@
                         <Run Text="최근 로그인 "/>
                         <Run x:Name="loginDate"/>
                 </TextBlock>
+             <TextBlock Margin="0,50,0,0" HorizontalAlignment="Left"
+                        FontSize="35" Foreground="Black">
+               <Run Text="최종 접속 시간 "/>
+               <Run x:Name="connectedDate" />
+             </TextBlock>
             </Grid>
         </Grid>
     </Grid>
