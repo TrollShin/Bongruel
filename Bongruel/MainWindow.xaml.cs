@@ -27,8 +27,6 @@ namespace Bongruel
         private DispatcherTimer timer = new DispatcherTimer();
 
         private bool isLoaded = false;
-        //public delegate void ConnectedHandler(object sender, bool isConnected);
-        //public event ConnectedHandler OnConnected;
 
         public MainWindow()
         { 
@@ -45,7 +43,13 @@ namespace Bongruel
 
         private void BNetwork_OnConnected(object sender, bool isConnected)
         {
-            changeUserControl(LoginControl);           
+            if(isConnected)
+            {
+                return;
+            } //return
+
+            MessageBox.Show("서버와의 연결이 끊어졌습니다.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            changeUserControl(LoginControl);
         }
 
         private void Load()
@@ -181,6 +185,11 @@ namespace Bongruel
         {
             mainGrid.Visibility = Visibility.Collapsed;
             userControl.Visibility = Visibility.Visible;
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

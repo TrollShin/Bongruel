@@ -69,14 +69,14 @@ namespace Bongruel
             CASH.IsChecked = true;
 
             orderedMenuList = new List<Food>();
-            initLvFood(new List<Food>(App.foodData.listFood));
+            setLvFood(new List<Food>(App.foodData.listFood));
             selectedFood.ItemsSource = orderedMenuList;
 
             isLoaded = true;
         }
 
         //메뉴 초기화
-        private void initLvFood(List<Food> lstFood)
+        private void setLvFood(List<Food> lstFood)
         {
             foreach (Food item in lstFood)
             {
@@ -86,7 +86,7 @@ namespace Bongruel
             }
         }
 
-        // 음식 선택 시 실행
+        // 음식 선택
         private void Menu_Select(object sender, MouseButtonEventArgs e)
         { 
             Food food = new Food(lvFood.SelectedItem as Food);
@@ -113,7 +113,13 @@ namespace Bongruel
                 orderedMenuList.Add(food);
             }
 
-            refrashTotalPrice();
+            //refrashTotalPrice();
+            changeTotalPrice(food.Price);
+        }
+
+        private void changeTotalPrice(int price)
+        {
+            totalPrice.Text = (int.Parse(totalPrice.Text) + price).ToString();
         }
 
         // 선택한 메뉴가 이미 선택되어 있다면 true 아니면 false
@@ -168,7 +174,7 @@ namespace Bongruel
         private void removeAll_btn_Click(object sender, RoutedEventArgs e)
         {
             orderedMenuList.Clear();
-            refrashTotalPrice();
+            totalPrice.Text = "0";
             selectedFood.Items.Refresh();
         }
 
@@ -285,19 +291,19 @@ namespace Bongruel
             lvFood.Items.Clear();
 
             ListViewItem item = category.SelectedItem as ListViewItem;
-            List<Food> lstSelectedFood = new List<Food>();
+            List<Food> lstFood = new List<Food>();
 
             if (item.Content.ToString().Equals("전체"))
             {
-                lstSelectedFood = new List<Food>(App.foodData.listFood);
+                lstFood = new List<Food>(App.foodData.listFood);
             }
             else
             {
                 Category selectCategory = (Category)Enum.Parse(typeof(Category), item.Tag.ToString());
-                lstSelectedFood = new List<Food>(App.foodData.listFood).Where(x => x.category == selectCategory).ToList();
+                lstFood = new List<Food>(App.foodData.listFood).Where(x => x.category == selectCategory).ToList();
             }
 
-            initLvFood(lstSelectedFood);
+            setLvFood(lstFood);
         }
     
         //parameter food 의 가격을 리턴함
