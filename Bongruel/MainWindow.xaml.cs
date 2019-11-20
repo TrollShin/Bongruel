@@ -43,6 +43,7 @@ namespace Bongruel
             timer.Tick += Timer_CheckLoad;
         }
 
+        /*
         private void CheckServer(object sender, bool isConnected)
         {
             if(isConnected == false) //chris - 서버가 종료되면
@@ -61,12 +62,15 @@ namespace Bongruel
             connectedDate.Text = DateTime.Now.ToString("yyyy.dddd.MM.dd hh:mm:ss");
             #endif
         }
+        */
 
         private void Disconnected(object sender, bool? isConnected)
         {
-            MessageBox.Show("서버와의 연결이 끊겼습니다");
+            MessageBox.Show("서버와의 연결이 끊겼습니다", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             connectedDate.Text = DateTime.Now.ToString("yyyy.dddd.MM.dd hh:mm:ss");
-            changeUserControl(LoginControl);
+            Dispatcher.BeginInvoke(new Action(() => {
+                Login.Visibility = Visibility.Visible;
+            }));
          }
 
         #if false
@@ -109,8 +113,7 @@ namespace Bongruel
 
             if(listTable.Items.Count != 0)
             {
-                Loading.Visibility = Visibility.Collapsed;
-                changeUserControl(LoginControl);
+                Loading.Visibility = Visibility.Collapsed;                
                 timer.Tick -= Timer_CheckLoad;
             }
         }
@@ -216,7 +219,10 @@ namespace Bongruel
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-
+            App.bNetwork.Send(IdTextBox.Text);
+            MessageBox.Show("로그인 성공");
+            App.bNetwork.StartReceive();
+            Login.Visibility = Visibility.Collapsed;
         }
     }
 }
