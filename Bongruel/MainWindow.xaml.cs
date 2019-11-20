@@ -36,7 +36,8 @@ namespace Bongruel
             OrderWindow.OnGoBackMainWindow += menuWindow_GoBackMainWindow;
             StatControl.OnGoBackMainWindow += OnGoBackMainWindow;
             LoginControl.OnGoBackMainWindow += OnGoBackMainWindow;
-            App.bNetwork.OnConnected += CheckServer;
+           // App.bNetwork.OnConnected += CheckServer;
+            App.bNetwork.OnDisConncected += Disconnected;
 
             timer.Tick += Timer_Tick;
             timer.Tick += Timer_CheckLoad;
@@ -44,14 +45,38 @@ namespace Bongruel
 
         private void CheckServer(object sender, bool isConnected)
         {
+            if(isConnected == false) //chris - 서버가 종료되면
+            {    
+                MessageBox.Show("서버와의 연결이 끊겼습니다");
+                connectedDate.Text = DateTime.Now.ToString("yyyy.dddd.MM.dd hh:mm:ss");
+               changeUserControl(LoginControl);
+            }
+
+            #if false
             if(isConnected)
             {
                 return;
             }
             MessageBox.Show("서버와의 연결이 끊겼습니다");
-            changeUserControl(LoginControl);
+            connectedDate.Text = DateTime.Now.ToString("yyyy.dddd.MM.dd hh:mm:ss");
+            #endif
         }
 
+        private void Disconnected(object sender, bool? isConnected)
+        {
+            MessageBox.Show("서버와의 연결이 끊겼습니다");
+            connectedDate.Text = DateTime.Now.ToString("yyyy.dddd.MM.dd hh:mm:ss");
+            changeUserControl(LoginControl);
+         }
+
+        #if false
+        if(isConnected)
+        {
+            return;
+        }
+        MessageBox.Show("서버와의 연결이 끊겼습니다");
+        connectedDate.Text = DateTime.Now.ToString("yyyy.dddd.MM.dd hh:mm:ss");
+        #endif
 
 
         private void Load()
@@ -185,8 +210,8 @@ namespace Bongruel
         //다른 UserControl로 가기
         private void changeUserControl(UserControl userControl)
         {
-            mainGrid.Visibility = Visibility.Collapsed;
             userControl.Visibility = Visibility.Visible;
+            mainGrid.Visibility = Visibility.Collapsed;
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Bongruel
         public event StatEventHandler OnGoBackMainWindow;
         private Helper.BNetwork bNetwork = App.bNetwork;
 
-        public const string ip = "10.80.163.138";
+        public const string ip = "10.80.162.157";
         public const int port = 80;
         string id = "@2114";
 

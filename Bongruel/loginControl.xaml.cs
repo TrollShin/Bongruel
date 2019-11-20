@@ -24,27 +24,30 @@ namespace Bongruel
         public delegate void LoginHandler(object sender, EventArgs e);
         public event LoginHandler OnGoBackMainWindow;
 
-        public const string ip = "10.80.163.138";
+        public const string ip = "10.80.162.157";
         public const int port = 80;
 
         public LoginControl()
         {
             InitializeComponent();
             //App.bNetwork.Connect(ip, port);
+            App.bNetwork.OnConnected += CheckServer;
             
         }    
 
+
+        private void CheckServer(object sender, bool isConnected)
+        {
+            if(isConnected)
+            {
+                App.bNetwork.StartReceive();
+                return;
+            }
+        }
+
         private void Btnlogin_Click(object sender, RoutedEventArgs e)
         {
-            if (id.Text == "@2114" || id.Text == "@2112")
-            { 
-                App.bNetwork.Send(id.Text);
                 goBackMainWindow();
-            }
-            else
-            {
-                MessageBox.Show("아이디를 다시 확인해주세요");
-            }
         }
 
         private void Btnexit_Click(object sender, RoutedEventArgs e)
