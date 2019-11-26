@@ -67,9 +67,9 @@ namespace Bongruel
         private void Disconnected(object sender, bool? isConnected)
         {
             MessageBox.Show("서버와의 연결이 끊겼습니다", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            connectedDate.Text = DateTime.Now.ToString("yyyy.dddd.MM.dd hh:mm:ss");
             Dispatcher.BeginInvoke(new Action(() => {
                 Login.Visibility = Visibility.Visible;
+                connectedDate.Text = DateTime.Now.ToString("yyyy.dddd.MM.dd hh:mm:ss");
             }));
          }
 
