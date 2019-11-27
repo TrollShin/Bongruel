@@ -126,7 +126,6 @@ namespace Bongruel
 
             dayText.Text = DateTime.Now.ToString("yyyy년 MM월 dd일 dddd");
             timeText.Text = DateTime.Now.ToString("hh:mm:ss");
-            loginDate.Text = DateTime.Now.ToString("yyyy.dddd.MM.dd hh:mm:ss");
             timer.Start();
         }
 
@@ -222,6 +221,7 @@ namespace Bongruel
             App.bNetwork.Send(IdTextBox.Text);
             MessageBox.Show("로그인 성공");
             App.bNetwork.StartReceive();
+            loginDate.Text = DateTime.Now.ToString("yyyy.dddd.MM.dd hh:mm:ss");
             Login.Visibility = Visibility.Collapsed;
         }
     }

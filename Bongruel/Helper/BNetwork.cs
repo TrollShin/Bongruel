@@ -17,12 +17,12 @@ namespace Bongruel.Helper
         public delegate void DisconnectedHandler(object sender, bool? isConnected);
         public event DisconnectedHandler OnDisConncected;
 
-        //server address: 10.80.163.138 port: 8000
+        //server address: 10.80.163.138 port: 80
         public Socket socket = null;
 
         private byte[] buffer;
 
-        public const string ip = "10.80.162.157";
+        public const string ip = "10.80.163.138";
         public const int port = 80;   
 
         public void Create()
